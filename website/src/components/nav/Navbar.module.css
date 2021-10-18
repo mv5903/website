@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 3vh;
+    background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbutton {
+    margin-right: 10vw;
+}
+
+.flexright {
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+    margin-left: auto;
+}
