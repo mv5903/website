@@ -7,9 +7,10 @@ function Title() {
             <TypeIt
             options={{
                 strings: ['Matthew Vandenberg', 'Aspiring Software Engineer'],
-                lifeLike: true
+                cursorChar: '_',
+                speed: 60,
+                html: true
             }}/>
-
         </div> 
     );
 }

@@ -1,9 +1,11 @@
 * {
     margin: 0;
     padding: 0;
-    color: white;
 }
 
+:root {
+    --ti-cursor-color: green;
+}
 
 
 html {
