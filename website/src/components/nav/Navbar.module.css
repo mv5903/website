@@ -3,8 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    font-size: 3vh;
-    background-color: black;
+    font-size: 2vh;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

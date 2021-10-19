@@ -1,0 +1,11 @@
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30vh;
+}
+
+.titleContainer > p {
+    font-size: 5em;
+    font-family: 'Noto Sans Mono', monospace;
+}

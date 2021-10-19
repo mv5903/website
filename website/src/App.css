@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+html {
+    background-image: radial-gradient(
+        circle,
+        #222222,
+        #1e1e1e,
+        #1a1a1a,
+        #161616,
+        #111111
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    min-height: 100%
+}

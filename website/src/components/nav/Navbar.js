@@ -9,7 +9,7 @@ function Navbar() {
             <Logo />
             <div className={styles.flexright}>
                 <Navbutton title="About" />
-                <Navbutton title="Projects" />
+                <Navbutton title="Portfolio" />
                 <Navbutton title="Contact" />
             </div>
         </nav>
