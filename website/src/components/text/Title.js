@@ -1,10 +1,15 @@
 import styles from './Title.module.css';
+import TypeIt from 'typeit-react';
 
 function Title() {
     return (
         <div className={styles.titleContainer}>
-            <p>Matthew Vandenberg</p>
-            <p>Aspiring Software Engineer</p>
+            <TypeIt
+            options={{
+                strings: ['Matthew Vandenberg', 'Aspiring Software Engineer'],
+                lifeLike: true
+            }}/>
+
         </div> 
     );
 }

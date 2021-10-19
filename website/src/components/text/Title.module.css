@@ -3,9 +3,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 30vh;
-}
-
-.titleContainer > p {
-    font-size: 5em;
-    font-family: 'Noto Sans Mono', monospace;
+    font-size: 3em;
+    font-family: "Noto Sans Mono", monospace;
+    text-align: center;
 }
