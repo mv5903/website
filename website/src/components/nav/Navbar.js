@@ -8,9 +8,10 @@ function Navbar() {
         <nav className={styles.nav}>
             <Logo />
             <div className={styles.flexright}>
-                <Navbutton title="About" />
-                <Navbutton title="Portfolio" />
-                <Navbutton title="Contact" />
+                <Navbutton title="About" link="About Me"/>
+                <Navbutton title="Portfolio" link="Portfolio"/>
+                <Navbutton title="Knowledge" link="Knowledge"/>
+                <Navbutton title="Contact" link="Contact"/>
             </div>
         </nav>
     );

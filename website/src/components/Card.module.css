@@ -1,0 +1,35 @@
+h3 {
+    font-family: 'Roboto Slab', serif;
+    color: white;
+    font-size: 4em;
+    margin-left: 2vw;
+    margin-bottom: 3vh;
+}
+
+.cardbackground {
+    margin-bottom: 10vh;
+    height: 100vh;
+}
+
+ul {
+    height: 50vh;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+ul li {
+    margin-right: 5vw;
+    margin-left: 5vh;
+    border: 3px solid black;
+    border-radius: 10px;
+    font-size: 2.5vh;
+    padding: 10px;
+    min-width: 15vw;
+    max-width: 15vw;
+    height: 30vh;
+    background-color: grey;
+    margin-bottom: 5vh;
+}

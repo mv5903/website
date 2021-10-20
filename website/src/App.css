@@ -20,5 +20,10 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
-    min-height: 100%
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+.cardDisplay {
+    margin-top: 90vh;
 }

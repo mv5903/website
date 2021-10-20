@@ -1,9 +1,10 @@
 import styles from './Navbar.module.css';
 
 function Navbutton(props) {
+    let link = '#' + props.link;
     return(
         <div className={styles.navbutton}>
-            <p>{props.title}</p>
+            <a className={styles.navlink} href={link}><p>{props.title}</p></a>
         </div>
     );
 }
