@@ -15,12 +15,13 @@ ul {
     height: 50vh;
     display: flex;
     list-style: none;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 ul li {
+    font-family: 'Ubuntu', sans-serif;
     margin-right: 5vw;
     margin-left: 5vh;
     border: 3px solid black;
@@ -32,4 +33,9 @@ ul li {
     height: 30vh;
     background-color: grey;
     margin-bottom: 5vh;
+}
+
+ul li h5 {
+    font-size: 2.75vh;
+    margin-bottom: 2vh;
 }
