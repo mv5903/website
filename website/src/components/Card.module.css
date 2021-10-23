@@ -8,31 +8,38 @@ h3 {
 
 .cardbackground {
     margin-bottom: 10vh;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 ul {
-    height: 50vh;
     display: flex;
     list-style: none;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 ul li {
     font-family: 'Ubuntu', sans-serif;
     margin-right: 5vw;
-    margin-left: 5vh;
+    margin-left: 5vw;
     border: 3px solid black;
     border-radius: 10px;
     font-size: 2.5vh;
+    height: auto; 
     padding: 10px;
-    min-width: 15vw;
-    max-width: 15vw;
-    height: 30vh;
     background-color: grey;
     margin-bottom: 5vh;
+    max-width: 20vw;
+}
+
+@media screen and (max-width: 850px) {
+    ul li {
+        min-width: 80vw;
+    }
+    h3 {
+        text-align: center
+    }
 }
 
 ul li h5 {

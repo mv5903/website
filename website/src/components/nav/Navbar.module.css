@@ -8,8 +8,19 @@
     font-family: 'Roboto Slab', serif;
 }
 
+@media screen and (max-width: 1100px) {
+    .nav {
+        display: none;
+    }
+}
+
+.navbutton:hover {
+    border-bottom: 3px solid green;
+}
+
 .navbutton {
     margin-right: 10vw;
+    transition: .5s
 }
 
 .flexright {

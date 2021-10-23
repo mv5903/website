@@ -35,7 +35,7 @@ export const cardData = [
         "title": "Portfolio",
         "cards": [
             {
-                "subtitle": "Astrophotography Website",
+                "subtitle": "Astro- photography Website",
                 "content": "Photo manager website application designed to upload, remove, and edit content of photos.",
                 "website": "https://alan-rock.com/"
             },
