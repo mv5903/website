@@ -3,6 +3,8 @@
     height: 5vw;
     margin-top: 5vh;
     margin-bottom: 70vh;
+    -webkit-filter: invert(55%) sepia(22%) saturate(0) hue-rotate(199deg) brightness(87%) contrast(77%);
+    filter: invert(55%) sepia(22%) saturate(0) hue-rotate(199deg) brightness(87%) contrast(77%);
 }
 
 .contact {

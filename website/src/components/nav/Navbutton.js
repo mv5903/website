@@ -1,10 +1,11 @@
 import styles from './Navbar.module.css';
 
 function Navbutton(props) {
-    let link = '#' + props.link;
+    //Privacy policies will link to another part of site
+    let link = props.title == "Privacy Policies" ? '' + props.link : '#' + props.link;
     return(
         <div className={styles.navbutton}>
-            <a className={styles.navlink} href={link}><p>{props.title}</p></a>
+            <a target={props.title == "Privacy Policies" ? "_blank" : ""} className={styles.navlink} href={link}><p>{props.title}</p></a>
         </div>
     );
 }

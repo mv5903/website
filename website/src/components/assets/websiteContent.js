@@ -40,6 +40,11 @@ export const cardData = [
                 "website": "https://alan-rock.com/"
             },
             {
+                "subtitle": "Really Simple iOS Apps",
+                "content": "Simple, free, and easy-to-use collection of apps (current focus).",
+                "website": "https://github.com/mv5903/swift-projects/tree/main/Really%20Simple%20Series"
+            },
+            {
                 "subtitle": "Weather Website",
                 "content": "Retrieves weather information for your current location, or you can move the map or type in a zip code to retrieve the weather for another location.",
                 "website": "https://www.mattvandenberg.com/weather.php"
@@ -72,6 +77,10 @@ export const cardData = [
             {
                 "subtitle": "Web Development",
                 "content": "Originally I started using HTML, CSS, and vanilla Javascript to create websites. More recently I am diving into React, which this website is made with."
+            },
+            {
+                "subtitle": "Swift, focus in SwiftUI",
+                "content": "Develop and test iOS and iPadOS applications, always free of charge."
             },
             {
                 "subtitle": "Python",

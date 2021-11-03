@@ -15,9 +15,9 @@
 }
 
 .navbutton:hover {
-    border-bottom: 3px solid green;
-}
+    border-bottom: 3px solid rgb(14, 154, 219);
 
+}
 .navbutton {
     margin-right: 10vw;
     transition: .5s
