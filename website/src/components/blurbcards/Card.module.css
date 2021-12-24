@@ -33,6 +33,11 @@ ul li {
     max-width: 20vw;
 }
 
+ul li:hover {
+    transform: scale(1.2);
+    transition-duration: .5s;
+}
+
 @media screen and (max-width: 850px) {
     ul li {
         min-width: 80vw;

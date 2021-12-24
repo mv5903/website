@@ -12,7 +12,8 @@ function Navbar() {
                 <Navbutton title="Portfolio" link="Portfolio"/>
                 <Navbutton title="Knowledge" link="Knowledge"/>
                 <Navbutton title="Contact" link="Contact"/>
-                <Navbutton title="Privacy Policies" link="https://www.mattvandenberg.com/privacy-policy/reallysimple.html"/>
+                <Navbutton title="Résumé" link="https://www.mattvandenberg.com/resume.pdf"/>
+                <Navbutton title="Privacy Policy" link="https://www.mattvandenberg.com/privacy-policy/reallysimple.html"/>
             </div>
         </nav>
     );

@@ -4,16 +4,25 @@ export const cardData = [
         "title": "About Me",
         "cards": [
             {
-                "subtitle" : "UC San Diego",
-                "content": "First Year, studying Mathematics and Computer Science with a minor in Real Estate and Development."
+                "subtitle" : "University of California San Diego",
+                "content": "First Year Student (2021-2025). Mathematics-Computer Science, B.S."
             },
             {
-                "subtitle": "From",
-                "content": "Graduated Piscataway Township Highschool in New Jersey in 2021. I now live in San Diego, California."
+                "subtitle": "Piscataway High School",
+                "content": "High School Diploma (2017-2021) from Piscataway Township High School, Piscataway, NJ"
+            },
+            {
+                "subtitle": "Future Career",
+                "content": "Would like to become a software engineer or web developer as a final career."
             },
             {
                 "subtitle": "Computer Science Tutoring",
                 "content": "Assists many aspiring high school and university computer science students in Java and Python."
+            },
+            {
+                "subtitle": "Delware STEAM Academy",
+                "content": "Teach interactive learning sessions with children in middle and high school, using Python, HTML, CSS, and JavaScript.",
+                "website": "https://www.desteam.org/"
             },
             {
                 "subtitle": "Rising Future",
@@ -23,10 +32,6 @@ export const cardData = [
             {
                 "subtitle": "Hard Working",
                 "content": "Learning and adapting to new math and computer science content in my own projects, such as this website."
-            },
-            {
-                "subtitle": "Future Career",
-                "content": "Would like to become a software engineer or web developer as a final career."
             }
         ]
     },
@@ -88,7 +93,7 @@ export const cardData = [
             },
             {
                 "subtitle": "C#",
-                "content": "Created many windows application and attempted work with Unity."
+                "content": "Created many Windows applications and attempted work with Unity."
             },
             {
                 "subtitle": "Hardware",
@@ -97,6 +102,10 @@ export const cardData = [
             {
                 "subtitle": "Software",
                 "content": "Good at learning software to help myself and others with any issues."
+            },
+            {
+                "subtitle": "Adaptability",
+                "content": "Great at learning a new language or framework (check out my Swift projects, all done in a week!)"
             }
         ]
     }

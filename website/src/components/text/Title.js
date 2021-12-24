@@ -6,7 +6,7 @@ function Title() {
         <div className={styles.titleContainer}>
             <TypeIt
             options={{
-                strings: ['Matthew Vandenberg', ' ', 'Aspiring Software Engineer and Web Developer'],
+                strings: ['Matthew Vandenberg', ' ', 'Math & CS at UC San Diego'],
                 cursorChar: '_',
                 speed: 60,
                 html: true,

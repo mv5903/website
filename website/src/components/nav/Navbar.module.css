@@ -1,8 +1,7 @@
 .nav {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+    justify-content: space-around;
     font-size: 2vh;
     color: white;
     font-family: 'Roboto Slab', serif;
@@ -15,12 +14,12 @@
 }
 
 .navbutton:hover {
-    border-bottom: 3px solid rgb(14, 154, 219);
-
+    border-bottom: 3px solid rgb(0, 156, 21);
+    transform: scale(1.1);
 }
 .navbutton {
-    margin-right: 10vw;
-    transition: .5s
+    margin-right: 7vw;
+    transition-duration: .25s
 }
 
 .flexright {
