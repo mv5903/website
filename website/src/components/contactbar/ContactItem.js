@@ -4,6 +4,7 @@ export default function ContactItem(props) {
             <img
                 title={props.title}
                 src={props.src}
+                alt={props.title}
             />
         </a>
         

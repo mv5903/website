@@ -1,8 +1,10 @@
 import Rain from "./Rain";
+import { isMobile } from 'react-device-detect'
 
 export default function RainMaker() {
 
-    const amountOfRain = 100
+
+    const amountOfRain = isMobile ? 10 : 100
     let arr = []
 
     for (var i = 0; i < amountOfRain; i++) {

@@ -1,11 +1,14 @@
 import Navbar from "./components/nav/Navbar";
 import Title from "./components/text/Title";
-import CardDisplay from "./components/blurbcards/CardDisplay";
 import styles from "./App.css";
 import Contact from "./components/contactbar/Contact";
-import { cardData } from "./components/assets/websiteContent.js";
 import DownArrow from "./components/animations/DownArrow";
 import RainMaker from "./components/animations/RainMaker";
+import Content from "./components/carousel/Content";
+import CardDisplay from "./components/blurbcards/CardDisplay";
+import { cardData } from "./components/assets/websiteContent";
+
+import { isMobile, MobileView, BrowserView } from 'react-device-detect';
 
 export default function App() {
     return (
@@ -14,7 +17,12 @@ export default function App() {
             <Navbar />
             <Title />
             <DownArrow />
-            <CardDisplay data={cardData} />;
+            <BrowserView>
+                <Content />
+            </BrowserView>
+            <MobileView>
+                <CardDisplay data={cardData} />
+            </MobileView>
             <Contact />
         </div>
     );

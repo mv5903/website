@@ -14,6 +14,7 @@ export default function Contact() {
                             href={contactItem.href}
                             src={contactItem.src}
                             title={contactItem.title}
+                            key={contactItem.key}
                         />
                         )
                     })
