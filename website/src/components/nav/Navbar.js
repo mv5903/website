@@ -12,7 +12,7 @@ function Navbar() {
                 <Navbutton title="Portfolio" link="Portfolio"/>
                 <Navbutton title="Knowledge" link="Knowledge"/>
                 <Navbutton title="Contact" link="Contact"/>
-                <Navbutton title="Résumé" link="https://www.mattvandenberg.com/resume.pdf"/>
+                <Navbutton title="Resumé" link="https://www.mattvandenberg.com/resume.pdf"/>
                 <Navbutton title="Privacy Policy" link="https://www.mattvandenberg.com/privacy-policy/reallysimple.html"/>
             </div>
         </nav>
