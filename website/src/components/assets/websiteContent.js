@@ -24,7 +24,7 @@ export const cardData = [
                 "key": 3
             },
             {
-                "subtitle": "Delware STEAM Academy",
+                "subtitle": "Delaware STEAM Academy",
                 "content": "Teach interactive learning sessions with children in middle and high school, using Python, HTML, CSS, and JavaScript.",
                 "website": "https://www.desteam.org/",
                 "key": 4
@@ -34,11 +34,6 @@ export const cardData = [
                 "content": "Worked at Rising Future teaching AP Computer Science A (Java) and Scratch to younger children.",
                 "website": "https://risingfuture.com/",
                 "key": 5
-            },
-            {
-                "subtitle": "Hard Working",
-                "content": "Learning and adapting to new math and computer science content in my own projects, such as this website.",
-                "key": 6
             }
         ]
     },
@@ -65,22 +60,34 @@ export const cardData = [
                 "key": 2
             },
             {
+                "subtitle": "Java Version Changer",
+                "content": "On Windows, easily change you active version of Java by automatically modifying environment variables to an installation already installed.",
+                "website": "https://github.com/mv5903/Java-Version-Changer",
+                "key": 3
+            },
+            {
+                "subtitle": "Earthquake Tracker",
+                "content": "See where the most recent earthquakes have occurred on a map as well as in a list format.",
+                "website": "https://github.com/mv5903/earthquake-tracker",
+                "key": 4
+            },
+            {
                 "subtitle": "Windows 10 Icon Changer",
                 "content": "A program built in C# allowing you to edit the icons displayed when pinning an app to the start menu.",
                 "website": "https://github.com/mv5903/icon-changer",
-                "key": 3
+                "key": 5
             },
             {
                 "subtitle": "Java Game for AP Calculus BC",
                 "content": "A level-style game intended to teach and practice derivatives.",
                 "website": "https://www.mattvandenberg.com/bcproject.html",
-                "key": 4
+                "key": 6
             },
             {
                 "subtitle": "Simple Browser Games",
                 "content": "Basic browser games coded in vanilla Javascript including Snake, TicTacToe, and Connect Four.",
                 "website": "https://www.mattvandenberg.com/games.html",
-                "key": 5
+                "key": 7
             }
         ]
     },

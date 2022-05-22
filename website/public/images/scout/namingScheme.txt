@@ -1,0 +1,10 @@
+Photos are named as such:
+
+[HigherNumber][LowerNumber]
+
+examples:
+
+54.png
+98.png
+109.png
+102.png

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/minecraft/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matt's Minecraft Server</title>
+    <script>
+    window.onload = () => {
+        getData()
+    }
+
+    async function getData() {
+        let response = await fetch('https://api.mcsrvstat.us/2/minecraft.mattvandenberg.com')
+        const data = await response.json()
+
+        let isOnline = document.querySelector('#isOnline')
+        let players = document.querySelector('#players')
+
+        if (data.online) {
+            isOnline.style.color = 'green'
+            isOnline.textContent = '  Online  '
+            players.textContent = `${data.players.online}/${data.players.max}`
+        } else {
+            isOnline.style.color = 'red'
+            isOnline.textContent = '  Offline  '
+        }
+
+        console.log(data)
+    }
+
+    function downloadMods() {
+        let loadingWheel = document.querySelector('.loader')
+        loadingWheel.style.display = 'block'
+
+        let iframe = document.createElement('iframe')
+        iframe.setAttribute('src', 'https://www.mattvandenberg.com/minecraft/zip.php')
+        iframe.style.display = "none";
+
+        document.querySelector('body').append(iframe)
+
+        iframe.onload = () => {
+            loadingWheel.style.display = 'none'
+            document.getElementById('download').setAttribute('src', 'https://www.mattvandenberg.com/minecraft/mods.zip')
+        }
+    }
+
+    function downloadModpack() {
+        let iframe = document.createElement('iframe')
+        iframe.setAttribute('src', 'https://www.mattvandenberg.com/minecraft/list.zip')
+        iframe.style.display = "none";
+        document.querySelector('body').append(iframe)
+    }
+    </script>
+    <style>
+    body {
+        color: white;
+        background-color: #333;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    h3 {
+        font-size: 36px;
+    }
+    button {
+        padding: 4px;
+        border-radius: 5px;
+        font-size: 24px;
+    }
+    button:hover {
+        cursor: pointer;
+        background-color: lightgrey;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotateX(0deg);
+        }
+        100% {
+            transform: rotateX(360deg);
+        }
+    }
+
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    img {
+        height: 20vw;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .serverinfo {
+        text-align: center;
+        background-color: #222;
+        width: 25vw;
+        padding: 10px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .steps {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .step {
+        margin-top: 10vh;
+        background-color: #222;
+        padding: 15px 25px;
+        border-radius: 10px;
+    }
+
+    a {
+        color: white;
+    }
+    </style>
+</head>
+<body>
+    <h3>Welcome to Matt's Minecraft Server!</h3>
+    <div class="serverinfo">
+        <p>Server: <span style="color: gold">minecraft.mattvandenberg.com</span></p>
+        <p>Status: <span id="isOnline"></span> <span id="players"></span></p>
+        <p>Runs on Fabric 0.45.2, Minecraft 1.18.1</p>
+    </div>
+    <div class="steps">
+        <div class="step">
+            <h2>1. Download the modpack file below:</h2>
+            <button onclick="downloadModpack()">Download Modpack File</button>
+            <button onclick="downloadMods()">Download Individual Mod JARs</button>
+            <iframe id="download" style="display:none;"></iframe>
+            <div style="display:none" class="loader"></div>
+        </div>
+        <div class="step">
+            <h2>2. Import the modpack using the following steps:</h2>
+            <p>Download the <a href='https://download.curseforge.com/'>Curseforge App</a>, if you don't have it already.</p>
+            <p>Ensure you have <a href='https://www.oracle.com/java/technologies/downloads/'>Java 17</a> installed and it's <a href='https://www.geeksforgeeks.org/how-to-set-java-path-in-windows-and-linux/'>added to your system PATH</a>.</p>
+            <p>Install Minecraft and log in, if you haven't already.</p>
+        </div>
+        <div class="step">
+            <p>3. Open the CurseForge app. Navigate to <strong>Choose a Game</strong> and click <strong>Minecraft</strong></p>
+            <img src="https://www.mattvandenberg.com/minecraft/chooseagame.png"/>
+            <p>Click <strong>Create Custom Profile</strong> and click the <strong>import</strong> link. Choose the <strong>list.zip</strong> file</p>
+            <img src="https://www.mattvandenberg.com/minecraft/addprofile.png"/>
+            <p>Wait for the mods to finish initializing, then click on the pack and click <strong>Add More Content</strong></p>
+            <img src="https://www.mattvandenberg.com/minecraft/addcontent.png"/>
+            <p>Search for <strong>Fabric API</strong> and install it. Go back to your modpacks and click play and you should be good to go!</p>
+        </div>
+    </div>
+</body>
+</html>

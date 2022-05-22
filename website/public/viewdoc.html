@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    iframe {
+        text-align: center;
+        display: block;
+        margin: auto;
+    }
+    h3 {
+        color: white;
+        font-family: 'Verdana', 'Calibri', 'sans-serif';
+        font-size: 36px;
+        bottom: 3;
+    }
+</style>
+<script>
+    var fileName = '';
+    window.onload = function decodeURL() {
+        try {
+            const queryString = window.location.search;
+            const urlParameters = new URLSearchParams(queryString);
+            const pdfname = urlParameters.get('pdf');
+            const qualifiedName = pdfname + '.pdf';
+            const frame = document.getElementById('frame');
+            frame.src = 'pdfs/' + qualifiedName;
+            document.getElementById('pdftitle').textContent = "Viewing PDF: " + qualifiedName;            
+            fileName = qualifiedName.toString();
+        } catch (e) {
+            console.log('error thrown');
+            console.error(e);
+            const frame = document.getElementById('frame');
+            frame.src = 'pdfs/help.pdf';
+            document.getElementById('pdftitle').textContent = "Viewing PDF: help.pdf";
+        } finally {
+            frame.style.visibility = 'visible';
+        }
+    }
+    setTimeout(function() { document.getElementById('download').href = 'pdfs/' + fileName;}, 1000);
+</script>
+<body>
+    <h3 id="pdftitle" style="text-align: center;">Viewing PDF: help.pdf</h3>
+    <h3 id="download" style="text-align: center;"><a href="pdfs/doordashtips.pdf" download>Download</a></h3>
+    <iframe style="visibility: hidden;" id="frame" src="pdfs/help.pdf" height="90%" width="94%"></iframe>
+</body>
+</html>

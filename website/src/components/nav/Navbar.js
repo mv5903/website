@@ -13,7 +13,7 @@ function Navbar() {
                 <Navbutton title="Knowledge" link="Knowledge"/>
                 <Navbutton title="Contact" link="Contact"/>
                 <Navbutton title="Resumé" link="https://www.mattvandenberg.com/resume.pdf"/>
-                <Navbutton title="Privacy Policy" link="https://www.mattvandenberg.com/privacy-policy/reallysimple.html"/>
+                <Navbutton title="Privacy Policy" link="https://www.mattvandenberg.com/privacypolicy/reallysimple.html"/>
             </div>
         </nav>
     );

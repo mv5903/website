@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Shortener</title>
+    <script>
+        window.onload = () => {
+            try {
+                var url_string = window.location.href;
+                var url = new URL(url_string);
+                var key = url.searchParams.get("id");
+                window.location.href = getLinkFromDB(key);
+            } catch (e) {
+
+            }   
+        }
+
+        const getLinkFromDB = key => {
+            let req = new XMLHttpRequest();
+            req.open("GET", "/database/getShorten.php?", true);
+            req.send();
+        }
+    </script>
+    <style>
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .container {
+            font-size: 5vh;
+            background-color: black;
+            text-align: center;
+        }
+
+        .linkDiv {
+            width: 90%;
+            height: 90vh;
+            background-color: #333;
+            color: white;
+            margin-top: 5vh;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 30px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button, input[type=url] {
+            border-radius: 5px;
+            font-size: 2vh;
+            width: auto;
+            height: auto;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="linkDiv">
+            <p>Enter a link to shorten:</p>
+            <form>
+                <input type="url" placeholder="http://example.com"/>
+                <button>Get URL</button>
+            </form>
+            <div class="newLink">
+                <p id="newLink">New Link Placeholder</p>
+                <button>Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

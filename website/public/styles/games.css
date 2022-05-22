@@ -1,0 +1,33 @@
+.container {
+    font-family: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+    text-align: center;
+    font-size: 36px;
+}
+
+html {
+    background: linear-gradient(to bottom left, blue, green);
+}
+
+h4 {
+    font-size: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: cyan;
+}
+
+.games {
+    grid-template-columns: auto auto auto;
+    display: grid;
+    grid-gap: .5vw;
+    margin-bottom: 100vh;
+}
+
+.item {
+    width: 25vw;
+    height: 20vh;
+    padding: 20px;
+    margin: 20px 20px 20px 20px;
+    background: linear-gradient(to bottom right, orange, purple);
+}

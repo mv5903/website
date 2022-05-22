@@ -1,0 +1,62 @@
+<!DOCTYPE html> <html>
+
+<head>
+
+</head>
+
+<style>
+
+	.container {
+
+		color: white;
+
+		font-family: Comic Sans MS, Calibri, Times New Roman, Arial Black;
+
+		font-size: 48px;
+
+	}
+
+
+
+	a {
+
+		color: white;
+
+	}
+
+
+
+</style>
+
+<script>
+
+	function goBack() {
+
+		window.history.back();
+
+	}
+
+
+
+	function closeTab() {
+
+		window.close();
+
+	}
+
+</script>
+
+<body style="background-color:black">
+
+	<div class="container">
+
+		<p class="headingshere">Whoops! Looks like you followed an incorrect link! Click <a href="javascript:goBack()">here</a> to go back to where you were or <a href="javascript:closeTab()">close this tab.</a></p>
+
+		<img src="/images/shocked.png" width="500" height="500"></img>
+
+	</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <title>Follower Things</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js"></script>
+    <script type="text/javascript" src="brython_stdlib.js"></script>
+</head>
+<body onload="brython()">
+    <script type="text/python">
+        import browser
+        import instaloader
+
+        L = instaloader.Instaloader()
+        username = "kwikmattlife"
+        password = "Matt5903"
+        code = "111111"
+        L.interactive_login(username, password, code)
+
+
+        browser.alert("Hello Real Python!")
+    </script>
+    <div>
+        <h2>Welcome! Please enter your Instagram Account Information:</h2>
+        <form action = "https://mattvandenberg.com/cgi-bin/test.py" method = "post" target="_blank">
+            <p>Username</p>
+            <input type="text" id="usernamefield" name="username"></input>
+            <p>Password</p>
+            <input type="password" id="passwordfield" name="password"></input>
+            <div id="2fa">
+                <p>2 Factor Auth Code (If applicable)</p>
+                <input type="text" id="2fafield" name="code"></input>
+            </div>
+            <button onClick={buttonClicked}>Continue</button>
+        </form>
+        <div id="people">
+    
+        </div>
+    </div>
+</body>

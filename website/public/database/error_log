@@ -1,0 +1,50 @@
+[15-Sep-2021 15:16:56 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/2002): No route to host in /home1/mattverg/public_html/database/logData.php on line 2
+[15-Sep-2021 15:16:56 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:18
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 18
+[15-Sep-2021 16:05:34 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 16:05:34 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 16:05:36 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 16:05:36 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 16:06:20 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 16:06:20 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 17:00:37 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 17:00:37 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 17:14:23 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 17:14:23 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 17:35:15 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 17:35:15 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 18:28:24 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 18:28:25 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 18:31:32 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 18:31:32 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
+[15-Sep-2021 18:31:59 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'mattverg_matt'@'%' to database 'mattverg_website_data' in /home1/mattverg/public_html/database/logData.php on line 3
+[15-Sep-2021 18:31:59 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home1/mattverg/public_html/database/logData.php:35
+Stack trace:
+#0 {main}
+  thrown in /home1/mattverg/public_html/database/logData.php on line 35
