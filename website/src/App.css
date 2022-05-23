@@ -24,3 +24,7 @@ html {
 .cardDisplay {
     margin-top: 90vh;
 }
+
+body {
+    overscroll-behavior: none;
+}

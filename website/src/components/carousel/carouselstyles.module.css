@@ -11,12 +11,11 @@
     min-height: 60vh;
     max-width: 35vw;
     text-align: center;
-    background-color: #888;
+    background-color: #222;
     border-radius: 15px;
     padding: 20px;
     position: relative;
-    -webkit-box-shadow: 6px -3px 15px 4px rgba(255,255,255,0.77); 
-    box-shadow: 6px -3px 15px 4px rgba(255,255,255,0.77);   
+    color: white;
 }
 
 .slide h5 {
@@ -102,3 +101,45 @@ h3 {
     margin-left: 2vw;
     margin-bottom: 3vh;
 }
+
+html:not(.arrow), html:not(.down) {
+    overflow: hidden;
+    height: 100%;
+}
+
+body:not(.arrow), html:not(.down){
+    overflow: auto;
+    height: 100%;
+}
+
+body {
+    animation: fadeIn 3s;
+    -webkit-animation: fadeIn 3s;
+    -moz-animation: fadeIn 3s;
+    -o-animation: fadeIn 3s;
+    -ms-animation: fadeIn 3s;
+  }
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }

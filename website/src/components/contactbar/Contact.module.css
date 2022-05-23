@@ -9,8 +9,8 @@
 }
 
 .contact img {
-    width: 5vw;
-    height: 5vw;
+    width: 10vw;
+    height: 10vw;
     margin-top: 5vh;
     margin-bottom: 70vh;
     -webkit-filter: invert(55%) sepia(22%) saturate(0) hue-rotate(199deg) brightness(87%) contrast(77%);

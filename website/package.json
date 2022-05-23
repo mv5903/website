@@ -20,10 +20,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && firebase deploy
-    ",
+    "build": "react-scripts build && firebase deploy",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild-app": "cpx \"src/app/static/*\" \"dist/functions/static\" -C"
   },
   "eslintConfig": {
     "extends": [

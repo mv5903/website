@@ -1,10 +1,4 @@
 .nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    font-size: 2vh;
-    color: white;
-    font-family: 'Roboto Slab', serif;
 }
 
 @media screen and (max-width: 1100px) {
@@ -13,23 +7,46 @@
     }
 }
 
-.navbutton:hover {
-    border-bottom: 3px solid rgb(0, 156, 21);
-    transform: scale(1.1);
-}
-.navbutton {
-    margin-right: 7vw;
-    transition-duration: .25s
-}
-
-.flexright {
-    display: flex;
-    align-items: center;
-    margin-right: 0;
-    margin-left: auto;
-}
-
 .navlink {
     color: white;
     text-decoration: none;
+    width: 8vw;
+    text-align: center;
+    padding: 6px 4px;
+    border: 1px solid black;
+    margin-top: -5vh;
+}
+
+.navlink:hover, .navlink:focus {
+    border-radius: 5px;
+    animation-duration: .5s;
+    animation-name: navbutton;
+    animation-fill-mode: forwards;
+    color: white;
+}
+
+@keyframes navbutton {
+    0% {
+        transform: scale(1);
+        background-color: black;
+    }
+    100% {
+        border: 1px solid gray;
+        color: black;
+        transform: scale(1.1);
+        background-color: white;
+    }
+}
+
+.flexright {
+    margin-right: 0;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 2vh;
+    color: white;
+    width: 80%;
+    font-family: 'Roboto Slab', serif;
+    align-items: center;
 }

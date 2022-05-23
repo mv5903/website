@@ -8,12 +8,10 @@ import CardDisplay from "./components/blurbcards/CardDisplay";
 import { cardData } from "./components/assets/websiteContent";
 
 import { MobileView, BrowserView } from 'react-device-detect';
-import Spring from "./components/animations/spring/Spring";
 
 export default function App() {
     return (
         <div className={styles.null}>
-            <Spring />
             <Navbar />
             <Title />
             <DownArrow />
