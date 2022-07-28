@@ -1,0 +1,87 @@
+.tileContainer {
+    margin-top: 110vh;
+    width: 60vw;
+    height: 25vh;
+    text-shadow: 0 0 0.5rem #000;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tileHeader {
+    font-size: 2em;
+    font-weight: bold;
+    width: 80vw;
+    text-align: center;
+    border-radius: 0px 20px 20px 0px;
+    height: 10vh;
+    padding-top: 2vh;
+    margin: 0;
+}
+
+
+.title {
+    text-shadow: 0 0 0.5rem #000;
+    color: #f0ecec;
+}
+
+.blue {
+    background-color: #00FFFF;
+    height: 10vh;
+}
+
+.yellow {
+    background-color: #FFF01F;
+    height: 10vh;
+}
+
+.tile {
+    width: 40vw;
+    margin-bottom: 10vh;
+}
+
+.right {
+    text-align: right;
+    margin-left: calc(40vw - 20px);
+}
+
+.left {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.rightHeader {
+    border-radius: 20px 0px 0px 20px;
+    transform: translateX(-15vw)
+}
+
+.leftHeader {
+    border-radius: 0px 20px 20px 0px;
+    transform: translateX(-5vw)
+}
+
+.smallTile {
+    width: 60vw;
+}
+
+.tileSubheading a {
+    text-decoration: underline;
+}
+
+.mobile .flex h3 {
+    font-size: 4em;
+}
+
+.mobile h4 {
+    font-size: 3em;
+}
+
+.mobile p {
+    font-size: 2em;
+}
+
+.mobile a {
+    font-size: 2.2em;
+    padding-bottom: 5vh;
+}
+

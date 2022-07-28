@@ -1,0 +1,60 @@
+.navbar {
+    display: flex;
+    padding: 2vw;
+}
+
+.blue {
+    justify-content: flex-end;
+}
+
+.yellow {
+    justify-self: flex-start;
+}
+
+.navbutton {
+    margin-right: 2.5vw;
+    margin-left: 2.5vw;
+}
+
+.navbutton:hover {
+    cursor: pointer;
+}
+
+.hoverunderlineanimation {
+    display: inline-block;
+    position: relative;
+    color: #0087ca;
+  }
+  
+  .hoverunderlineanimation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hoverunderlineanimation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .hoverunderlineanimationblue:after {
+    background-color: #00FFFF;
+  }
+
+  .hoverunderlineanimationyellow:after {
+    background-color: #FFF01F;
+  }
+
+.mobile div h3 {
+  font-size: 2em;
+}
+
+.mobile a {
+  font-size: 2em;
+}

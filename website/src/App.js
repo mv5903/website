@@ -10,6 +10,9 @@ import { cardData } from "./components/assets/websiteContent";
 import { MobileView, BrowserView } from 'react-device-detect';
 
 export default function App() {
+
+
+    
     return (
         <div className={styles.null}>
             <Navbar />

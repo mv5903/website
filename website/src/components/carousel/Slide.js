@@ -1,4 +1,5 @@
 import styles from './carouselstyles.module.css'
+import React from 'react'
 
 export default function Slide(props) {
     let [subtitle, content, website, id] = [
