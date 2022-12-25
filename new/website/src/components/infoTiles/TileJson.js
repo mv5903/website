@@ -9,9 +9,9 @@ export const TileJSON = [
                 website: "https://ec2software.com",
             },
             {
-                subheading: "University of California, San Diego",
-                content: "Second-Year Student (2021-2025). Pursuing a Bachelor's of Science in Mathematics-Computer Science.",
-                website: "https://ucsd.edu",
+                subheading: "Rutgers University, New Brunswick, NJ",
+                content: "Second-Year Student (2021-2025). Pursuing a BS in Computer Science, minor in Mathematics.",
+                website: "https://rutgers.edu",
             },
             {
                 subheading: "AI Code Academy",
@@ -37,6 +37,11 @@ export const TileJSON = [
                 subheading: "Earthquake Tracker",
                 content: "A web application that tracks earthquakes and their locations. Built with React, Node, and various APIs.",
                 website: "https://github.com/mv5903/earthquake-tracker"
+            },
+            {
+                subheading: "Home Assistant Spotify Dashboard",
+                content: "A web application that displays the current song playing on Spotify. Built with React, Node, and various APIs.",
+                website: "https://github.com/mv5903/party-screen"
             },
             {
                 subheading: "Really Simple iOS Apps",

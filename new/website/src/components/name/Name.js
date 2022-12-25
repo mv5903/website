@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect"
 
 export default function Name({blue}) {
     const yellowText = "Software Engineering Intern at ec² Software Solutions"
-    const blueText = "Math & Computer Science at UC San Diego"
+    const blueText = "CS & Math at Rutgers University"
 
     return (
         <div>
