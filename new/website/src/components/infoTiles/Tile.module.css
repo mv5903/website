@@ -1,6 +1,6 @@
 .tileContainer {
     margin-top: 110vh;
-    width: 60vw;
+    width: 90vw;
     height: 25vh;
     text-shadow: 0 0 0.5rem #000;
     position: relative;
@@ -42,12 +42,12 @@
 
 .right {
     text-align: right;
-    margin-left: calc(40vw - 10px);
+    margin-left: calc(40vw - 1em);
 }
 
 .left {
     text-align: left;
-    padding-left: 10px;
+    margin-left: 1em;
 }
 
 .rightHeader {
@@ -85,3 +85,15 @@
     padding-bottom: 5vh;
 }
 
+.flexrow {
+    display: flex;
+    flex-direction: row;
+}
+
+hr {
+    margin-top: 1em;
+}
+
+.infolink {
+    text-decoration: underline;
+}

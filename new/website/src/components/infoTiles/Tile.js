@@ -11,12 +11,12 @@ export default function Tile({blue, heading, tiles, isLeft, id}) {
             <div>
                 {tiles.map((tile, index) => {
                     return (
-                        <div className={styles.smallTile}>
+                        <div className={styles.smallTile} key={index}>
                             <h4>{tile.subheading}</h4>
-                            <div key={index} className={styles.tileSubheading}>
-                                <p>{tile.content}</p>
-                                {tile.hasOwnProperty('website') ? <a href={tile.website}>Learn More</a> : null}
-                            </div>
+                            {tile.hasOwnProperty('date') ? <p style={{ margin: '0' }}><i>{tile.date}</i></p> : null}
+                            <p>{tile.content}</p>
+                            {tile.hasOwnProperty('tech') ? <p><b>Technologies Used:</b> {tile.tech}</p> : null}
+                            {tile.hasOwnProperty('website') ? <a className={styles.infolink} target="_blank" rel="noreferrer" href={tile.website}>Learn More</a> : null}
                             {index !== tiles.length - 1 ? <hr></hr> : <div></div>}
                         </div>
                     )
