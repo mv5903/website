@@ -12,7 +12,7 @@ export const TileJSON = [
             },
             {
                 subheading: "Rutgers University, New Brunswick, NJ",
-                date: "September 2021 - Present",
+                date: "September 2021 - May 2025",
                 content: "Sophomore pursuing a BS in Computer Science.",
                 website: "https://rutgers.edu",
             },
@@ -42,10 +42,10 @@ export const TileJSON = [
         id: "skills",
         tiles: [
             {
-                subheading: "Rutgers Formula Racing Dashboard",
-                content: "In-house Dashboard for Rutgers Formula Racing Club",
-                tech: "React.js, Node, HTML, CSS, JavaScript, Bootstrap, Shell, REST APIs",
-                website: "https://react-tutorial-f7ffc.firebaseapp.com"                
+                subheading: "Partyfy (Initial Release 6/7/2023)",
+                content: "Add to your friend's Spotify queue without accessing their session directly.",
+                tech: "React.js, Next.js, Node.js, HTML, CSS, JavaScript, TypeScript, Bootstrap, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
+                website: "https://github.com/mv5903/partyfy"
             },
             {
                 subheading: "Earthquake Tracker",
@@ -54,22 +54,22 @@ export const TileJSON = [
                 website: "https://github.com/mv5903/earthquake-tracker"
             },
             {
-                subheading: "Partyfy (current project)",
-                content: "A web application that displays the current song playing on Spotify and allows users to request songs without needing access to the owner's Spotify Account in an interactive fashion. This will also give the owner the ability to approve or deny requests, clear the queue, and more.",
-                tech: "React, Next.js, Node, HTML, CSS, JavaScript, TypeScript, Bootstrap, Spotify API, Microsoft SQL Server",
-                website: "https://github.com/mv5903/partyfy"
-            },
-            {
-                subheading: "Spoticraft Forge (current project)",
-                content: "A Minecraft Forge mod that allows you to view and control your Spotify session from within Minecraft.",
-                tech: "Java, Gradle, Minecraft Forge, Spotify API",
-                website: "https://github.com/mv5903/spoticraft"
+                subheading: "Rutgers Formula Racing Dashboard",
+                content: "In-house Dashboard for Rutgers Formula Racing Club",
+                tech: "React.js, Node, HTML, CSS, JavaScript, Bootstrap, Shell, REST APIs",
+                website: "https://github.com/mv5903/rfr-dashboard"                
             },
             {
                 subheading: "Really Simple Scoreboard",
                 content: "A simple, free, ad-free scoreboard experience for any sport or game.",
                 tech: "SwiftUI, Swift, Xcode, iOS",
                 website: "https://github.com/mv5903/swift-projects/tree/main/Really%20Simple%20Series"
+            },
+            {
+                subheading: "Spoticraft Forge (current project)",
+                content: "A Minecraft Forge mod that allows you to view and control your Spotify session from within Minecraft.",
+                tech: "Java, Gradle, Minecraft Forge, Spotify API",
+                website: "https://github.com/mv5903/spoticraft"
             },
             {
                 subheading: "Astrophotography Management System",
