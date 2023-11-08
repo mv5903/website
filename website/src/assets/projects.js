@@ -1,6 +1,6 @@
 export const projects = [
     {
-        subheading: "Partyfy (Initial Release 6/7/2023)",
+        subheading: "Partyfy",
         content: "Add to your friend's Spotify queue without accessing their session directly.",
         tech: "React.js, Next.js, Node.js, HTML, CSS, JavaScript, TypeScript, Bootstrap, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
         website: "https://github.com/mv5903/partyfy"

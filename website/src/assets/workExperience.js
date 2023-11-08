@@ -24,12 +24,13 @@ export const workExperience = [
         subheading: "Computer Science Tutoring",
         date: "September 2020 - Present",
         content: "Assists many aspiring high school and university computer science students.",
-        tech: "Java and Python",
+        tech: "Java, Python",
     },
     {
         subheading: "Rising Future (CODEie)",
         date: "September 2020 - June 2021",
         content: "Worked at Rising Future teaching AP Computer Science A (Java) and Scratch to younger children.",
         website: "https://risingfuture.com/",
+        tech: "Java, Scratch"
     }
   ]

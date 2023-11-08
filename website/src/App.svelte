@@ -3,6 +3,14 @@
   import { workExperience } from "./assets/workExperience";
   import { schools } from "./assets/schools";
   import { projects } from "./assets/projects";
+
+  import { onMount } from "svelte";
+  let showDownArrow = false;
+  onMount(() => {
+    setTimeout(() => {
+      showDownArrow = true;
+    }, 3000);
+  });
 </script>
 
 <main class="min-h-screen flex flex-col justify-center">
@@ -11,14 +19,14 @@
     <!-- Avatar -->
     <img class="w-24 sm:w-48 rounded-xl flex justify-center mb-10" src={`/images/matthew.jpeg`} alt="Matthew Vandenberg" />
 
-
+    <!-- Intro -->
     <h2 class="text-lg text-gray-600 dark:text-gray-300">Hi, I'm</h2>
     <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-100">Matthew Vandenberg</h1>
     <h2 class="text-xl text-gray-700 dark:text-gray-200">Full Stack Developer at Mirion Technologies</h2>
     <h2 class="text-xl text-gray-700 dark:text-gray-200">Student at Rutgers University</h2>
 
     <!-- Scroll Down Indicator -->
-    <div class="flex justify-center mt-32">
+    <div class={`flex justify-center mt-32 ${showDownArrow ? 'visible' : 'hidden'}`}>
       <div class="animate-bounce">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
