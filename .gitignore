@@ -56,5 +56,3 @@ service-account-credentials.json
 **/pubsub-debug.log
 **/tsconfig-compile.json
 yarn.lock
-
-**/public/*
