@@ -115,7 +115,7 @@
           >
             <img
               class="transition-opacity duration-300 opacity-70 hover:opacity-100"
-              src={`/icons/${social.svg}`}
+              src={`/ico/${social.svg}`}
               alt={social.name}
             />
           </a>
