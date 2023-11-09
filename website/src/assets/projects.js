@@ -1,33 +1,43 @@
 export const projects = [
     {
+        subheading: "Jumbotron",
+        content: "Controlling a 64 row x 48 column matrix using a Raspberry Pi, WS218B addressable RGB strips, and other materials.",
+        tech: "React.js, Node.js, Tailwind, DaisyUI, Bash, Python, Flask, Raspberry Pi, WS218B, Home Assistant, Responsive Web Development",
+        github: "https://github.com/mv5903/jumbotron"
+    },
+    {
         subheading: "Partyfy",
         content: "Add to your friend's Spotify queue without accessing their session directly.",
-        tech: "React.js, Next.js, Node.js, HTML, CSS, JavaScript, TypeScript, Bootstrap, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
-        website: "https://github.com/mv5903/partyfy"
+        tech: "React.js, Next.js, Node.js, Tailwind, DaisyUI, CSS, JavaScript, TypeScript, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
+        github: "https://github.com/mv5903/partyfy",
+        website: "https://partyfy.mattvandenberg.com/"
     },
     {
         subheading: "Earthquake Tracker",
         content: "A web application that tracks earthquakes and their locations.",
         tech: "React, Node, HTML, CSS, JavaScript, Bootstrap, Mapbox, REST APIs",
-        website: "https://github.com/mv5903/earthquake-tracker"
+        github: "https://github.com/mv5903/earthquake-tracker",
+        website: "https://earthquakes.mattvandenberg.com/"
     },
     {
         subheading: "Rutgers Formula Racing Dashboard",
         content: "In-house Dashboard for Rutgers Formula Racing Club",
         tech: "React.js, Node, HTML, CSS, JavaScript, Bootstrap, Shell, REST APIs",
-        website: "https://github.com/mv5903/rfr-dashboard"                
+        github: "https://github.com/mv5903/rfr-dashboard",
+        website: "https://react-tutorial-f7ffc.firebaseapp.com/"
     },
     {
         subheading: "Really Simple Scoreboard",
         content: "A simple, free, ad-free scoreboard experience for any sport or game.",
         tech: "SwiftUI, Swift, Xcode, iOS",
-        website: "https://github.com/mv5903/swift-projects/tree/main/Really%20Simple%20Series"
+        github: "https://github.com/mv5903/swift-projects/tree/main/Really%20Simple%20Series",
+        website: "https://apps.apple.com/us/app/really-simple-scoreboard/id1593322410"
     },
     {
         subheading: "Spoticraft Forge (current project)",
         content: "A Minecraft Forge mod that allows you to view and control your Spotify session from within Minecraft.",
         tech: "Java, Gradle, Minecraft Forge, Spotify API",
-        website: "https://github.com/mv5903/spoticraft"
+        github: "https://github.com/mv5903/spoticraft"
     },
     {
         subheading: "Astrophotography Management System",
@@ -45,13 +55,13 @@ export const projects = [
         subheading: "Java Version Changer",
         content: "On Windows, easily change you active version of Java by automatically modifying environment variables to an installation already installed.",
         tech: "C#",
-        website: "https://github.com/mv5903/Java-Version-Changer"
+        github: "https://github.com/mv5903/Java-Version-Changer"
     },
     {
         subheading: "Windows 10 Icon Changer",
         content: "An application which allows a user to edit the icons displayed when pinning an app to the start menu.",
         tech: "C#",
-        website: "https://github.com/mv5903/icon-changer"
+        github: "https://github.com/mv5903/icon-changer"
     },
     {
         subheading: "Java Game for AP Calculus BC",

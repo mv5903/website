@@ -9,7 +9,7 @@
   onMount(() => {
     setTimeout(() => {
       showDownArrow = true;
-    }, 3000);
+    }, 1000);
   });
 </script>
 
@@ -17,7 +17,9 @@
   <div class="min-h-screen flex flex-col gap-3 justify-center text-center place-items-center">
 
     <!-- Avatar -->
-    <img class="w-24 sm:w-48 rounded-xl flex justify-center mb-10" src={`/images/matthew.jpeg`} alt="Matthew Vandenberg" />
+    <div class="h-[15vh] sm:h-[30vh] mb-4">
+      <img class="h-[15vh] sm:h-[30vh] rounded-xl flex justify-center mb-10" src={`/images/matthew.jpeg`} alt="Matthew Vandenberg" loading="lazy" />
+    </div>
 
     <!-- Intro -->
     <h2 class="text-lg text-gray-600 dark:text-gray-300">Hi, I'm</h2>
@@ -26,7 +28,7 @@
     <h2 class="text-xl text-gray-700 dark:text-gray-200">Student at Rutgers University</h2>
 
     <!-- Scroll Down Indicator -->
-    <div class={`flex justify-center mt-32 ${showDownArrow ? 'visible' : 'hidden'}`}>
+    <div class={`flex justify-center mt-32 ${!showDownArrow && 'invisible'}`}>
       <div class="animate-bounce">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -88,8 +90,13 @@
           {#if project.tech}
             <p class="text-gray-500 dark:text-gray-400 mt-2">{project.tech}</p>
           {/if}
-          {#if project.website}
-            <a href={project.website} target="_blank" class="btn text-white hover:text-white mt-4">View Project</a>
+          {#if project.github && project.website}
+          <div class="flex justify-between gap-3">
+            <a href={project.github} target="_blank" class="btn w-[49%] text-white hover:text-white mt-4">See Code</a>
+            <a href={project.website} target="_blank" class="btn w-[49%] text-white hover:text-white mt-4">View Project</a>
+          </div>
+          {:else if (project.github && !project.website) || (!project.github && project.website)}
+            <a href={project.github ?? project.website} target="_blank" class="btn text-white hover:text-white mt-4">{project.github ? "See Code" : "View Project"}</a>
           {/if}
         </div>
       {/each}
