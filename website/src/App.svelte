@@ -92,11 +92,11 @@
           {/if}
           {#if project.github && project.website}
           <div class="flex justify-between gap-3">
-            <a href={project.github} target="_blank" class="btn w-[49%] text-white hover:text-white mt-4">See Code</a>
-            <a href={project.website} target="_blank" class="btn w-[49%] text-white hover:text-white mt-4">View Project</a>
+            <a href={project.github} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] w-[49%] text-white hover:text-white mt-4">See Code</a>
+            <a href={project.website} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] w-[49%] text-white hover:text-white mt-4">View Project</a>
           </div>
           {:else if (project.github && !project.website) || (!project.github && project.website)}
-            <a href={project.github ?? project.website} target="_blank" class="btn text-white hover:text-white mt-4">{project.github ? "See Code" : "View Project"}</a>
+            <a href={project.github ?? project.website} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4">{project.github ? "See Code" : "View Project"}</a>
           {/if}
         </div>
       {/each}
@@ -105,7 +105,7 @@
 
   
   <!-- Footer -->
-  <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+  <footer class="footer footer-center p-10 bg-[#191e24] text-base-content rounded">
     <nav class="grid grid-flow-col gap-6">
       {#each footer.links as link}
         <a class="link link-hover text-gray-500" href={link.href} target="_blank">{link.name}</a>
@@ -130,7 +130,7 @@
       </div>
     </nav> 
     <aside>
-      <p>Copyright © 2023 - Matthew Vandenberg. All rights reserved.</p>
+      <p class="text-[#a6adba]">Copyright © 2023 - Matthew Vandenberg. All rights reserved.</p>
     </aside>
   </footer>
 </main>
