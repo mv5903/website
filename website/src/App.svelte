@@ -22,15 +22,15 @@
     </div>
 
     <!-- Intro -->
-    <h2 class="text-lg text-gray-600 dark:text-gray-300">Hi, I'm</h2>
-    <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-100">Matthew Vandenberg</h1>
-    <h2 class="text-xl text-gray-700 dark:text-gray-200">Full Stack Developer at Mirion Technologies</h2>
-    <h2 class="text-xl text-gray-700 dark:text-gray-200">Student at Rutgers University</h2>
+    <h2 class="text-lgtext-gray-300">Hi, I'm</h2>
+    <h1 class="text-4xl font-boldtext-gray-100">Matthew Vandenberg</h1>
+    <h2 class="text-xltext-gray-200">Full Stack Developer at Mirion Technologies</h2>
+    <h2 class="text-xltext-gray-200">Student at Rutgers University</h2>
 
     <!-- Scroll Down Indicator -->
     <div class={`flex justify-center mt-32 ${!showDownArrow && 'invisible'}`}>
       <div class="animate-bounce">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
         </svg>
       </div>
@@ -49,10 +49,10 @@
             {:else}
               <h4 class="text-xl font-bold">{job.subheading}</h4>
             {/if}
-            <p class="text-gray-600 dark:text-gray-400">{job.date}</p>
-            <p class="text-gray-700 dark:text-gray-300">{job.content}</p>
+            <p class="text-gray-400">{job.date}</p>
+            <p class="text-gray-300">{job.content}</p>
             {#if job.tech}
-              <p class="text-gray-500 dark:text-gray-400 mt-2">{job.tech}</p>
+              <p class="text-gray-400 mt-2">{job.tech}</p>
             {/if}
           </div>
         {/each}
@@ -86,9 +86,9 @@
       {#each projects as project}
         <div class="bg-gray-700 shadow-lg rounded-lg p-4 flex flex-col">
           <h4 class="text-xl font-bold">{project.subheading}</h4>
-          <p class="text-gray-700 dark:text-gray-300 flex-grow">{project.content}</p>
+          <p class="text-gray-300 flex-grow">{project.content}</p>
           {#if project.tech}
-            <p class="text-gray-500 dark:text-gray-400 mt-2">{project.tech}</p>
+            <p class="text-gray-400 mt-2">{project.tech}</p>
           {/if}
           {#if project.github && project.website}
           <div class="flex justify-between gap-3">
