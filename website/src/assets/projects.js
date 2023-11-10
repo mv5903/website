@@ -9,7 +9,7 @@ export const projects = [
     {
         subheading: "Partyfy",
         year: "2023",
-        content: "Add to your friend's Spotify queue without accessing their session directly.",
+        content: "Add to your friend's Spotify queue without accessing their session directly. 100+ Users.",
         tech: "React.js, Next.js, Node.js, Tailwind, DaisyUI, CSS, JavaScript, TypeScript, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
         github: "https://github.com/mv5903/partyfy",
         website: "https://partyfy.mattvandenberg.com/"
