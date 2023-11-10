@@ -17,7 +17,7 @@ export const projects = [
         content: "A web application that tracks earthquakes and their locations.",
         tech: "React, Node, HTML, CSS, JavaScript, Bootstrap, Mapbox, REST APIs",
         github: "https://github.com/mv5903/earthquake-tracker",
-        website: "https://earthquakes.mattvandenberg.com/"
+        website: "https://mattvandenberg.com/earthquakes"
     },
     {
         subheading: "Rutgers Formula Racing Dashboard",
