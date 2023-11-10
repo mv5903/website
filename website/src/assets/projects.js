@@ -2,7 +2,7 @@ export const projects = [
     {
         subheading: "Jumbotron",
         year: "2023",
-        content: "Controlling a 64 row x 48 column matrix using a Raspberry Pi, WS218B addressable RGB strips, and other materials.",
+        content: "Controlling a 64 row x 48 column matrix using a Raspberry Pi, WS2818B addressable RGB strips, and other materials.",
         tech: "React.js, Node.js, Tailwind, DaisyUI, Bash, Python, Flask, Raspberry Pi, WS218B, Home Assistant, Responsive Web Development",
         github: "https://github.com/mv5903/jumbotron"
     },
