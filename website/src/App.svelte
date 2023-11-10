@@ -86,17 +86,18 @@
       {#each projects as project}
         <div class="bg-gray-700 shadow-lg rounded-lg p-4 flex flex-col">
           <h4 class="text-xl font-bold">{project.subheading}</h4>
+          <p class="text-md text-gray-400">{project.year}</p>
           <p class="text-gray-300 flex-grow">{project.content}</p>
           {#if project.tech}
             <p class="text-gray-400 mt-2">{project.tech}</p>
           {/if}
           {#if project.github && project.website}
           <div class="flex justify-between gap-3">
-            <a href={project.github} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] w-[49%] text-white hover:text-white mt-4">See Code</a>
-            <a href={project.website} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] w-[49%] text-white hover:text-white mt-4">View Project</a>
+        <a href={project.website} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] w-[49%] text-white hover:text-white mt-4">View Project</a>
+            <a href={project.github} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] w-[49%] text-white hover:text-white mt-4">Source Code</a>
           </div>
           {:else if (project.github && !project.website) || (!project.github && project.website)}
-            <a href={project.github ?? project.website} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4">{project.github ? "See Code" : "View Project"}</a>
+            <a href={project.github ?? project.website} target="_blank" class="btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4">{project.github ? "Source Code" : "View Project"}</a>
           {/if}
         </div>
       {/each}
