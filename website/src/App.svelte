@@ -47,8 +47,8 @@
     const count = ['github', 'website', 'blog'].filter((key : any) => project[key]).length;
     switch (count) {
       case 1: return 'w-full'; // 100% width if only one button
-      case 2: return 'w-1/2'; // 50% width if two buttons
-      case 3: return 'w-1/3'; // 33.33% width if three buttons
+      case 2: return 'w-[49%]'; // 50% width if two buttons
+      case 3: return 'w-[31%]'; // 33.33% width if three buttons
       default: return 'w-0';  // 0% width if no buttons (should not happen)
     }
   }
@@ -146,7 +146,7 @@
                   <a href={project.github} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] ${calculateButtonWidth(project)} text-white hover:text-white mt-4`}>Source Code</a>
                 {/if}
                 {#if project.blog}
-                  <a href={project.blog} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] ${calculateButtonWidth(project)} text-white hover:text-white mt-4`}>Read Blog</a>
+                  <a href={`http://home.mattvandenberg.com:3000/blog/${project.blog}`} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] ${calculateButtonWidth(project)} text-white hover:text-white mt-4`}>Read Blog</a>
                 {/if}
               </div>
             {/if}
