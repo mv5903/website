@@ -23,6 +23,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "@sveltejs/adapter-auto": "^2.1.1"
+    "@sveltejs/adapter-auto": "^2.1.1",
+    "marked": "^11.0.1"
   }
 }

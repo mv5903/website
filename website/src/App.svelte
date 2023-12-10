@@ -2,8 +2,7 @@
   import { footer } from "./assets/footer";
   import { workExperience } from "./assets/workExperience";
   import { schools } from "./assets/schools";
-
-
+  
   let projects: any[] = []
 
   fetch("https://www.mattvandenberg.com/data/projects.json")
@@ -45,7 +44,7 @@
     });
 
   function calculateButtonWidth(project: string) {
-    const count = ['github', 'website', 'blog'].filter(key => project[key]).length;
+    const count = ['github', 'website', 'blog'].filter((key : any) => project[key]).length;
     switch (count) {
       case 1: return 'w-full'; // 100% width if only one button
       case 2: return 'w-1/2'; // 50% width if two buttons
