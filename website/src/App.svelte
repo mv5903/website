@@ -2,13 +2,8 @@
   import { footer } from "./assets/footer";
   import { workExperience } from "./assets/workExperience";
   import { schools } from "./assets/schools";
-  
-  let projects: any[] = []
-
-  fetch("https://www.mattvandenberg.com/data/projects.json")
-    .then((res) => res.json())
-    .then(data => { projects = data });
-
+  import { projects } from "./assets/projects";
+  import { blogs } from "./assets/blogs";
 
   import { onMount } from "svelte";
   let showDownArrow = false;
@@ -43,7 +38,7 @@
       console.error('Image failed to load', error);
     });
 
-  function calculateButtonWidth(project: string) {
+  function calculateButtonWidth(project: any) {
     const count = ['github', 'website', 'blog'].filter((key : any) => project[key]).length;
     switch (count) {
       case 1: return 'w-full'; // 100% width if only one button
@@ -89,7 +84,7 @@
         <h3 class="text-3xl font-bold text-center">Work Experience</h3>
         <div class="mt-6 space-y-6">
           {#each workExperience as job}
-            <div class="bg-gray-700 shadow-lg rounded-lg p-4">
+            <div class="bg-background shadow-xl rounded-lg p-4">
               {#if job.website}
                 <a class="text-white hover:text-white hover:underline" href={job.website}><h4 class="text-xl font-bold">{job.subheading}</h4></a>
               {:else}
@@ -110,7 +105,7 @@
         <h3 class="text-3xl font-bold text-center">Education</h3>
         <div class="mt-6 space-y-6">
           {#each schools as school}
-            <div class="bg-gray-700 shadow-lg rounded-lg p-4">
+            <div class="bg-background shadow-xl rounded-lg p-4">
               <h4 class="text-xl font-bold">{school.name}</h4>
               <p class="text-gray-400">{school.location}</p>
               <p class="text-gray-400">{school.timeline}</p>
@@ -130,7 +125,7 @@
       <h3 class="text-3xl font-bold text-center">Projects</h3>
       <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each projects as project}
-          <div class="bg-gray-700 shadow-lg rounded-lg p-4 flex flex-col">
+          <div class="bg-background shadow-xl rounded-lg p-4 flex flex-col">
             <h4 class="text-xl font-bold">{project.subheading}</h4>
             <p class="text-md text-gray-400">{project.year}</p>
             <p class="text-gray-300 flex-grow">{project.content}</p>
@@ -155,6 +150,26 @@
       </div>
     </section>
 
+    <!-- Blogs Section -->
+    <section class="px-4 py-8 text-left">
+      <h3 class="text-3xl font-bold text-center">Blog</h3>
+      <div class="flex justify-center mt-4">
+        <ol class="relative border-s border-gray-200 dark:border-gray-700">
+          {#each blogs as blog}
+          <li class="mb-10 ms-4">
+            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{blog.date}</time>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{blog.title}</h3>
+            <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{blog.description}</p>
+            <a href={`http://home.mattvandenberg.com:3000/blog/${blog.blog}`} target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">Read <svg class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg></a>
+          </li>
+          {/each}
+        </ol>
+      </div>
+    </section>
+    
     
     <!-- Footer -->
     <footer class="footer footer-center p-10 bg-[#191e24] text-base-content rounded">
