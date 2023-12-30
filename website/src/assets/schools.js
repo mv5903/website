@@ -4,14 +4,7 @@ export const schools = [
         location: 'New Brunswick, NJ',
         degree: 'Bachelor of Science',
         major: 'Computer Science',
-        timeline: 'January 2023 - May 2025',
-    },
-    {
-        name: 'University of California',
-        location: 'San Diego, CA',
-        degree: 'Bachelor of Science (Transferred to Rutgers University for financial reasons)',
-        major: 'Mathematics-Computer Science',
-        timeline: 'September 2021 - December 2022'
+        timeline: 'Expected May 2025',
     },
     {
         name: 'Piscataway Township High School',

@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@sveltejs/adapter-auto": "^2.1.1",
+    "is-mobile": "^4.0.0",
     "marked": "^11.0.1"
   }
 }

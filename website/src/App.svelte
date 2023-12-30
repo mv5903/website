@@ -4,13 +4,20 @@
   import { schools } from "./assets/schools";
   import { projects } from "./assets/projects";
   import { blogs } from "./assets/blogs";
+  import { sections } from "./assets/sections";
+
+  import { isMobile } from "is-mobile";
 
   import { onMount } from "svelte";
   let showDownArrow = false;
+  let showJumpToText = false;
   onMount(() => {
     setTimeout(() => {
       showDownArrow = true;
     }, 1000);
+    setTimeout(() => {
+      showJumpToText = true;
+    }, 2000)
   });
 
   let loaded = false;
@@ -47,6 +54,13 @@
       default: return 'w-0';  // 0% width if no buttons (should not happen)
     }
   }
+
+
+  const scrollDownToSection = async (id: string) => {
+    let sideBar = document.getElementById("my-drawer") as HTMLInputElement;
+    if (sideBar) sideBar.checked = !sideBar.checked
+    window.location.href = window.location.origin + '#' + id;
+  }; 
 </script>
 
 {#if !loaded}
@@ -54,22 +68,59 @@
     <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
   </div>
 {:else}
-  <main class="min-h-screen flex flex-col justify-center">
+  <main class="min-h-screen flex flex-col justify-center bg-stone-950">
+      <!-- Menu Bar -->
+      {#if isMobile()}
+        <div class="drawer z-100">
+          <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+          <div class="absolute left-4 top-4 drawer-content place-items-center flex gap-4">
+            <!-- Page content here -->
+            <label for="my-drawer" class="btn btn-stone-900 bg-stone-900 drawer-button">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+            </label>
+            {#if showJumpToText}
+              <label for="" class="bg-stone-950 outline-0 animate-pulse flex place=items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>              
+                <span class="ms-2">Jump To</span>
+              </label>
+            {/if}
+          </div> 
+          <div class="drawer-side z-10">
+            <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+            <ul class="menu p-4 w-80 min-h-full bg-stone-900 text-base-content">
+              <!-- Sidebar content here -->
+              <ul class="menu w-[100%] rounded-box">
+                {#each sections as section}
+                  <li class="mt-8">
+                    <a href={null} on:click={() => scrollDownToSection(section.id)}>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={section.data} /></svg>
+                      <span class="text-white text-2xl">{section.name}</span>
+                    </a>
+                  </li>
+                {/each}
+              </ul>
+            </ul>
+          </div>
+        </div>
+      {/if}
+
     <div class="min-h-screen flex flex-col gap-3 justify-center text-center place-items-center">
 
       <!-- Avatar -->
-      <div class="h-[15vh] sm:h-[30vh] mb-4">
-        <img class="h-[15vh] sm:h-[30vh] rounded-xl flex justify-center mb-10" src={`/images/matthew.jpeg`} alt="Matthew Vandenberg" loading="lazy"  />
+      <div class="h-[30vh] sm:h-[30vh] mb-4">
+        <img class="h-[30vh] sm:h-[30vh] rounded-xl flex justify-center mb-10" src={`/images/matthew.jpeg`} alt="Matthew Vandenberg" loading="lazy"  />
       </div>
 
       <!-- Intro -->
       <h2 class="text-lgtext-gray-300">Hi, I'm</h2>
       <h1 class="text-4xl font-boldtext-gray-100">Matthew Vandenberg</h1>
-      <h2 class="text-xltext-gray-200">Full Stack Developer at Mirion Technologies</h2>
+      <h2 class="text-xltext-gray-200">Software Engineer Intern at Mirion Technologies</h2>
       <h2 class="text-xltext-gray-200">Student at Rutgers University</h2>
 
       <!-- Scroll Down Indicator -->
-      <div class={`flex justify-center mt-32 ${!showDownArrow && 'invisible'}`}>
+      <div class={`flex justify-center mt-[5rem] ${!showDownArrow && 'invisible'}`}>
         <div class="animate-bounce">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -80,18 +131,20 @@
     
     <div class="flex flex-col sm:flex-row w-full gap-2 justify-center">
       <!-- Work Experience Section -->
-      <section class="px-4 py-8 w-full sm:w-1/2">
+      <section id="work" class="px-4 py-8 w-full sm:w-1/2">
         <h3 class="text-3xl font-bold text-center">Work Experience</h3>
         <div class="mt-6 space-y-6">
           {#each workExperience as job}
-            <div class="bg-background shadow-xl rounded-lg p-4">
+            <div class="bg-stone-800 shadow-xl rounded-lg p-4">
               {#if job.website}
                 <a class="text-white hover:text-white hover:underline" href={job.website}><h4 class="text-xl font-bold">{job.subheading}</h4></a>
               {:else}
                 <h4 class="text-xl font-bold">{job.subheading}</h4>
               {/if}
               <p class="text-gray-400">{job.date}</p>
-              <p class="text-gray-300">{job.content}</p>
+              {#each job.content.split("\n") as bullet}
+                <p class="text-gray-300">{bullet}</p>
+              {/each}
               {#if job.tech}
                 <p class="text-gray-400 mt-2">{job.tech}</p>
               {/if}
@@ -100,19 +153,16 @@
         </div>
       </section>
     
-      <!-- Work Experience Section -->
-      <section class="px-4 py-8 w-full sm:w-1/2">
+      <!-- Education Section -->
+      <section id="education" class="px-4 py-8 w-full sm:w-1/2">
         <h3 class="text-3xl font-bold text-center">Education</h3>
         <div class="mt-6 space-y-6">
           {#each schools as school}
-            <div class="bg-background shadow-xl rounded-lg p-4">
+            <div class="bg-stone-800 shadow-xl rounded-lg p-4">
               <h4 class="text-xl font-bold">{school.name}</h4>
               <p class="text-gray-400">{school.location}</p>
               <p class="text-gray-400">{school.timeline}</p>
-              <p class="text-gray-200">{school.degree}</p>
-              {#if school.major}
-                <p class="text-gray-200">{school.major}</p>
-              {/if}
+              <p class="text-gray-200">{school.degree}{school.major ? ' - ' + school.major : ''}</p>
             </div>
           {/each}
         </div>
@@ -121,11 +171,11 @@
 
     
     <!-- Projects Section -->
-    <section class="px-4 py-8">
+    <section id="projects" class="px-4 py-8">
       <h3 class="text-3xl font-bold text-center">Projects</h3>
       <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each projects as project}
-          <div class="bg-background shadow-xl rounded-lg p-4 flex flex-col">
+          <div class="bg-stone-800 shadow-xl rounded-lg p-4 flex flex-col">
             <h4 class="text-xl font-bold">{project.subheading}</h4>
             <p class="text-md text-gray-400">{project.year}</p>
             <p class="text-gray-300 flex-grow">{project.content}</p>
@@ -151,7 +201,7 @@
     </section>
 
     <!-- Blogs Section -->
-    <section class="px-4 py-8 text-left">
+    <section id="blog" class="px-4 py-8 text-left">
       <h3 class="text-3xl font-bold text-center">Blog</h3>
       <div class="flex justify-center mt-4">
         <ol class="relative border-s border-gray-200 dark:border-gray-700">

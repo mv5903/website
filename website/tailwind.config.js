@@ -5,6 +5,9 @@ export default {
     extend: {
       colors: {
         'background': '#333'
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
       }
     }
   },

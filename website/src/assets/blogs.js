@@ -16,5 +16,11 @@ export const blogs = [
         "date": "November 10, 2023",
         "description": "Partyfy is a web app that allows you to queue music to your friend's Spotify account without needing their session, through a system I call \"Unattended Queuing\". See what's involved.",
         "blog": "partyfy"
+    },
+    {
+        "title": "Simulataneously booting Windows 11 and MacOS Sonoma",
+        "date": "December 30, 2023",
+        "description": "You can get near native performance on both Windows 11 and MacOS Sonoma running on the same machine with Proxmox. See why I eventually opted out.",
+        "blog": "win11-macos-sonoma"
     }
 ]
