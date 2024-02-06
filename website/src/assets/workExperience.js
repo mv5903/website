@@ -7,7 +7,7 @@ export const workExperience = [
         website: 'https://www.mirion.com/',
     },
     {
-        subheading: 'Hack4Impact Rutgers Chatper',
+        subheading: 'Hack4Impact Rutgers Chapter',
         date: 'September 2023 - Present',
         content: "- Implementing a complex React frontend to enable volunteers to feed 100+ pets of disabled individuals\n- Working with 20 backend/design team members to develop intricate solutions and increase productivity\n- Coordinating with multiple members of Meals on Wheels to convert their existing workflows to software",
         tech: 'React, Tailwind, Next.js, MongoDB, Typescript',
