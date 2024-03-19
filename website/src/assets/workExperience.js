@@ -1,5 +1,12 @@
 export const workExperience = [
     {
+        subheading: 'ServiceNow, Santa Clara, CA',
+        date: 'May 2024 - August 2024',
+        content: '- Access controls team',
+        tech: '?',
+        website: 'https://www.servicenow.com/',
+    },
+    {
         subheading: 'Mirion Technologies',
         date: 'November 2023 - Present',
         content: '- Crafting an ordering/availability dashboard in WebOLO to ease workflows for 8000+ hospitals worldwide \n- Directing a team of 5 interns to develop a product availability calendar, increasing ordering speed by 50%+\n- Leading the development of an Asp.NET localization utility in Python with AI to translate 10 times faster',
