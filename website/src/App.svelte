@@ -50,7 +50,7 @@
     switch (count) {
       case 1: return 'w-full'; // 100% width if only one button
       case 2: return 'w-[49%]'; // 50% width if two buttons
-      case 3: return 'w-[31%]'; // 33.33% width if three buttons
+      case 3: return 'w-[32%]'; // 33.33% width if three buttons
       default: return 'w-0';  // 0% width if no buttons (should not happen)
     }
   }
@@ -141,6 +141,7 @@
               {:else}
                 <h4 class="text-xl font-bold">{job.subheading}</h4>
               {/if}
+              <p class="text-gray-200">{job.location}</p>
               <p class="text-gray-400">{job.date}</p>
               {#each job.content.split("\n") as bullet}
                 <p class="text-gray-300">{bullet}</p>
@@ -160,9 +161,9 @@
           {#each schools as school}
             <div class="bg-stone-800 shadow-xl rounded-lg p-4">
               <h4 class="text-xl font-bold">{school.name}</h4>
-              <p class="text-gray-400">{school.location}</p>
+              <p class="text-gray-200">{school.location}</p>
               <p class="text-gray-400">{school.timeline}</p>
-              <p class="text-gray-200">{school.degree}{school.major ? ' - ' + school.major : ''}</p>
+              <p class="text-gray-300">{school.degree}{school.major ? ' - ' + school.major : ''}</p>
             </div>
           {/each}
         </div>
