@@ -3,8 +3,8 @@ export const workExperience = [
         subheading: 'ServiceNow',
         location: "Santa Clara, CA",
         date: 'May 2024 - August 2024',
-        content: 'Summer 2024: Platform Security Core/Access Controls Team',
-        tech: '(Tentative) Java, Junit, Gradle, React',
+        content: 'Platform Security Core Team: Access Controls',
+        tech: 'Java, Junit, Gradle, React',
         website: 'https://www.servicenow.com/',
     },
     {

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { footer } from "./assets/footer";
-  import { workExperience } from "./assets/workExperience";
-  import { schools } from "./assets/schools";
-  import { projects } from "./assets/projects";
   import { blogs } from "./assets/blogs";
+  import { footer } from "./assets/footer";
+  import { projects } from "./assets/projects";
+  import { schools } from "./assets/schools";
   import { sections } from "./assets/sections";
+  import { workExperience } from "./assets/workExperience";
 
   import { isMobile } from "is-mobile";
 
@@ -116,8 +116,8 @@
       <!-- Intro -->
       <h2 class="text-lgtext-gray-300">Hi, I'm</h2>
       <h1 class="text-4xl font-boldtext-gray-100">Matthew Vandenberg</h1>
-      <h2 class="text-xltext-gray-200">Software Engineer Intern at Mirion Technologies</h2>
-      <h2 class="text-xltext-gray-200">Student at Rutgers University</h2>
+      <h2 class="text-xltext-gray-200">Software Engineer Intern at ServiceNow</h2>
+      <h2 class="text-xltext-gray-200">Senior at Rutgers University</h2>
 
       <!-- Scroll Down Indicator -->
       <div class={`flex justify-center mt-[5rem] ${!showDownArrow && 'invisible'}`}>
