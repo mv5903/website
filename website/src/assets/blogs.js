@@ -20,7 +20,7 @@ export const blogs = [
     {
         "title": "Partyfy: Queue Music to Your Friend's Spotify Account Remotely",
         "date": "November 10, 2023",
-        "description": "Partyfy is a web app that allows you to queue music to your friend's Spotify account remotely. See what's involved.",
+        "description": "Partyfy is an app that allows you to queue music to your friend's Spotify account remotely. See what's involved.",
         "blog": "partyfy"
     }
 ]
