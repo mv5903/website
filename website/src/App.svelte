@@ -251,7 +251,7 @@
         </div>
       </nav> 
       <aside>
-        <p class="text-[#a6adba]">Copyright © 2023 - Matthew Vandenberg. All rights reserved.</p>
+        <p class="text-[#a6adba]">Copyright © 2023-2024 Matthew Vandenberg. All rights reserved.</p>
       </aside>
     </footer>
   </main>
