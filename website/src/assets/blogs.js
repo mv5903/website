@@ -24,3 +24,5 @@ export const blogs = [
         "blog": "partyfy"
     }
 ]
+
+
