@@ -2,7 +2,7 @@ export const blogs = [
     {
         "title": "My Internship Application Process as a Student at Rutgers",
         "date": "March 18, 2024",
-        "description": "I applied to 300 companies and got 1 interview. Here's what I learned.",
+        "description": "I applied to over 500 companies during my sophomore and junior years of college, and got only one interview. Here's what I learned.",
         "blog": "internships"
     },
     {
