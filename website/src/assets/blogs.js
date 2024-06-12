@@ -12,7 +12,7 @@ export const blogs = [
         "blog": "win11-macos-sonoma"
     },
     {
-        "title": "Jumbotron: A New Way To View Your Favorite Images",
+        "title": "Jumbotron: A New Way To Display Images and Videos",
         "date": "December 7, 2023",
         "description": "Jumbotron is my personal creation of arranging WS2812B LEDs in a 48x64 matrix to display images. Check it out!",
         "blog": "jumbotron"
