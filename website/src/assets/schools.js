@@ -2,7 +2,7 @@ export const schools = [
     {
         name: 'Rutgers University',
         location: 'New Brunswick, NJ',
-        degree: 'Bachelor of Science',
+        degree: 'BS',
         major: 'Computer Science',
         timeline: 'Expected May 2025',
     },

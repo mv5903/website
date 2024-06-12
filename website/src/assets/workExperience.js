@@ -1,15 +1,15 @@
 export const workExperience = [
     {
         subheading: 'ServiceNow',
-        location: "Santa Clara, CA",
-        date: 'May 2024 - August 2024',
+        location: "Software Engineer Intern - Santa Clara, CA (HQ)",
+        date: 'May 2024 - August 2024 (Junior Year Internship)',
         content: 'Platform Security Core Team: Access Controls',
         tech: 'Java, Junit, Gradle, React',
         website: 'https://www.servicenow.com/',
     },
     {
         subheading: 'Mirion Technologies',
-        location: "Somerset, NJ",
+        location: "Software Engineer - Somerset, NJ",
         date: 'November 2023 - Present',
         content: 'Full-stack development for WebOLO',
         tech: 'Python, C#, SQL, JavaScript, HTML, CSS, Bootstrap, jQuery, Alpine.js',
@@ -17,7 +17,7 @@ export const workExperience = [
     },
     {
         subheading: 'Hack4Impact Rutgers Chapter',
-        location: "Piscataway, NJ",
+        location: "Frontend Engineering Director - Piscataway, NJ",
         date: 'September 2023 - Present',
         content: "Frontend team for an application for the disabled pet owner feeding organization, MealOnWheels",
         tech: 'React, Tailwind, Next.js, MongoDB, Typescript',
@@ -25,7 +25,7 @@ export const workExperience = [
     },
     {
         subheading: "ec² Software Solutions",
-        location: "Somerset, NJ",
+        location: "Software Engineer Intern - Somerset, NJ",
         date: "June 2022 - October 2023",
         content: 'Frontend nuclear product availability scheduling system',
         tech: 'Asp.NET, C#, SQL Server, JavaScript, HTML, CSS, Bootstrap, jQuery, Alpine.js',
@@ -33,7 +33,7 @@ export const workExperience = [
     },
     {
         subheading: "AI Code Academy",
-        location: "Remote",
+        location: "STEM Instructor - Remote",
         date: "November 2021 - February 2023",
         content: "Conducted weekly elementary programming sessions",
         tech: "Python, HTML, CSS, JavaScript",
@@ -48,7 +48,7 @@ export const workExperience = [
     },
     {
         subheading: "Rising Future (CODEie)",
-        location: "South Plainfield, NJ",
+        location: "Teaching Assistant - South Plainfield, NJ",
         date: "September 2020 - June 2021",
         content: "APCSA Teaching Assistant",
         website: "https://risingfuture.com/",

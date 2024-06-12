@@ -141,7 +141,10 @@
               {:else}
                 <h4 class="text-xl font-bold">{job.subheading}</h4>
               {/if}
-              <p class="text-gray-200">{job.location}</p>
+              <div class="flex justify-center gap-1">
+                <p class="text-gray-200">{job.location.substring(0, job.location.indexOf("-"))}</p>
+                <p class="text-gray-200 italic">{job.location.substring(job.location.indexOf("-"))}</p>
+              </div>
               <p class="text-gray-400">{job.date}</p>
               {#each job.content.split("\n") as bullet}
                 <p class="text-gray-300">{bullet}</p>
