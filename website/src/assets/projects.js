@@ -1,20 +1,20 @@
 export const projects = [
     {
+        "subheading": "Partyfy",
+        "year": "2023",
+        "content": "Add to your friend's Spotify queue without accessing their session directly. Now Profitable. 100+ Users.",
+        "tech": "React.js, Next.js, Node.js, Tailwind, DaisyUI, CSS, JavaScript, TypeScript, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
+        "github": "https://github.com/mv5903/partyfy",
+        "website": "https://partyfy.mattvandenberg.com/",
+        "blog": "partyfy"
+    },
+    {
         "subheading": "Jumbotron",
         "year": "2023",
         "content": "Controlling a 64 row x 48 column matrix using a Raspberry Pi, WS2812B addressable RGB strips, and other materials.",
         "tech": "React.js, Node.js, Tailwind, DaisyUI, Bash, Python, Flask, Raspberry Pi, WS2812B, Home Assistant, Responsive Web Development",
         "github": "https://github.com/mv5903/jumbotron",
         "blog": "jumbotron"
-    },
-    {
-        "subheading": "Partyfy",
-        "year": "2023",
-        "content": "Add to your friend's Spotify queue without accessing their session directly. 100+ Users.",
-        "tech": "React.js, Next.js, Node.js, Tailwind, DaisyUI, CSS, JavaScript, TypeScript, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
-        "github": "https://github.com/mv5903/partyfy",
-        "website": "https://partyfy.mattvandenberg.com/",
-        "blog": "partyfy"
     },
     {
         "subheading": "Rutgers Formula Racing Dashboard",

@@ -1,10 +1,10 @@
 export const workExperience = [
     {
         subheading: 'ServiceNow',
-        location: "Software Engineer Intern - Santa Clara, CA (HQ)",
-        date: 'May 2024 - August 2024 (Junior Year Internship)',
-        content: 'Platform Security Core Team: Access Controls',
-        tech: 'Java, Junit, Gradle, React',
+        location: "SWE Intern - Santa Clara, CA (HQ)",
+        date: 'May 2024 - August 2024',
+        content: 'Junior Summer Internship. Platform Security Core Team: Access Controls',
+        tech: 'Java, Maven, Selenium, JUnit, Thunderdome, IntelliJ, Git, Gradle',
         website: 'https://www.servicenow.com/',
     },
     {

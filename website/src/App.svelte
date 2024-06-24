@@ -109,18 +109,18 @@
     <div class="min-h-screen flex flex-col gap-3 justify-center text-center place-items-center">
 
       <!-- Avatar -->
-      <div class="h-[30vh] sm:h-[30vh] mb-4">
-        <img class="h-[30vh] sm:h-[30vh] rounded-xl flex justify-center mb-10" src={`/images/matthew.jpeg`} alt="Matthew Vandenberg" loading="lazy"  />
+      <div class="h-[40vh] mb-4">
+        <img class="h-[40vh] rounded-xl flex justify-center mb-10" src={`/images/matthew.jpeg`} alt="Matthew Vandenberg" loading="lazy"  />
       </div>
 
       <!-- Intro -->
-      <h2 class="text-lgtext-gray-300">Hi, I'm</h2>
-      <h1 class="text-4xl font-boldtext-gray-100">Matthew Vandenberg</h1>
+      <h1 class="text-4xl font-boldtext-gray-100">Matthew</h1>
+      <h1 class="text-4xl font-boldtext-gray-100">Vandenberg</h1>
       <h2 class="text-xltext-gray-200">Software Engineer Intern at ServiceNow</h2>
       <h2 class="text-xltext-gray-200">Senior at Rutgers University</h2>
 
       <!-- Scroll Down Indicator -->
-      <div class={`flex justify-center mt-[5rem] ${!showDownArrow && 'invisible'}`}>
+      <div class={`flex justify-center mt-4 ${!showDownArrow && 'invisible'}`}>
         <div class="animate-bounce">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -141,9 +141,8 @@
               {:else}
                 <h4 class="text-xl font-bold">{job.subheading}</h4>
               {/if}
-              <div class="flex justify-center gap-1">
-                <p class="text-gray-200">{job.location.substring(0, job.location.indexOf("-"))}</p>
-                <p class="text-gray-200 italic">{job.location.substring(job.location.indexOf("-"))}</p>
+              <div class="flex justify-center">
+                <p class="text-gray-200">{job.location.substring(0, job.location.indexOf("-"))} <span class="italic">{job.location.substring(job.location.indexOf("-"))}</span></p>
               </div>
               <p class="text-gray-400">{job.date}</p>
               {#each job.content.split("\n") as bullet}
@@ -172,7 +171,6 @@
         </div>
       </section>
     </div>
-
     
     <!-- Projects Section -->
     <section id="projects" class="px-4 py-8">
