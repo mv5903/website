@@ -1,0 +1,126 @@
+/* Base Styles */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+#title {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 0.875em; }
+
+/* Paragraphs */
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid #444;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  color: #999;
+  background-color: #1e1e1e;
+}
+
+/* Inline Code */
+code {
+  background-color: #1e1e1e;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95em;
+}
+
+/* Code Blocks */
+pre {
+  background-color: #1e1e1e;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Lists */
+ul, ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+  list-style-type: disc;
+}
+
+/* Horizontal Rules */
+hr {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 2em 0;
+}
+
+/* Links */
+a {
+  color: #82aaff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+th, td {
+  border: 1px solid #444;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+
+th {
+  background-color: #1e1e1e;
+}
+
+/* Emphasis */
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build && cp -r dist/* ~/mattvandenberg.com",
+    "build": "vite build && cp -r dist/* ~/mattvandenberg.com && cp -r ../blog/img/* ~/mattvandenberg.com/blog/img",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
@@ -17,6 +17,7 @@
     "postcss": "^8.4.31",
     "svelte": "^4.0.5",
     "svelte-check": "^3.4.6",
+    "svelte-preprocess-cssmodules": "^2.2.5",
     "tailwindcss": "^3.3.5",
     "tslib": "^2.6.0",
     "typescript": "^5.0.2",
