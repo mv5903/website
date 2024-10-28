@@ -157,7 +157,7 @@
           <h3 class="text-3xl font-bold text-center">Work Experience</h3>
           <div class="mt-6 space-y-6">
             {#each workExperience as job}
-              <div class="bg-stone-800 shadow-xl rounded-lg p-4">
+              <div class="bg-card shadow-xl rounded-lg p-4">
                 {#if job.website}
                   <a class="text-white hover:text-white hover:underline" href={job.website}><h4 class="text-xl font-bold">{job.subheading}</h4></a>
                 {:else}
@@ -183,7 +183,7 @@
           <h3 class="text-3xl font-bold text-center">Education</h3>
           <div class="mt-6 space-y-6">
             {#each schools as school}
-              <div class="bg-stone-800 shadow-xl rounded-lg p-4">
+              <div class="bg-card shadow-xl rounded-lg p-4">
                 <h4 class="text-xl font-bold">{school.name}</h4>
                 <p class="text-gray-200">{school.location}</p>
                 <p class="text-gray-400">{school.timeline}</p>
@@ -199,7 +199,7 @@
         <h3 class="text-3xl font-bold text-center">Projects</h3>
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {#each projects as project}
-            <div class="bg-stone-800 shadow-xl rounded-lg p-4 flex flex-col md:w-[49vw] lg:w-[32vw]">
+            <div class="bg-card shadow-xl rounded-lg p-4 flex flex-col md:w-[49vw] lg:w-[32vw]">
               <h4 class="text-xl font-bold">{project.subheading}</h4>
               <p class="text-md text-gray-400">{project.year}</p>
               <p class="text-gray-300 flex-grow">{project.content}</p>
