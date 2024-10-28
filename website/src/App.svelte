@@ -138,7 +138,7 @@
         <!-- Intro -->
         <h1 class="text-4xl font-boldtext-gray-100">Matthew</h1>
         <h1 class="text-4xl font-boldtext-gray-100">Vandenberg</h1>
-        <h2 class="text-xltext-gray-200">Software Engineer Intern at ServiceNow</h2>
+        <h2 class="text-xltext-gray-200">Incoming Software Engineer at ServiceNow</h2>
         <h2 class="text-xltext-gray-200">Senior at Rutgers University</h2>
 
         <!-- Scroll Down Indicator -->
