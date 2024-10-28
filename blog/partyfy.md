@@ -20,7 +20,7 @@ I created Partyfy to solve all of these issues to the best of my ability. It is 
 <br><br>
 <p align="center">
     <strong>The Friend Screen</strong><br><br>
-    <img src="https://mattvandenberg.com/blog/img/friendscreen.jpg" width="200" style="text-align: center" />
+    <img src="https://mattvandenberg.com/friendscreen.jpg" width="200" style="text-align: center" />
     <br>
     Here you can see a list of all of your friends that you have added from the friend icon on the top right of this screen. I have the option to disable unattended queues, which will immediately remove the functionality for any of my friends to add to my queue. <i><strong>By default, this option is disabled and yellow.</strong></i> Any of my friends who also have that functionality enabled will appear in green, while those who do not will appear in grey. I can reload the status with the blue refresh button on the right.
 </p>
@@ -28,8 +28,8 @@ I created Partyfy to solve all of these issues to the best of my ability. It is 
 <br>
 <p align="center">
     <strong>Searching for a Song</strong><br><br>
-    <img src="https://mattvandenberg.com/blog/img/search.jpg" width="200" style="text-align: center" />
-        <img src="https://mattvandenberg.com/blog/img/queueconfirm.jpg" width="200" style="text-align: center; margin-left: 5px" />
+    <img src="https://mattvandenberg.com/search.jpg" width="200" style="text-align: center" />
+        <img src="https://mattvandenberg.com/queueconfirm.jpg" width="200" style="text-align: center; margin-left: 5px" />
     <br>
     Once I click on one of my friends, I am presented with this screen. I can search for songs and add them to the queue. The search results are populated directly from the Spotify API using the logged-in user's access token.
 </p>
@@ -37,8 +37,8 @@ I created Partyfy to solve all of these issues to the best of my ability. It is 
 <br>
 <p align="center">
     <strong>Adding from my Playlists</strong><br><br>
-    <img src="https://mattvandenberg.com/blog/img/playlists.jpg" width="200" style="text-align: center" />
-    <img src="https://mattvandenberg.com/blog/img/songsfromplaylist.jpg" width="200" style="text-align: center; margin-left: 5px" />
+    <img src="https://mattvandenberg.com/playlists.jpg" width="200" style="text-align: center" />
+    <img src="https://mattvandenberg.com/songsfromplaylist.jpg" width="200" style="text-align: center; margin-left: 5px" />
     <br>
     If I can't quite remember the name of the song I want added, I can click on the "Your Playlists" tab which will bring me to this screen. Here I can see all of my playlists and add songs from them to the queue by clicking on View next to one of them.
 </p>
@@ -46,7 +46,7 @@ I created Partyfy to solve all of these issues to the best of my ability. It is 
 <br>
 <p align="center">
     <strong>Viewing Their Queue</strong><br><br>
-    <img src="https://mattvandenberg.com/blog/img/theirsession.jpg" width="200" style="text-align: center" />
+    <img src="https://mattvandenberg.com/theirsession.jpg" width="200" style="text-align: center" />
     <br>
     Once I am happy with my additions, I can click on "Their Queue" to view the host's Spotify queue. This is directly mirrored from the Spotify API, so it will always be up to date give or take a few seconds. You may notice that there are songs that are not on their queue but are still populating this screen. See the next section for more details on this.
 </p>

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build && cp -r dist/* ~/mattvandenberg.com && cp -r ../blog/img/* ~/mattvandenberg.com/blog/img",
+    "build": "vite build && cp -r dist/* ~/mattvandenberg.com && cp -r ../blog/img/* ~/mattvandenberg.com",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },

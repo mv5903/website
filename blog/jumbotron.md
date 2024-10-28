@@ -1,5 +1,5 @@
 ## 12/10/2023: Jumbotron!
-<img src="https://mattvandenberg.com/blog/img/jumbo.jpg" width="400" style="text-align: center" />
+<img src="https://mattvandenberg.com/jumbo.jpg" width="400" style="text-align: center" />
 <br><br>
 
 ### The backstory
