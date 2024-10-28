@@ -11,7 +11,7 @@
         if (!blog) {
             backToHome();
         }
-        fetch(`http://localhost:3000/blogs`)
+        fetch(`https://mattvandenberg.com:3000/blogs`)
             .then((res) => res.json())
             .then((data) => {
                 currentBlogHtml = data.find((b) => b.name === blog.blog).content;
