@@ -2,7 +2,7 @@
 
 ## Update 8/30/23: Partyfy is now available on the iOS App Store!
 [Partyfy - Queue Management](https://apps.apple.com/us/app/partyfy-queue-management/id6463042237) is now available on the iOS App Store, available for iPhone and iPad.
-<br><br><br>
+
 
 ### Why did I create this?
 
