@@ -27,10 +27,10 @@
         </div>
     {:else}
         <div class="navbar bg-base-300 flex justify-around">
-            <button class="btn bg-primary" on:click={backToHome}>
+            <button class="btn bg-card text-white" on:click={backToHome}>
                 {'< Back to Home'}
             </button>
-            <h1 id="title">{String(blog.blog).charAt(0).toUpperCase() + String(blog.blog).slice(1)}</h1>
+            <h1 id="title">{String(blog.title).charAt(0).toUpperCase() + String(blog.title).slice(1)}</h1>
             <p></p>
         </div>
         <div class="max-w-[1500px] mx-auto pt-3 pb-6 px-4">

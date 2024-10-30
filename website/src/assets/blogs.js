@@ -1,5 +1,11 @@
 export const blogs = [
     {
+        "title": "My Internship Experience at ServiceNow",
+        "date": "October 29, 2024",
+        "description": "I interned at ServiceNow during the summer of 2024. Here's what I learned and what I did.",
+        "blog": "servicenow-internship"
+    },
+    {
         "title": "My Internship Application Process as a Student at Rutgers",
         "date": "March 18, 2024",
         "description": "I applied to over 500 companies during my sophomore and junior years of college, and got only one interview. Here's what I learned.",
