@@ -26,11 +26,11 @@
             <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
         </div>
     {:else}
-        <div class="navbar bg-base-300 flex justify-around">
+        <div class="navbar bg-base-300 flex justify-around gap-3">
             <button class="btn bg-card text-white" on:click={backToHome}>
                 {'< Back to Home'}
             </button>
-            <h1 id="title">{String(blog.title).charAt(0).toUpperCase() + String(blog.title).slice(1)}</h1>
+            <h6 id="title" class="text-center">{String(blog.title).charAt(0).toUpperCase() + String(blog.title).slice(1)}</h6>
             <p></p>
         </div>
         <div class="max-w-[1500px] mx-auto pt-3 pb-6 px-4">
