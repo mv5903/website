@@ -25,43 +25,64 @@ function markdownToHtml(markdown) {
   // Replace blockquotes
   markdown = markdown.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>');
 
-  // Handle lists with nesting support
-  markdown = markdown.split('\n').reduce((acc, line) => {
-      // Match unordered list items (- or *)
-      if (/^\s*[\*\-]\s+(.*)/.test(line)) {
-          const depth = line.match(/^\s*/)[0].length;
-          const listItem = line.trim().replace(/^[\*\-]\s+/, '<li>') + '</li>';
-          return acc + `<ul style="margin-left: ${depth * 20}px;">${listItem}</ul>`;
+  // Handle lists with nesting
+  const lines = markdown.split('\n');
+  let html = '';
+  let listStack = [];
+
+  lines.forEach((line) => {
+      let unorderedMatch = line.match(/^(\s*)[\*\-]\s+(.*)/);
+      let orderedMatch = line.match(/^(\s*)\d+\.\s+(.*)/);
+
+      if (unorderedMatch || orderedMatch) {
+          const [, indent, content] = unorderedMatch || orderedMatch;
+          const listTag = unorderedMatch ? 'ul' : 'ol';
+          const depth = indent.length / 2;
+
+          // Close lists if we're stepping back in depth
+          while (listStack.length > depth) {
+              html += `</${listStack.pop()}>`;
+          }
+
+          // Open new lists if we're stepping deeper
+          while (listStack.length < depth) {
+              html += `<${listTag}>`;
+              listStack.push(listTag);
+          }
+
+          html += `<li>${content}</li>`;
+      } else {
+          // Close any open lists if a non-list line is encountered
+          while (listStack.length) {
+              html += `</${listStack.pop()}>`;
+          }
+          html += line + '\n';
       }
-      // Match ordered list items (1., 2., etc.)
-      else if (/^\s*\d+\.\s+(.*)/.test(line)) {
-          const depth = line.match(/^\s*/)[0].length;
-          const listItem = line.trim().replace(/^\d+\.\s+/, '<li>') + '</li>';
-          return acc + `<ol style="margin-left: ${depth * 20}px;">${listItem}</ol>`;
-      }
-      // Regular lines
-      else {
-          return acc + line + '\n';
-      }
-  }, '');
+  });
+
+  // Close any remaining open lists
+  while (listStack.length) {
+      html += `</${listStack.pop()}>`;
+  }
 
   // Replace inline code and code blocks
-  markdown = markdown.replace(/`(.*?)`/gim, '<code>$1</code>');
-  markdown = markdown.replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>');
+  html = html.replace(/`(.*?)`/gim, '<code>$1</code>');
+  html = html.replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>');
 
   // Replace links and images
-  markdown = markdown.replace(/\[([^\[]+)\]\(([^\)]+)\)/gim, '<a href="$2">$1</a>');
-  markdown = markdown.replace(/\!\[([^\[]*)\]\(([^\)]+)\)/gim, '<img src="$2" alt="$1" />');
+  html = html.replace(/\[([^\[]+)\]\(([^\)]+)\)/gim, '<a href="$2">$1</a>');
+  html = html.replace(/\!\[([^\[]*)\]\(([^\)]+)\)/gim, '<img src="$2" alt="$1" />');
 
   // Replace horizontal rules
-  markdown = markdown.replace(/^\s*[-\*]{3,}\s*$/gim, '<hr />');
+  html = html.replace(/^\s*[-\*]{3,}\s*$/gim, '<hr />');
 
   // Replace line breaks
-  markdown = markdown.replace(/\n\n/gim, '<br /><br />');
-  markdown = markdown.replace(/\n/gim, '<br />');
+  html = html.replace(/\n\n/gim, '<br /><br />');
+  html = html.replace(/\n/gim, '<br />');
 
-  return markdown.trim();
+  return html.trim();
 }
+
 
 
 app.get('/blogs', (req, res) => {
