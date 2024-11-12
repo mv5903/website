@@ -3,7 +3,17 @@
     export let blog;
     export let backToHome;
 
+    function countWords(input) {
+    // Match all words in the input string, considering sequences separated by whitespace or punctuation
+        const words = input.trim().match(/\b\w+\b/g);
+        // Return the length of the array or 0 if no words are found
+        return words ? words.length : 0;
+    }
+
+    const WPM = 200;
+
     let currentBlogHtml = "";
+    let approxReadingTime = 0;
     let loaded = false;
 
     import { onMount } from 'svelte';
@@ -15,6 +25,7 @@
             .then((res) => res.json())
             .then((data) => {
                 currentBlogHtml = data.find((b) => b.name === blog.blog).content;
+                approxReadingTime = Math.ceil(countWords(currentBlogHtml) / WPM);
                 loaded = true;
             });
     });
@@ -34,6 +45,7 @@
             <p></p>
         </div>
         <div class="max-w-[1500px] mx-auto pt-3 pb-6 px-4">
+            <p class="text-left text-base-400">(Approx. {approxReadingTime} minute read)</p>
             {@html currentBlogHtml}
         </div>
     {/if}
