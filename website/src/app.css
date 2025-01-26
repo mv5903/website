@@ -17,3 +17,25 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+@keyframes shift {
+  0%   { background-position: 0 0; }
+  50%  { background-position: 25px 25px; }
+  100% { background-position: 0 0; }
+}
+
+body {
+  margin: 0;
+  background-color: #111;
+  /* 
+    1) A pair of linear gradients to form horizontal & vertical lines.
+    2) A small radial gradient for the “nodes,” placed in the center of each cell.
+  */
+  background-image:
+    radial-gradient(circle 2px at 25px 25px, rgb(10, 73, 10), transparent 80%);
+  background-repeat: repeat;
+  /* Each cell is 50×50, with lines on the edges and a node in the center. */
+  background-size: 50px 50px;
+  /* Subtle animation that shifts the entire pattern diagonally. */
+  animation: shift 10s linear infinite;
+}

@@ -6,6 +6,7 @@ export const workExperience = [
         content: 'Platform Security Core Team: Access Controls',
         tech: 'JavaScript, Java, Gradle, Selenium, JUnit, Jenkins, IntelliJ, Git',
         website: 'https://www.servicenow.com/',
+        image: 'now.png'
     },
     {
         subheading: 'ServiceNow',
@@ -14,6 +15,7 @@ export const workExperience = [
         content: 'Junior Summer Internship. Platform Security Core Team: Access Controls',
         tech: 'JavaScript, Java, Gradle, Selenium, JUnit, Jenkins, IntelliJ, Git',
         website: 'https://www.servicenow.com/',
+        image: 'now.png'
     },
     {
         subheading: 'Mirion Technologies',
@@ -22,14 +24,16 @@ export const workExperience = [
         content: 'Full-stack development for WebOLO',
         tech: 'Python, C#, SQL, JavaScript, HTML, CSS, Bootstrap, jQuery, Alpine.js',
         website: 'https://www.mirion.com/',
+        image: 'mirion.png'
     },
     {
-        subheading: 'Hack4Impact Rutgers Chapter',
+        subheading: 'Hack4Impact Rutgers',
         location: "Frontend Engineering Director - Piscataway, NJ",
         date: 'September 2023 - Present',
         content: "Frontend team for an application for the disabled pet owner feeding organization, MealOnWheels",
         tech: 'React, Tailwind, Next.js, MongoDB, Typescript',
         website: 'https://hack4impact.org/',
+        image: 'h4i.jpg'
     },
     {
         subheading: "ec² Software Solutions",
@@ -38,6 +42,7 @@ export const workExperience = [
         content: 'Frontend nuclear product availability scheduling system',
         tech: 'Asp.NET, C#, SQL Server, JavaScript, HTML, CSS, Bootstrap, jQuery, Alpine.js',
         website: "https://ec2software.com",
+        image: 'ec2.png'
     },
     {
         subheading: "AI Code Academy",
@@ -46,6 +51,7 @@ export const workExperience = [
         content: "Conducted weekly elementary programming sessions",
         tech: "Python, HTML, CSS, JavaScript",
         website: "https://www.aicodeacademy.com/",
+        image: 'aicode.png'
     },
     {
         subheading: "Computer Science Tutoring",
@@ -53,6 +59,7 @@ export const workExperience = [
         date: "September 2020 - Present",
         content: "Assisting many aspiring high school and university computer science students.",
         tech: "Java, Python, Javascript, Typescript",
+        image: 'person.jpg'
     },
     {
         subheading: "Rising Future (CODEie)",
@@ -60,6 +67,7 @@ export const workExperience = [
         date: "September 2020 - June 2021",
         content: "APCSA Teaching Assistant",
         website: "https://risingfuture.com/",
-        tech: "Java, Scratch, Python, APCSA"
+        tech: "Java, Scratch, Python, APCSA",
+        image: 'codeie.jpg'
     }
   ]
