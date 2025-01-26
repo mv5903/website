@@ -18,15 +18,6 @@ export const workExperience = [
         image: 'now.png'
     },
     {
-        subheading: 'Mirion Technologies',
-        location: "Software Engineer - Somerset, NJ",
-        date: 'November 2023 - May 2024',
-        content: 'Full-stack development for WebOLO',
-        tech: 'Python, C#, SQL, JavaScript, HTML, CSS, Bootstrap, jQuery, Alpine.js',
-        website: 'https://www.mirion.com/',
-        image: 'mirion.png'
-    },
-    {
         subheading: 'Hack4Impact Rutgers',
         location: "Frontend Engineering Director - Piscataway, NJ",
         date: 'September 2023 - Present',
@@ -34,6 +25,15 @@ export const workExperience = [
         tech: 'React, Tailwind, Next.js, MongoDB, Typescript',
         website: 'https://hack4impact.org/',
         image: 'h4i.jpg'
+    },
+    {
+        subheading: 'Mirion Technologies',
+        location: "Software Engineer - Somerset, NJ",
+        date: 'November 2023 - May 2024',
+        content: 'Full-stack development for WebOLO',
+        tech: 'Python, C#, SQL, JavaScript, HTML, CSS, Bootstrap, jQuery, Alpine.js',
+        website: 'https://www.mirion.com/',
+        image: 'mirion.png'
     },
     {
         subheading: "ec² Software Solutions",

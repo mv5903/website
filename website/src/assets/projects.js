@@ -55,7 +55,7 @@ export const projects = [
         "github": "https://github.com/mv5903/Java-Version-Changer"
     },
     {
-        "subheading": "Astrophotography Management System",
+        "subheading": "Astrophotography System",
         "year": "2021",
         "content": "A web application that allows my uncle to manage his astrophotography collection.",
         "tech": "HTML, CSS, JavaScript, PHP, MySQL",

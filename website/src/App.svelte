@@ -8,6 +8,7 @@
   import { isMobile } from "is-mobile";
 
   import { onMount } from "svelte";
+  import InfoCard from "./InfoCard.svelte";
 
   let showDownArrow = false;
   let showJumpToText = false;
@@ -87,8 +88,12 @@
         <!-- Add titles up top -->
          <div class="absolute top-0 w-[100%] max-w-[1600px]">
           <div class="navbar">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="flex-1">
+              <!-- svelte-ignore a11y-click-events-have-key-events -->
+              <!-- svelte-ignore a11y-no-static-element-interactions -->
               <div class="tooltip tooltip-bottom" data-tip="What does this do?" on:click={() => window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"} >
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <a class="btn btn-ghost text-xl">Matthew</a>
               </div>
             </div>
@@ -111,7 +116,7 @@
        <div class="h-[100px]">
         <div class="avatar ms-24">
           <div class="w-12 rounded-full">
-            <img src="https://mattvandenberg.com/matthew.JPG" />
+            <img src="https://mattvandenberg.com/matthew.JPG" alt="Matthew" />
           </div>
         </div> 
         <h1 class="text-6xl">Hi!</h1>
@@ -143,30 +148,7 @@
         <h3 class="text-3xl font-bold text-center">Work Experience</h3>
         <div class="mt-6 space-y-6">
           {#each workExperience as job}
-            <div class="bg-card shadow-xl rounded-lg p-4">
-              <div class="flex gap-3 justify-center place-items-center mt-1">
-                <div class="avatar">
-                  <div class="w-5 h-5 rounded-full">
-                    <img src={`/images/${job.image}`} />
-                  </div>
-                </div>
-                {#if job.website}
-                  <a class="text-white hover:text-white hover:underline" href={job.website}><h4 class="text-xl font-bold">{job.subheading}</h4></a>
-                {:else}
-                  <h4 class="text-xl font-bold">{job.subheading}</h4>
-                {/if}
-              </div>
-              <div class="flex justify-center">
-                <p class="text-gray-200">{job.location.substring(0, job.location.indexOf("-"))} <span class="italic">{job.location.substring(job.location.indexOf("-"))}</span></p>
-              </div>
-              <p class="text-gray-400">{job.date}</p>
-              {#each job.content.split("\n") as bullet}
-                <p class="text-gray-300">{bullet}</p>
-              {/each}
-              {#if job.tech}
-                <p class="text-gray-400 mt-2">{job.tech}</p>
-              {/if}
-            </div>
+            <InfoCard type="job" displayObject={job} />
           {/each}
         </div>
       </section>
@@ -176,19 +158,7 @@
         <h3 class="text-3xl font-bold text-center">Education</h3>
         <div class="mt-6 space-y-6">
           {#each schools as school}
-            <div class="bg-card shadow-xl rounded-lg p-4">
-              <div class="flex gap-3 justify-center place-items-center mt-1">
-                <div class="avatar">
-                  <div class="w-5 h-5 rounded-full">
-                    <img src={`/images/${school.image}`} />
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold">{school.name}</h4>
-              </div>
-              <p class="text-gray-200">{school.location}</p>
-              <p class="text-gray-400">{school.timeline}</p>
-              <p class="text-gray-300">{school.degree}{school.major ? ' - ' + school.major : ''}</p>
-            </div>
+            <InfoCard type="education" displayObject={school} />
           {/each}
         </div>
       </section>
@@ -199,24 +169,7 @@
       <h3 class="text-3xl font-bold text-center">Projects</h3>
       <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each projects as project}
-          <div class="bg-card shadow-xl rounded-lg p-4 flex flex-col md:w-[45vw] md:w[40vw] lg:max-w-[22vw] lg:w-[20vw]">
-            <h4 class="text-xl font-bold">{project.subheading}</h4>
-            <p class="text-md text-gray-400">{project.year}</p>
-            <p class="text-gray-300 flex-grow">{project.content}</p>
-            {#if project.tech}
-              <p class="text-gray-400 mt-2">{project.tech}</p>
-            {/if}
-            {#if project.github || project.website || project.blog}
-              <div class="flex justify-between gap-3 w-full">
-                {#if project.website}
-                  <a href={project.website} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4 flex-grow`}>View Project</a>
-                {/if}
-                {#if project.github}
-                  <a href={project.github} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4 flex-grow`}>Source Code</a>
-                {/if}
-              </div>
-            {/if}
-          </div>
+          <InfoCard type="project" displayObject={project} />
         {/each}
       </div>
     </section>
@@ -225,7 +178,9 @@
     <section id="blog" class="px-4 py-8 text-left mt-[30vh] min-h-[60vh]">
       <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
       <div class="flex flex-col gap-3 justify-center place-items-center">
-        <a on:click={() => triggerBlog()} class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>(New!) Personal Blog</a>
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <p on:click={() => triggerBlog()} class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>(New!) Personal Blog</p>
         <p>To see my life incrementally with blogs!</p>
       </div>
       {#if numLines > 1}
