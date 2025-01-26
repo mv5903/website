@@ -8,7 +8,7 @@ export const schools = [
         image: 'ru.png'
     },
     {
-        name: 'Piscataway Township High School',
+        name: 'Piscataway High School',
         location: 'Piscataway, NJ',
         degree: 'High School Diploma',
         timeline: 'September 2017 - June 2021',

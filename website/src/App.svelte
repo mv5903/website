@@ -187,7 +187,7 @@
       <h3 class="text-3xl font-bold text-center">Projects</h3>
       <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each projects as project}
-          <div class="bg-card shadow-xl rounded-lg p-4 flex flex-col md:w-[49vw] lg:max-w-[22vw] lg:w-[32vw]">
+          <div class="bg-card shadow-xl rounded-lg p-4 flex flex-col md:w-[45vw] md:w[40vw] lg:max-w-[22vw] lg:w-[20vw]">
             <h4 class="text-xl font-bold">{project.subheading}</h4>
             <p class="text-md text-gray-400">{project.year}</p>
             <p class="text-gray-300 flex-grow">{project.content}</p>
@@ -211,7 +211,7 @@
 
     <!-- Blogs Section -->
     <section id="blog" class="px-4 py-8 text-left mt-[30vh] min-h-[60vh]">
-      <h3 class="text-3xl font-bold text-center">Blog</h3>
+      <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
       <div class="flex flex-col gap-3 justify-center place-items-center">
         <a href={"https://obsidian.mattvandenberg.com"} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>(New!) Personal Blog</a>
         <p>To see my life incrementally with blogs!</p>
