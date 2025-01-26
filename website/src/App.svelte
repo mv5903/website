@@ -28,6 +28,18 @@
     if (sideBar) sideBar.checked = !sideBar.checked
     window.location.href = window.location.origin + '#' + id;
   }; 
+
+  let numLines = 1;
+
+  function triggerBlog() {
+    setInterval(() => {
+      numLines++;
+      if (numLines == 4) {
+        numLines = 1;
+        window.location.href = "https://obsidian.mattvandenberg.com";
+      }
+    }, 1000);
+  }
 </script>
 
 <main class="min-h-screen flex flex-col justify-center items-center bg-grey-800">
@@ -213,9 +225,21 @@
     <section id="blog" class="px-4 py-8 text-left mt-[30vh] min-h-[60vh]">
       <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
       <div class="flex flex-col gap-3 justify-center place-items-center">
-        <a href={"https://obsidian.mattvandenberg.com"} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>(New!) Personal Blog</a>
+        <a on:click={() => triggerBlog()} class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>(New!) Personal Blog</a>
         <p>To see my life incrementally with blogs!</p>
       </div>
+      {#if numLines > 1}
+        <div class="flex justify-center place-items-center mt-12">
+          <div class="mockup-code">
+            {#if numLines > 1}
+              <pre data-prefix="$"><code>ssh blogserver</code></pre>
+            {/if}
+            {#if numLines > 2}
+              <pre data-prefix="$"><code>Enter Password:</code></pre>
+            {/if}
+          </div>
+        </div>
+      {/if}
     </section>
     
     
@@ -247,7 +271,7 @@
         </div>
       </nav> 
       <aside>
-        <p class="text-[#606368]">Copyright © 2023-2025 Matthew Vandenberg. All rights reserved.</p>
+        <p class="text-[#606368]">Copyright © 2023-2025 Matthew Vandenberg. All rights reserved.<br>Made with Svelte, running with Apache on Ubuntu, somewhere 🤷‍♂️.</p>
       </aside>
     </footer>
   </div>

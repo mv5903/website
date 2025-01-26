@@ -20,7 +20,7 @@
 
 @keyframes shift {
   0%   { background-position: 0 0; }
-  50%  { background-position: 25px 25px; }
+  50%  { background-position: 20px 20px; }
   100% { background-position: 0 0; }
 }
 
