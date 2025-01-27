@@ -1,8 +1,31 @@
-<script>
-  import { onMount } from "svelte";
+<script lang="ts">
+    import isMobile from "is-mobile";
+    import { onMount, onDestroy } from "svelte";
 
+    type BlogMeta = {
+        title: string;
+        slug: string;
+        date: string;
+        updated: string;
+        excerpt: string;
+        url: string;
+    }
+    
     let numLines = 1;
+    let blogAnimationPlayed = false;
+    let blogMeta: BlogMeta[] = [];
+    let blogLength = 0;
+    let excerptEls: any[] = [];
+    const startDelay = 300;
+    let positions: any[] = [];
+    let resizeObservedElements: HTMLElement[] = [];
+    let resizeObservers: ResizeObserver[] = [];
+    let arrowPositions: any[] = [];
 
+    /**
+     * Triggers the blog's computer animation. If the animation has already been played,
+     * it will redirect to the blog.
+     */
     function triggerBlog() {
         if (localStorage.getItem("blogAnimationPlayed") == "true") {
             window.location.href = "https://obsidian.mattvandenberg.com";
@@ -18,31 +41,265 @@
         }
     }
 
-    let blogAnimationPlayed = false;
+    /**
+     * Gets the placement of a node in the directed graph
+     * @param i The index of the node
+     */
+    function getPlacement(i: Number) {
+        switch (i) {
+            case 0:
+                return ["start", "start"];
+            case 1:
+                return ["center", "start"];
+            case 2:
+                return ["end", "start"];
+            case 3:
+                return ["end", "center"];
+            case 4:
+                return ["end", "end"];
+            case 5:
+                return ["center", "end"];
+            case 6:
+                return ["start", "end"];
+            case 7:
+                return ["start", "center"];
+            default:
+                return ["center", "center"];
+        }
+    }
+
+    /**
+     * Handles the mouse entering a node in the directed graph
+     * @param i The index of the node
+     */
+    function handleMouseEnter(i: number) {
+        setTimeout(() => {
+            excerptEls[i].style.display = 'block';
+            excerptEls[i].classList.remove('opacity-0');
+        }, startDelay);
+    }
+
+    /**
+     * Handles the mouse leaving a node in the directed graph
+     * @param i The index of the node
+     */
+    function handleMouseLeave(i: number) {
+        excerptEls[i].classList.add('opacity-0');
+        excerptEls[i].style.display = 'none';
+    }
+
+    /**
+     * Gets the position of a node in the directed graph
+     * @param index The index of the node
+     */
+    function getNodePosition(index: number) {
+        return positions[index] || { x: 0, y: 0 }; // Default position if not calculated yet
+    }
+
+    /**
+     * Calculates the positions of the arrows connecting the directed graph's nodes
+     */
+    function calculatePositions() {
+        // The container in which the nodes AND the SVG both live:
+        const container = document.querySelector('.grid-layout') as HTMLElement;
+        if (!container) return;
+
+        const containerRect = container.getBoundingClientRect();
+        positions = blogMeta.map((_, i) => {
+            const element = document.getElementById(
+            String.fromCharCode(i + "a".charCodeAt(0))
+            ) as HTMLElement;
+            if (!element) {
+                return { x: 0, y: 0, width: 0, height: 0 };
+            }
+            const rect = element.getBoundingClientRect();
+
+            // Convert from viewport coords to container coords:
+            return {
+                x: rect.left - containerRect.left,
+                y: rect.top  - containerRect.top,
+                width:  rect.width,
+                height: rect.height
+            };
+        });
+        for (let i = 0; i < blogMeta.length - 1; i++) {
+            const arrowDirection = getArrowDirection(i);
+            const { x1, y1, x2, y2 } = calculateArrowPosition(i, arrowDirection);
+            arrowPositions[i] = { x1, y1, x2, y2 };
+        }
+    }
+
+    /**
+     * Waits for an array to be populated, with a max timeout of 10 seconds
+     * @param array The array to wait for
+     */
+    async function waitForArray(array: any[], maxTimeout = 5000) {
+        let maxTimeRemaining = maxTimeout;
+        return new Promise((resolve, reject) => {
+            const interval = setInterval(() => {
+                if (array.length > 0) {
+                    clearInterval(interval);
+                    resolve(array);
+                }
+                maxTimeRemaining -= 100;
+                if (maxTimeRemaining <= 0) {
+                    clearInterval(interval);
+                    reject("Wait for array timed out");
+                }
+            }, 100);
+        });
+    }
+
+    /**
+     * Calculates the position of an arrow connecting two nodes in the directed graph
+     * @param i The index of the first node
+     * @param direction The direction of the arrow
+     * @returns The position of the arrow
+     */
+    function calculateArrowPosition(i: number, direction: "up" | "down" | "left" | "right"): {"x1": number, "y1": number, "x2": number, "y2": number} {
+        switch (direction) {
+            case "up":
+                let isLast = i + 1 == blogMeta.length;
+                if (isLast) return { x1: 0, y1: 0, x2: 0, y2: 0 };
+                return {
+                    x1: getNodePosition(i).x + getNodePosition(i).width / 2,
+                    y1: getNodePosition(i).y,
+                    x2: getNodePosition(i + 1).x + getNodePosition(i + 1).width / 2,
+                    y2: getNodePosition(i + 1).y + getNodePosition(i + 1).height,
+                };
+            case "down":
+                return {
+                    x1: getNodePosition(i).x + getNodePosition(i).width / 2,
+                    y1: getNodePosition(i).y + getNodePosition(i).height,
+                    x2: getNodePosition(i + 1).x + getNodePosition(i + 1).width / 2,
+                    y2: getNodePosition(i + 1).y,
+                };
+            case "left":
+                return {
+                    x1: getNodePosition(i).x,
+                    y1: getNodePosition(i).y + getNodePosition(i).height / 2,
+                    x2: getNodePosition(i + 1).x + getNodePosition(i + 1).width,
+                    y2: getNodePosition(i + 1).y + getNodePosition(i + 1).height / 2,
+                };
+            case "right":
+                return {
+                    x1: getNodePosition(i).x + getNodePosition(i).width,
+                    y1: getNodePosition(i).y + getNodePosition(i).height / 2,
+                    x2: getNodePosition(i + 1).x,
+                    y2: getNodePosition(i + 1).y + getNodePosition(i + 1).height / 2,
+                };
+            default: {
+                return {
+                    x1: 0,
+                    y1: 0,
+                    x2: 0,
+                    y2: 0,
+                };
+            }
+        }
+    }
+
+    /**
+     * Gets the direction of an arrow connecting two nodes in the directed graph
+     * @param i The index of the node
+     */
+    function getArrowDirection(i: number): "up" | "down" | "left" | "right" {
+        if (i >= 0 && i < 2) return "right";
+        if (i >= 2 && i < 4) return "down";
+        if (i >= 4 && i < 6) return "left";
+        if (i >= 6 && i < 8) return "up";
+        return "right";
+    }
 
     onMount(() => {
-        if (localStorage.getItem("blogAnimationPlayed") == "true") {
-            blogAnimationPlayed = true;
-        }
+        (async function() {
+            // Check if the computer animation has been played
+            if (localStorage.getItem("blogAnimationPlayed") == "true") {
+                blogAnimationPlayed = true;
+            }
+
+            // Fetch the blog posts
+            const response = await fetch("https://obsidian.mattvandenberg.com/api/posts.json");
+            const data = await response.json();
+            let temp = data;
+            // Order by date
+            temp.sort((a: BlogMeta, b: BlogMeta) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+            // If the length is greater than 8, take the very first one, and the last 7
+            if (temp.length > 8) {
+                temp = [temp[0], ...temp.slice(-7)];
+                blogMeta = temp;
+            } else {
+                blogMeta = data;
+            }
+            blogLength = data.length;
+
+            // Waits for the elements to be rendered before placing the resize observers
+            await waitForArray(resizeObservedElements);
+
+            resizeObservedElements.forEach((element, index) => {
+                if (!element) return;
+
+                const resizeObserver = new ResizeObserver((entries) => {
+                    for (const entry of entries) {
+                        calculatePositions();
+                    }
+                });
+                resizeObserver.observe(element);
+                resizeObservers[index] = resizeObserver;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                // Make sure excerpt text gets hidden on all nodes when mouse isn't over one of them
+                if (!(e.target instanceof HTMLElement) || !e.target.classList.contains('graph-node')) {
+                    // See if mouse is inside any of the excerpt elements
+                    let insideNode = false;
+                    resizeObservedElements.forEach((el) => {
+                        if (el.contains(e.target as Node)) {
+                            insideNode = true;
+                        }
+                    });
+                    
+                    if (!insideNode) {
+                        excerptEls.forEach((el) => {
+                            el.style.display = 'none';
+                            el.classList.add('opacity-0');
+                        });
+                    }
+                }
+            })
+        })();
     });
 
-    // We'll store our random graph data here
-    /**
-   * @type {any[]}
-   */
-    let blogMeta = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    onDestroy(() => {
+        resizeObservers.forEach((observer) => observer.disconnect());
+    });
+
+    window.addEventListener('resize', calculatePositions);
 </script>
 
-<section id="blog" class="relative pb-4 pt-6 py-8 text-left min-h-[60vh] flex justify-center place-items-center">
+<style>
+    .grid-layout {
+        display: grid;
+        grid-template-areas:
+            "a b c"
+            "h . d"
+            "g f e";
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+    }
+</style>
+
+<section id="blog" class="relative pb-8 pt-16 text-left min-h-[85vh] flex justify-center place-items-center ">
     <!-- Monitor -->
-    <div class="relative w-full m-4 md:w-1/2 p-4 pb-12 aspect-[16/10] border-2 border-white flex justify-center rounded-md place-items-center ">
+    <div class="relative w-full m-4 md:w-1/2 p-4 pb-12 aspect-[16/10] border-2 border-white flex justify-center rounded-md place-items-center z-40">
         <div>
             {#if numLines <= 1}
                 <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
                 <div class="flex flex-col gap-3 justify-center place-items-center">
                     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <p on:click={() => triggerBlog()} class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>(New!) Personal Blog</p>
+                    <p on:click={() => triggerBlog()} class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>Personal Blog Home</p>
                     <p>To see my life incrementally with blogs!</p>
                 </div>
             {/if}
@@ -50,13 +307,13 @@
                 <div class="flex justify-center place-items-center">
                 <div class="mockup-code">
                     {#if numLines > 1}
-                    <pre data-prefix="$"><code>ssh blogserver</code></pre>
+                        <pre data-prefix="$"><code>ssh blogserver</code></pre>
                     {/if}
                     {#if numLines > 2}
-                    <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
+                        <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
                     {/if}
                     {#if numLines > 3}
-                    <pre data-prefix=">" class="text-success"><code>Just kidding...</code></pre>
+                        <pre data-prefix=">" class="text-success"><code>Just kidding...</code></pre>
                     {/if}
                 </div>
                 </div>
@@ -81,7 +338,73 @@
             </div>
         {/if}
     </div>
-    <!-- Blog Graph nodes -->
 
+    <!-- Blog Directed Graph -->
+    {#if !isMobile()}
+        <div class="absolute w-full h-full p-3 grid-layout">
+            <!-- Blog Graph nodes -->
+            {#each blogMeta as node, i}
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
+            <div
+                id={`${String.fromCharCode(i + "a".charCodeAt(0))}`}
+                class={`group graph-node absolute w-1/2 h-1/2 duration-300 ease-in-out hover:w-2/3 hover:h-2/3 graph-node border-white hover:bg border-2 rounded-full text-white flex justify-center items-center p-8 text-center z-100`}
+                style={`grid-area: ${String.fromCharCode(i + "a".charCodeAt(0))}; place-self: ${getPlacement(i)[1]}; justify-self: ${getPlacement(i)[0]};`}
+                on:mouseenter={() => handleMouseEnter(i)}
+                on:mouseleave={() => handleMouseLeave(i)}
+                bind:this={resizeObservedElements[i]}
+            >
+                <div class="flex flex-col gap-2 justify-center place-items-center">
+                    <h4 class="text-sm font-bold">{node.slug}</h4>
+                    <p class="text-muted">{new Date(node.date).toLocaleDateString()}</p>
+                    <p
+                        bind:this={excerptEls[i]}
+                        style="display: none;"
+                        class="transition-opacity duration-300 delay-1000 opacity-0 text-sm"
+                    >
+                    {node.excerpt}
+                    </p>
+                    <a class="btn btn-sm" href={node.url}>Read</a>
+                </div>
+            </div>
+            {/each}
+
+            <!-- SVG for arrows -->
+            {#if positions.length > 0}
+                <svg class="absolute w-full h-full z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                    {#each blogMeta as node, i}
+                        {#if i < blogMeta.length - 1}
+                            {#if blogLength > 8 && i == 0}
+                                <line
+                                    x1={arrowPositions[i].x1}
+                                    y1={arrowPositions[i].y1}
+                                    x2={arrowPositions[i].x2}
+                                    y2={arrowPositions[i].y2}
+                                    stroke="white"
+                                    stroke-width="2"
+                                    marker-end="url(#arrowhead)"
+                                    stroke-dasharray="35,10"
+                                />         
+                                <text x={(arrowPositions[i].x1 + arrowPositions[i].x2)/2.2} y={arrowPositions[i].y1 + 40} stroke="white" stroke-width="1" stroke-opacity=".5">{`(+ ${blogLength - blogMeta.length} more)`}</text>
+                            {:else}
+                                <line
+                                    x1={arrowPositions[i].x1}
+                                    y1={arrowPositions[i].y1}
+                                    x2={arrowPositions[i].x2}
+                                    y2={arrowPositions[i].y2}
+                                    stroke="white"
+                                    stroke-width="2"
+                                    marker-end="url(#arrowhead)"
+                                />
+                            {/if}
+                        {/if}
+                    {/each}
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+                        </marker>
+                    </defs>
+                </svg>
+            {/if}
+        </div>
+    {/if}
 </section>
-
