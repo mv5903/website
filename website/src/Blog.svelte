@@ -30,22 +30,12 @@
     /**
    * @type {any[]}
    */
-    let data = [];
-
-    onMount(() => {
-        // Generate 10 random nodes with positions in [0,100)% 
-        // and a random value in [0,100)
-        data = Array.from({ length: 10 }, () => ({
-            x: Math.random() * 100,
-            y: Math.random() * 100,
-            val: Math.floor(Math.random() * 100)
-        }));
-    });
+    let blogMeta = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 </script>
 
-<section id="blog" class="relative px-4 py-8 text-left  min-h-[60vh] flex justify-center place-items-center">
+<section id="blog" class="relative pb-4 pt-6 py-8 text-left min-h-[60vh] flex justify-center place-items-center">
     <!-- Monitor -->
-    <div class="relative w-2/5 aspect-[16/10] border-2 border-white flex justify-center rounded-md place-items-center">
+    <div class="relative w-full m-4 md:w-1/2 p-4 pb-12 aspect-[16/10] border-2 border-white flex justify-center rounded-md place-items-center ">
         <div>
             {#if numLines <= 1}
                 <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
@@ -91,5 +81,7 @@
             </div>
         {/if}
     </div>
+    <!-- Blog Graph nodes -->
+
 </section>
 

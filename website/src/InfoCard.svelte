@@ -8,7 +8,7 @@
 </script>
 
 
-<div class={`relative bg-zinc-900 shadow-xl rounded-lg p-4 flex flex-col w-full`} on:mouseenter={() => isHoveringCard = true} on:mouseleave={() => isHoveringCard = false} role="region">
+<div class={`relative bg-zinc-900 shadow-xl rounded-lg p-4 py-8 flex flex-col w-full`} on:mouseenter={() => isHoveringCard = true} on:mouseleave={() => isHoveringCard = false} role="region">
     <!-- Position the buttons -->
     <div class="absolute top-4 left-4 flex space-x-1" on:mouseenter={() => isHoveringControls = true} on:mouseleave={() => isHoveringControls = false} role="region">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
