@@ -198,6 +198,10 @@
 
     onMount(() => {
         (async function() {
+            if (isMobile()) {
+                triggerBlog();
+                return;
+            }  
             // Check if the computer animation has been played
             if (localStorage.getItem("blogAnimationPlayed") == "true") {
                 blogAnimationPlayed = true;
@@ -234,13 +238,7 @@
                 resizeObservers[index] = resizeObserver;
             });
 
-            
-            await waitForArray(arrowElements);
-
-            if (isMobile()) {
-                triggerBlog();
-                return;
-            }   
+            await waitForArray(arrowElements) 
 
             // Animate arrows (yes this is stupid)
             const observer = new IntersectionObserver((entries, observer) => {
