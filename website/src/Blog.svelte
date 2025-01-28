@@ -1,6 +1,6 @@
 <script lang="ts">
     import isMobile from "is-mobile";
-    import { onMount, onDestroy } from "svelte";
+    import { onDestroy, onMount } from "svelte";
 
     type BlogMeta = {
         title: string;
@@ -290,9 +290,9 @@
     }
 </style>
 
-<section id="blog" class="relative pb-8 pt-16 text-left min-h-[85vh] flex justify-center place-items-center ">
+<section id="blog" class="relative m-8 text-left min-h-[90vh] flex justify-center place-items-center ">
     <!-- Monitor -->
-    <div class="relative w-full m-4 md:w-1/2 p-4 pb-12 aspect-[16/10] border-2 border-white flex justify-center rounded-md place-items-center z-40">
+    <div class="relative m-4 h-[35vh] w-1/3 p-4 mb-12 border-2 border-white flex justify-center rounded-md place-items-center z-40">
         <div>
             {#if numLines <= 1}
                 <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
@@ -347,7 +347,7 @@
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <div
                 id={`${String.fromCharCode(i + "a".charCodeAt(0))}`}
-                class={`group graph-node absolute w-1/2 h-1/2 duration-300 ease-in-out hover:w-2/3 hover:h-2/3 graph-node border-white hover:bg border-2 rounded-full text-white flex justify-center items-center p-8 text-center z-100`}
+                class={`group graph-node absolute duration-300 ease-in-out border-white hover:bg border-2 rounded-full text-white flex justify-center items-center p-6 text-center z-100 mx-4`}
                 style={`grid-area: ${String.fromCharCode(i + "a".charCodeAt(0))}; place-self: ${getPlacement(i)[1]}; justify-self: ${getPlacement(i)[0]};`}
                 on:mouseenter={() => handleMouseEnter(i)}
                 on:mouseleave={() => handleMouseLeave(i)}
@@ -359,7 +359,7 @@
                     <p
                         bind:this={excerptEls[i]}
                         style="display: none;"
-                        class="transition-opacity duration-300 delay-1000 opacity-0 text-sm"
+                        class="transition-opacity duration-300 delay-1000 opacity-0 text-xs"
                     >
                     {node.excerpt}
                     </p>
