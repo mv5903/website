@@ -304,12 +304,12 @@
         border-width: 2px;
         border-style: solid;
         border-color: transparent;
-        transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1); /* Smooth hover scaling */
+        transition: transform 0.5s ease-in-out; /* Smooth hover scaling */
     }
 
     /* Animation class */
     .graph-node.animate {
-        animation: fadeInBorder 0.8s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+        animation: fadeInBorder 0.8s ease-in-out forwards;
     }
 
     /* Keyframes for fade-in border animation */
@@ -334,7 +334,7 @@
     /* Arrow animation - start with 0 length */
     .arrow {
         stroke-dasharray: 0; /* No visible stroke initially */
-        animation: drawArrow 0.6s cubic-bezier(0.65, 0.05, 0.36, 1) forwards; /* Control animation duration */
+        animation: drawArrow 0.6s ease-in-out forwards; /* Control animation duration */
         marker-end: none; /* Hide arrowhead initially */
     }
 
