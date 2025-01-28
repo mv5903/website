@@ -237,6 +237,11 @@
             
             await waitForArray(arrowElements);
 
+            if (isMobile()) {
+                triggerBlog();
+                return;
+            }   
+
             // Animate arrows (yes this is stupid)
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
