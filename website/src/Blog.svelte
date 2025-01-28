@@ -247,8 +247,6 @@
             });
 
             // Wait for arrows to be ready
-            console.log(positions.length);
-            console.log(arrowElements)
             await waitForArray(arrowElements);
 
             // Animate arrows
@@ -332,10 +330,10 @@
     }
 
     /* Arrow animation - start with 0 length */
-    .arrow {
-        stroke-dasharray: 0; /* No visible stroke initially */
-        animation: drawArrow 0.6s ease-in-out forwards; /* Control animation duration */
-        marker-end: none; /* Hide arrowhead initially */
+    :global(.arrow) {
+        stroke-dasharray: 0;
+        animation: drawArrow 0.6s ease-in-out forwards;
+        marker-end: none;
     }
 
     /* Keyframes to animate the arrow drawing */
