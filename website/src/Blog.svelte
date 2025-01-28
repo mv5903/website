@@ -334,7 +334,6 @@
     /* Arrow animation - start with 0 length */
     .arrow {
         stroke-dasharray: 0; /* No visible stroke initially */
-        stroke-dashoffset: 0;
         animation: drawArrow 0.6s cubic-bezier(0.65, 0.05, 0.36, 1) forwards; /* Control animation duration */
         marker-end: none; /* Hide arrowhead initially */
     }
@@ -343,17 +342,14 @@
     @keyframes drawArrow {
         0% {
             stroke-dasharray: 0;
-            stroke-dashoffset: 0;
             stroke: white;
         }
         80% {
             stroke-dasharray: var(--arrow-length); /* Full arrow length */
-            stroke-dashoffset: 0;
             stroke: white;
         }
         100% {
             stroke-dasharray: var(--arrow-length); /* Full arrow length */
-            stroke-dashoffset: 0;
             marker-end: url(#arrowhead);
             stroke: white;
         }
