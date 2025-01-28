@@ -304,12 +304,12 @@
         border-width: 2px;
         border-style: solid;
         border-color: transparent;
-        transition: transform 0.5s ease; /* Smooth hover scaling */
+        transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1); /* Smooth hover scaling */
     }
 
     /* Animation class */
     .graph-node.animate {
-        animation: fadeInBorder 0.8s ease forwards;
+        animation: fadeInBorder 0.8s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
     }
 
     /* Keyframes for fade-in border animation */
@@ -335,7 +335,7 @@
     .arrow {
         stroke-dasharray: 0; /* No visible stroke initially */
         stroke-dashoffset: 0;
-        animation: drawArrow 0.6s ease forwards; /* Control animation duration */
+        animation: drawArrow 0.6s cubic-bezier(0.65, 0.05, 0.36, 1) forwards; /* Control animation duration */
         marker-end: none; /* Hide arrowhead initially */
     }
 
@@ -448,6 +448,7 @@
                                     y1={arrowPositions[i].y1}
                                     x2={arrowPositions[i].x2}
                                     y2={arrowPositions[i].y2}
+                                    stroke="transparent"
                                     stroke-width="2"
                                     stroke-dasharray="35,10"
                                     bind:this={arrowElements[i]}
@@ -459,6 +460,7 @@
                                     y1={arrowPositions[i].y1}
                                     x2={arrowPositions[i].x2}
                                     y2={arrowPositions[i].y2}
+                                    stroke="transparent"
                                     stroke-width="2"
                                     bind:this={arrowElements[i]}
                                 />
