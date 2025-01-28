@@ -58,3 +58,5 @@ service-account-credentials.json
 yarn.lock
 
 venv/
+
+blogserver/source/_posts
