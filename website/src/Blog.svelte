@@ -16,7 +16,7 @@
     let blogMeta: BlogMeta[] = [];
     let blogLength = 0;
     let excerptEls: any[] = [];
-    const startDelay = 300;
+    const startDelay = 50;
     let positions: any[] = [];
     let resizeObservedElements: HTMLElement[] = [];
     let resizeObservers: ResizeObserver[] = [];
@@ -68,25 +68,15 @@
         }
     }
 
-    /**
-     * Handles the mouse entering a node in the directed graph
-     * @param i The index of the node
-     */
     function handleMouseEnter(i: number) {
-        setTimeout(() => {
-            excerptEls[i].style.display = 'block';
-            excerptEls[i].classList.remove('opacity-0');
-        }, startDelay);
+        excerptEls[i].classList.add('show');
     }
 
-    /**
-     * Handles the mouse leaving a node in the directed graph
-     * @param i The index of the node
-     */
     function handleMouseLeave(i: number) {
-        excerptEls[i].classList.add('opacity-0');
-        excerptEls[i].style.display = 'none';
+        // Remove the “show” class so it collapses
+        excerptEls[i].classList.remove('show');
     }
+
 
     /**
      * Gets the position of a node in the directed graph
@@ -248,26 +238,6 @@
                 resizeObserver.observe(element);
                 resizeObservers[index] = resizeObserver;
             });
-
-            window.addEventListener('mousemove', (e) => {
-                // Make sure excerpt text gets hidden on all nodes when mouse isn't over one of them
-                if (!(e.target instanceof HTMLElement) || !e.target.classList.contains('graph-node')) {
-                    // See if mouse is inside any of the excerpt elements
-                    let insideNode = false;
-                    resizeObservedElements.forEach((el) => {
-                        if (el.contains(e.target as Node)) {
-                            insideNode = true;
-                        }
-                    });
-                    
-                    if (!insideNode) {
-                        excerptEls.forEach((el) => {
-                            el.style.display = 'none';
-                            el.classList.add('opacity-0');
-                        });
-                    }
-                }
-            })
         })();
     });
 
@@ -287,6 +257,20 @@
             "g f e";
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto auto auto;
+    }
+
+    .excerpt {
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, max-width 0.4s ease, opacity 0.4s ease-in-out 0.4s;
+    }
+
+    .excerpt.show {
+        max-height: 300px;
+        max-width: 300px;
+        opacity: 1;
     }
 </style>
 
@@ -347,19 +331,18 @@
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <div
                 id={`${String.fromCharCode(i + "a".charCodeAt(0))}`}
-                class={`group graph-node absolute duration-300 ease-in-out border-white hover:bg border-2 rounded-full text-white flex justify-center items-center p-6 text-center z-100 mx-4`}
+                class={`group graph-node absolute border-white border-2 rounded-full text-white flex justify-center items-center px-6 py-3 text-center z-100 mx-4`}
                 style={`grid-area: ${String.fromCharCode(i + "a".charCodeAt(0))}; place-self: ${getPlacement(i)[1]}; justify-self: ${getPlacement(i)[0]};`}
                 on:mouseenter={() => handleMouseEnter(i)}
                 on:mouseleave={() => handleMouseLeave(i)}
                 bind:this={resizeObservedElements[i]}
             >
-                <div class="flex flex-col gap-2 justify-center place-items-center">
+                <div class="flex flex-col gap-1 justify-center place-items-center">
                     <h4 class="text-sm font-bold">{node.slug}</h4>
-                    <p class="text-muted">{new Date(node.date).toLocaleDateString()}</p>
+                    <p class="text-sm text-gray-400">{new Date(node.date).toLocaleDateString()}</p>
                     <p
                         bind:this={excerptEls[i]}
-                        style="display: none;"
-                        class="transition-opacity duration-300 delay-1000 opacity-0 text-xs"
+                        class="excerpt text-xs"
                     >
                     {node.excerpt}
                     </p>
