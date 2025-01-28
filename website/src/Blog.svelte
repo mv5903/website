@@ -23,22 +23,17 @@
     let arrowPositions: any[] = [];
 
     /**
-     * Triggers the blog's computer animation. If the animation has already been played,
-     * it will redirect to the blog.
+     * Triggers the blog's computer animation. 
      */
     function triggerBlog() {
-        if (localStorage.getItem("blogAnimationPlayed") == "true") {
-            window.location.href = "https://obsidian.mattvandenberg.com";
-        } else {
-            localStorage.setItem("blogAnimationPlayed", "true");
-            setInterval(() => {
-                numLines++;
-                if (numLines == 5) {
-                    numLines = 1;
-                    window.location.href = "https://obsidian.mattvandenberg.com";
-                }
-            }, 1000);
-        }
+        numLines = 1;
+        let interval: number | undefined;
+        interval = setInterval(() => {
+            numLines++;
+            if (numLines == 7) {
+                clearInterval(interval);
+            }
+        }, 1000);
     }
 
     /**
@@ -239,28 +234,43 @@
                 resizeObservers[index] = resizeObserver;
             });
 
-            // Animate nodes
-            resizeObservedElements.forEach((node, index) => {
-                setTimeout(() => {
-                    node.classList.add('animate');
-                }, index * 600);
-            });
-
-            // Wait for arrows to be ready
+            
             await waitForArray(arrowElements);
 
-            // Animate arrows
-            arrowElements.forEach((arrow, index) => {
-                if (arrow) {
-                    const length = arrow.getTotalLength();
-                    arrow.style.strokeDasharray = length + "";
-                    arrow.style.strokeDashoffset = length + ""; // Start fully hidden
+            // Animate arrows (yes this is stupid)
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate nodes
+                        resizeObservedElements.forEach((node, index) => {
+                            setTimeout(() => {
+                                node.classList.add('animate');
+                            }, index * 600);
+                        });
 
-                    setTimeout(() => {
-                        arrow.classList.add('arrow'); // Trigger animation
-                    }, index * 600);
-                }
+                        // Wait for arrows to be ready
+                        setTimeout(() => {
+                            arrowElements.forEach((arrow, index) => {
+                                if (arrow) {
+                                    const length = arrow.getTotalLength();
+                                    arrow.style.strokeDasharray = length + "";
+                                    arrow.style.strokeDashoffset = length + ""; // Start fully hidden
+                    
+                                    setTimeout(() => {
+                                        arrow.classList.add('arrow'); // Trigger animation
+                                    }, index * 600);
+                                }
+                            });
+                        }, 300)
+                        observer.unobserve(entry.target); // Stop observing once the animation is triggered
+                        triggerBlog();
+                    }
+                });
             });
+
+            const blogEl = document.getElementById("blog");
+            if (!blogEl) return;
+            observer.observe(blogEl);
         })();
     });
 
@@ -358,30 +368,23 @@
     <!-- Monitor -->
     <div class="relative m-4 h-[35vh] p-4 mb-12 border-2 border-white flex justify-center rounded-md place-items-center z-40 w-full sm:w-1/3">
         <div>
-            {#if numLines <= 1}
-                <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
-                <div class="flex flex-col gap-3 justify-center place-items-center">
-                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <p on:click={() => triggerBlog()} class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4`}>Personal Blog Home</p>
-                    <p>To see my life incrementally with blogs!</p>
-                </div>
-            {/if}
-            {#if numLines > 1}
-                <div class="flex justify-center place-items-center">
-                <div class="mockup-code">
-                    {#if numLines > 1}
-                        <pre data-prefix="$"><code>ssh blogserver</code></pre>
-                    {/if}
-                    {#if numLines > 2}
-                        <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
-                    {/if}
-                    {#if numLines > 3}
-                        <pre data-prefix=">" class="text-success"><code>Just kidding...</code></pre>
-                    {/if}
-                </div>
-                </div>
-            {/if}
+            <div class="mockup-code">
+                {#if numLines >= 1}
+                    <pre data-prefix="$"><code>ssh blogserver</code></pre>
+                {/if}
+                {#if numLines >= 2}
+                    <pre data-prefix="$"><code>cd /var/www/blog</code></pre>
+                {/if}
+                {#if numLines >= 3}
+                    <pre data-prefix="$"><code>./start.sh</code></pre>
+                {/if}
+                {#if numLines >= 4}
+                    <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
+                {/if}
+                {#if numLines >= 5}
+                    <a href="https://obsidian.mattvandenberg.com/"><pre data-prefix=">" class="text-success underline">Enter Blog Home</pre></a>
+                {/if}
+            </div>
         </div>
         <!-- Stand -->
         <div class="absolute bottom-[-5%] left-1/2 transform -translate-x-1/2 w-1/12 h-1/5 bg-white rounded-md"></div>
@@ -457,7 +460,8 @@
                                     stroke="transparent"
                                     stroke-width="2"
                                     bind:this={arrowElements[i]}
-                                />
+                                >
+                                </line>
                             {/if}
                         {/if}
                     {/each}
