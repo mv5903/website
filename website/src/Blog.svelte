@@ -16,9 +16,9 @@
     let blogMeta: BlogMeta[] = [];
     let blogLength = 0;
     let excerptEls: any[] = [];
-    const startDelay = 50;
     let positions: any[] = [];
     let resizeObservedElements: HTMLElement[] = [];
+    let arrowElements: SVGLineElement[] = [];
     let resizeObservers: ResizeObserver[] = [];
     let arrowPositions: any[] = [];
 
@@ -238,6 +238,31 @@
                 resizeObserver.observe(element);
                 resizeObservers[index] = resizeObserver;
             });
+
+            // Animate nodes
+            resizeObservedElements.forEach((node, index) => {
+                setTimeout(() => {
+                    node.classList.add('animate');
+                }, index * 600);
+            });
+
+            // Wait for arrows to be ready
+            console.log(positions.length);
+            console.log(arrowElements)
+            await waitForArray(arrowElements);
+
+            // Animate arrows
+            arrowElements.forEach((arrow, index) => {
+                if (arrow) {
+                    const length = arrow.getTotalLength();
+                    arrow.style.strokeDasharray = length + "";
+                    arrow.style.strokeDashoffset = length + ""; // Start fully hidden
+
+                    setTimeout(() => {
+                        arrow.classList.add('arrow'); // Trigger animation
+                    }, index * 600);
+                }
+            });
         })();
     });
 
@@ -272,11 +297,72 @@
         max-width: 300px;
         opacity: 1;
     }
+
+    /* Initial state */
+    .graph-node {
+        opacity: 0;
+        border-width: 2px;
+        border-style: solid;
+        border-color: transparent;
+        transition: transform 0.5s ease; /* Smooth hover scaling */
+    }
+
+    /* Animation class */
+    .graph-node.animate {
+        animation: fadeInBorder 0.8s ease forwards;
+    }
+
+    /* Keyframes for fade-in border animation */
+    @keyframes fadeInBorder {
+        0% {
+            opacity: 0;
+            border-width: 2px;
+            border-color: transparent;
+        }
+        50% {
+            opacity: 1;
+            border-width: 2px;
+            border-color: white;
+        }
+        100% {
+            opacity: 1;
+            border-width: 2px;
+            border-color: white;
+        }
+    }
+
+    /* Arrow animation - start with 0 length */
+    .arrow {
+        stroke-dasharray: 0; /* No visible stroke initially */
+        stroke-dashoffset: 0;
+        animation: drawArrow 0.6s ease forwards; /* Control animation duration */
+        marker-end: none; /* Hide arrowhead initially */
+    }
+
+    /* Keyframes to animate the arrow drawing */
+    @keyframes drawArrow {
+        0% {
+            stroke-dasharray: 0;
+            stroke-dashoffset: 0;
+            stroke: white;
+        }
+        80% {
+            stroke-dasharray: var(--arrow-length); /* Full arrow length */
+            stroke-dashoffset: 0;
+            stroke: white;
+        }
+        100% {
+            stroke-dasharray: var(--arrow-length); /* Full arrow length */
+            stroke-dashoffset: 0;
+            marker-end: url(#arrowhead);
+            stroke: white;
+        }
+    }
 </style>
 
 <section id="blog" class="relative m-8 text-left min-h-[90vh] flex justify-center place-items-center ">
     <!-- Monitor -->
-    <div class="relative m-4 h-[35vh] w-1/3 p-4 mb-12 border-2 border-white flex justify-center rounded-md place-items-center z-40">
+    <div class="relative m-4 h-[35vh] p-4 mb-12 border-2 border-white flex justify-center rounded-md place-items-center z-40 w-full sm:w-1/3">
         <div>
             {#if numLines <= 1}
                 <h3 class="text-3xl font-bold text-center mb-6">Blog</h3>
@@ -362,10 +448,9 @@
                                     y1={arrowPositions[i].y1}
                                     x2={arrowPositions[i].x2}
                                     y2={arrowPositions[i].y2}
-                                    stroke="white"
                                     stroke-width="2"
-                                    marker-end="url(#arrowhead)"
                                     stroke-dasharray="35,10"
+                                    bind:this={arrowElements[i]}
                                 />         
                                 <text x={(arrowPositions[i].x1 + arrowPositions[i].x2)/2.2} y={arrowPositions[i].y1 + 40} stroke="white" stroke-width="1" stroke-opacity=".5">{`(+ ${blogLength - blogMeta.length} more)`}</text>
                             {:else}
@@ -374,9 +459,8 @@
                                     y1={arrowPositions[i].y1}
                                     x2={arrowPositions[i].x2}
                                     y2={arrowPositions[i].y2}
-                                    stroke="white"
                                     stroke-width="2"
-                                    marker-end="url(#arrowhead)"
+                                    bind:this={arrowElements[i]}
                                 />
                             {/if}
                         {/if}
