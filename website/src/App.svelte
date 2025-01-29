@@ -23,14 +23,86 @@
     }, 2000);
   });
 
-
-
+  
   const scrollDownToSection = async (id: string) => {
     let sideBar = document.getElementById("my-drawer") as HTMLInputElement;
     if (sideBar) sideBar.checked = !sideBar.checked
     window.location.href = window.location.origin + '#' + id;
   }; 
+  
+  let closedInfoCards: string[] = [];
+  let fullScreenInfoCard: string = "";
+  let minimizedInfoCards: string[] = [];
+
+  function onClosePressed(displayObject: any) {
+  if (isMobile()) return;
+  const id = displayObject.id;
+
+  // Toggle the id in the closedInfoCards array
+  if (closedInfoCards.includes(id)) {
+    closedInfoCards = closedInfoCards.filter((item) => item !== id);
+    } else {
+      closedInfoCards = [...closedInfoCards, id];
+    }
+  }
+
+  function onFullscreenPressed(displayObject: any) {
+    if (isMobile()) return;
+    const id = displayObject.id;
+
+    // Toggle fullscreen mode
+    fullScreenInfoCard = fullScreenInfoCard === id ? "" : id;
+  }
+
+  function onMinimizePressed(displayObject: any) {
+    if (isMobile()) return;
+    const id = displayObject.id;
+
+    // Toggle the id in the minimizedInfoCards array
+    if (minimizedInfoCards.includes(id)) {
+      minimizedInfoCards = minimizedInfoCards.filter((item) => item !== id);
+    } else {
+      minimizedInfoCards = [...minimizedInfoCards, id];
+    }
+  }
+
+
+  console.log("Min", minimizedInfoCards);
+  console.log("fullscreen", fullScreenInfoCard);
+  console.log("closed", closedInfoCards);
 </script>
+
+<style>
+    main {
+    width: 100%;
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+  :global(.closedCard) {
+    display: none;
+  }
+
+  :global(.fullScreenCard) {
+    z-index: 1000;
+    top: 30vh;
+    width: 66vw;
+    position: fixed;
+    margin: auto;
+    left: 17vw;
+  }
+</style>
 
 <main class="min-h-screen flex flex-col justify-center items-center bg-grey-800">
   <div class="max-w-[1600px]">
@@ -133,21 +205,71 @@
     <div class="flex flex-col sm:flex-row w-full gap-2 justify-center">
       <!-- Work Experience Section -->
       <section id="work" class="px-4 py-8 w-full sm:w-1/2 text-center">
-
-        <h3 class="text-3xl font-bold text-center">Work Experience</h3>
+        <div class="flex justify-center place-items-center gap-3">
+          <h3 class="text-3xl font-bold text-center">Work Experience</h3>
+          {#if closedInfoCards.some(id => id.startsWith("W"))}
+            <button class="btn btn-sm animate-bounce" on:click={() => closedInfoCards = closedInfoCards.filter(id => !id.startsWith("W"))}>
+              <span>Reset</span>
+            </button>
+          {/if}
+        </div>
         <div class="mt-6 space-y-6">
-          {#each workExperience as job}
-            <InfoCard type="job" displayObject={job} />
+            {#each workExperience as job}
+            {@const isClosed = closedInfoCards.includes(job.id)}
+            {@const isMinimized = minimizedInfoCards.includes(job.id)}
+            {@const isFullScreen = fullScreenInfoCard === job.id}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            {#if isFullScreen}
+              <!-- svelte-ignore a11y-click-events-have-key-events -->
+              <!-- svelte-ignore a11y-no-static-element-interactions -->
+              <div id="overlay" class="fixed inset-0 bg-black bg-opacity-80 z-50 blur-md" on:click={() => fullScreenInfoCard = "" }></div>
+            {/if}
+            <div class={`card ${isClosed ? 'closedCard' : ''} ${isMinimized ? 'minimizedCard' : ''} ${isFullScreen ? 'fullScreenCard' : ''}`}> 
+              <InfoCard 
+                fullScreen={isFullScreen}
+                minimized={isMinimized}
+                onClosePressed={() => onClosePressed(job)}
+                onFullscreenPressed={() => onFullscreenPressed(job)}
+                onMinimizePressed={() => onMinimizePressed(job)}
+                type="job" 
+                displayObject={job} 
+              />
+            </div>
           {/each}
         </div>
       </section>
     
       <!-- Education Section -->
       <section id="education" class="px-4 py-8 w-full sm:w-1/2 text-center">
-        <h3 class="text-3xl font-bold text-center">Education</h3>
+        <div class="flex justify-center place-items-center gap-3">
+          <h3 class="text-3xl font-bold text-center">Education</h3>
+          {#if closedInfoCards.some(id => id.startsWith("S"))}
+            <button class="btn btn-sm animate-bounce" on:click={() => closedInfoCards = closedInfoCards.filter(id => !id.startsWith("S"))}>
+              <span>Reset</span>
+            </button>
+          {/if}
+        </div>
         <div class="mt-6 space-y-6">
           {#each schools as school}
-            <InfoCard type="education" displayObject={school} />
+            {@const isClosed = closedInfoCards.includes(school.id)}
+            {@const isMinimized = minimizedInfoCards.includes(school.id)}
+            {@const isFullScreen = fullScreenInfoCard === school.id}
+            {#if isFullScreen}
+              <!-- svelte-ignore a11y-click-events-have-key-events -->
+              <!-- svelte-ignore a11y-no-static-element-interactions -->
+              <div id="overlay" class="fixed inset-0 bg-black bg-opacity-80 z-50 blur-md" on:click={() => fullScreenInfoCard = "" }></div>
+            {/if}
+            <div class={`card ${isClosed ? 'closedCard' : ''} ${isMinimized ? 'minimizedCard' : ''} ${isFullScreen ? 'fullScreenCard' : ''}`}>
+              <InfoCard
+                fullScreen={isFullScreen}
+                minimized={isMinimized}
+                onClosePressed={() => onClosePressed(school)}
+                onFullscreenPressed={() => onFullscreenPressed(school)}
+                onMinimizePressed={() => onMinimizePressed(school)}
+                type="education" 
+                displayObject={school} 
+              />
+            </div>
           {/each}
         </div>
       </section>
@@ -155,10 +277,35 @@
     
     <!-- Projects Section -->
     <section id="projects" class="px-4 py-8 text-center">
-      <h3 class="text-3xl font-bold text-center">Projects</h3>
+      <div class="flex justify-center place-items-center gap-3">
+        <h3 class="text-3xl font-bold text-center">Projects</h3>
+        {#if closedInfoCards.some(id => id.startsWith("P"))}
+          <button class="btn btn-sm animate-bounce" on:click={() => closedInfoCards = closedInfoCards.filter(id => !id.startsWith("P"))}>
+            <span>Reset</span>
+          </button>
+        {/if}
+      </div>
       <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each projects as project}
-          <InfoCard type="project" displayObject={project} />
+          {@const isClosed = closedInfoCards.includes(project.id)}
+          {@const isMinimized = minimizedInfoCards.includes(project.id)}
+          {@const isFullScreen = fullScreenInfoCard === project.id}
+          {#if isFullScreen}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
+            <div id="overlay" class="fixed inset-0 bg-black bg-opacity-80 z-50 blur-md" on:click={() => fullScreenInfoCard = "" }></div>
+          {/if}
+          <div class={`card ${isClosed ? 'closedCard' : ''} ${isMinimized ? 'minimizedCard' : ''} ${isFullScreen ? 'fullScreenCard' : ''}`}>
+            <InfoCard 
+              fullScreen={isFullScreen}
+              minimized={isMinimized}
+              onClosePressed={() => onClosePressed(project)}
+              onFullscreenPressed={() => onFullscreenPressed(project)}
+              onMinimizePressed={() => onMinimizePressed(project)}
+              type="project" 
+              displayObject={project}
+              />
+          </div>
         {/each}
       </div>
     </section>
@@ -200,24 +347,3 @@
     </footer>
   </div>
 </main>
-
-
-<style>
-  main {
-    width: 100%;
-  }
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-30px);
-    }
-    60% {
-      transform: translateY(-15px);
-    }
-  }
-  .animate-bounce {
-    animation: bounce 2s infinite;
-  }
-</style>

@@ -1,5 +1,6 @@
 export const workExperience = [
     {
+        id: "W1",
         subheading: 'ServiceNow',
         location: "Software Engineer - Santa Clara, CA (HQ)",
         date: 'Starting July 2025',
@@ -9,6 +10,7 @@ export const workExperience = [
         image: 'now.png'
     },
     {
+        id: "W2",
         subheading: 'ServiceNow',
         location: "SWE Intern - Santa Clara, CA (HQ)",
         date: 'May 2024 - August 2024',
@@ -18,6 +20,7 @@ export const workExperience = [
         image: 'now.png'
     },
     {
+        id: "W3",
         subheading: 'Hack4Impact Rutgers',
         location: "Frontend Engineering Director - Piscataway, NJ",
         date: 'September 2023 - Present',
@@ -27,6 +30,7 @@ export const workExperience = [
         image: 'h4i.jpg'
     },
     {
+        id: "W4",
         subheading: 'Mirion Technologies',
         location: "Software Engineer - Somerset, NJ",
         date: 'November 2023 - May 2024',
@@ -36,6 +40,7 @@ export const workExperience = [
         image: 'mirion.png'
     },
     {
+        id: "W5",
         subheading: "ec² Software Solutions",
         location: "Software Engineer Intern - Somerset, NJ",
         date: "June 2022 - October 2023",
@@ -45,6 +50,7 @@ export const workExperience = [
         image: 'ec2.png'
     },
     {
+        id: "W6",
         subheading: "AI Code Academy",
         location: "STEM Instructor - Remote",
         date: "November 2021 - February 2023",
@@ -54,6 +60,7 @@ export const workExperience = [
         image: 'aicode.png'
     },
     {
+        id: "W7",
         subheading: "Computer Science Tutoring",
         location: "Remote",
         date: "September 2020 - Present",
@@ -62,6 +69,7 @@ export const workExperience = [
         image: 'person.jpg'
     },
     {
+        id: "W8",
         subheading: "Rising Future (CODEie)",
         location: "Teaching Assistant - South Plainfield, NJ",
         date: "September 2020 - June 2021",

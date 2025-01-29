@@ -385,7 +385,7 @@
                     <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
                 {/if}
                 {#if numLines >= 5}
-                    <a href="https://obsidian.mattvandenberg.com/"><pre data-prefix=">" class="text-success underline">Enter Blog Home</pre></a>
+                    <a href="https://obsidian.mattvandenberg.com/"><pre data-prefix=">" class="text-success underline animate-bounce">Enter Blog Home</pre></a>
                 {/if}
             </div>
         </div>

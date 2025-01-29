@@ -1,5 +1,6 @@
 export const projects = [
     {
+        "id": "P1",
         "subheading": "Partyfy",
         "year": "Active Since 2023",
         "content": "Add to your friend's Spotify queue without accessing their session directly. Now Profitable. 100+ Users.",
@@ -9,6 +10,7 @@ export const projects = [
         "blog": "partyfy"
     },
     {
+        "id": "P2",
         "subheading": "Jumbotron",
         "year": "2023",
         "content": "Controlling a 64 row x 48 column matrix using a Raspberry Pi, WS2812B addressable RGB strips, and other materials.",
@@ -17,6 +19,7 @@ export const projects = [
         "blog": "jumbotron"
     },
     {
+        "id": "P3",
         "subheading": "Rutgers Formula Racing Dashboard",
         "year": "2023",
         "content": "In-house Dashboard for Rutgers Formula Racing Club",
@@ -25,6 +28,7 @@ export const projects = [
         "website": "https://react-tutorial-f7ffc.firebaseapp.com/"
     },
     {
+        "id": "P4",
         "subheading": "Spoticraft Forge",
         "year": "2023",
         "content": "A Minecraft Forge mod that allows you to view and control your Spotify session from within Minecraft.",
@@ -32,6 +36,7 @@ export const projects = [
         "github": "https://github.com/mv5903/spoticraft"
     },
     {
+        "id": "P5",   
         "subheading": "Earthquake Tracker",
         "year": "2022",
         "content": "A web application that tracks earthquakes and their locations.",
@@ -40,6 +45,7 @@ export const projects = [
         "website": "https://mattvandenberg.com/earthquakes"
     },
     {
+        "id": "P6",
         "subheading": "Really Simple Scoreboard",
         "year": "2022",
         "content": "A simple, free, ad-free scoreboard experience for any sport or game.",
@@ -48,6 +54,7 @@ export const projects = [
         "website": "https://apps.apple.com/us/app/really-simple-scoreboard/id1593322410"
     },
     {
+        "id": "P7",
         "subheading": "Java Version Changer",
         "year": "2022",
         "content": "On Windows, easily change you active version of Java by automatically modifying environment variables to an installation already installed.",
@@ -55,6 +62,7 @@ export const projects = [
         "github": "https://github.com/mv5903/Java-Version-Changer"
     },
     {
+        "id": "P8",
         "subheading": "Astrophotography System",
         "year": "2021",
         "content": "A web application that allows my uncle to manage his astrophotography collection.",
@@ -62,6 +70,7 @@ export const projects = [
         "website": "https://alan-rock.com/"
     },
     {
+        "id": "P9",
         "subheading": "Weather Website",
         "year": "2021",
         "content": "Retrieves current weather information for your current location, or you can move the map or type in a zip code to retrieve the weather for another location.",
@@ -69,6 +78,7 @@ export const projects = [
         "website": "https://www.mattvandenberg.com/weather.php"
     },
     {
+        "id": "P10",
         "subheading": "Windows 10 Icon Changer",
         "year": "2021",
         "content": "An application which allows a user to edit the icons displayed when pinning an app to the start menu.",
@@ -76,6 +86,7 @@ export const projects = [
         "github": "https://github.com/mv5903/icon-changer"
     },
     {
+        "id": "P11",
         "subheading": "Java Game for AP Calculus BC",
         "year": "2021",
         "content": "A level-style game intended to teach and practice derivatives.",
@@ -83,6 +94,7 @@ export const projects = [
         "website": "https://www.mattvandenberg.com/bcproject.html"
     },
     {
+        "id": "P12",
         "subheading": "Simple Browser Games",
         "year": "2021",
         "content": "Basic browser games including Snake, TicTacToe, and Connect Four.",

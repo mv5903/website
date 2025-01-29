@@ -1,5 +1,6 @@
 export const schools = [
     {
+        id: "S1",
         name: 'Rutgers University',
         location: 'New Brunswick, NJ',
         degree: 'BS',
@@ -8,6 +9,7 @@ export const schools = [
         image: 'ru.png'
     },
     {
+        id: "S2",
         name: 'Piscataway High School',
         location: 'Piscataway, NJ',
         degree: 'High School Diploma',
