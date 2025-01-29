@@ -7,7 +7,7 @@ title: Matthew's Blog
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: Matthew Vandenberg
 language: en
 timezone: ''
 
@@ -96,7 +96,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: minima
+theme: keep
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
