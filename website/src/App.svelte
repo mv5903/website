@@ -81,7 +81,7 @@
             <div class="flex-1">
               <!-- svelte-ignore a11y-click-events-have-key-events -->
               <!-- svelte-ignore a11y-no-static-element-interactions -->
-              <div class="tooltip tooltip-bottom" data-tip="What does this do?" on:click={() => window.location.href = "https://mattvandenberg.com/mystery"} >
+              <div class="tooltip tooltip-bottom" data-tip="What does this do?" on:click={() => window.location.href = "https://mattvandenberg.com/mystery.html"} >
                 <!-- svelte-ignore a11y-missing-attribute -->
                 <a class="btn btn-ghost text-xl">Matthew</a>
               </div>
