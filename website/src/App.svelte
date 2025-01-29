@@ -8,8 +8,8 @@
   import { isMobile } from "is-mobile";
 
   import { onMount } from "svelte";
-  import InfoCard from "./InfoCard.svelte";
   import Blog from "./Blog.svelte";
+  import InfoCard from "./InfoCard.svelte";
 
   let showDownArrow = false;
   let showJumpToText = false;
@@ -81,7 +81,7 @@
             <div class="flex-1">
               <!-- svelte-ignore a11y-click-events-have-key-events -->
               <!-- svelte-ignore a11y-no-static-element-interactions -->
-              <div class="tooltip tooltip-bottom" data-tip="What does this do?" on:click={() => window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"} >
+              <div class="tooltip tooltip-bottom" data-tip="What does this do?" on:click={() => window.location.href = "https://mattvandenberg.com/mystery"} >
                 <!-- svelte-ignore a11y-missing-attribute -->
                 <a class="btn btn-ghost text-xl">Matthew</a>
               </div>
