@@ -432,7 +432,7 @@
                     >
                     {node.excerpt}
                     </p>
-                    <a class="btn btn-sm" href={node.url}>Read</a>
+                    <a class="btn btn-sm shadow-md" href={node.url}>Read</a>
                 </div>
             </div>
             {/each}

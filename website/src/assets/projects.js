@@ -8,7 +8,7 @@ export const projects = [
         "github": "https://github.com/mv5903/partyfy",
         "website": "https://partyfy.mattvandenberg.com/",
         "blog": "partyfy",
-        "previews": ["friendscreen.jpg", "search.jpg", "songsfromplaylist.jpg", "theirsession.jpg", "queueconfirm.jpg", "playlists.jpg"]
+        "previews": ["friendscreen.jpg", "search.jpg", "playlists.jpg", "songsfromplaylist.jpg", "theirsession.jpg", "queueconfirm.jpg"]
     },
     {
         "id": "P2",
@@ -17,7 +17,8 @@ export const projects = [
         "content": "Controlling a 64 row x 48 column matrix using a Raspberry Pi, WS2812B addressable RGB strips, and other materials.",
         "tech": "React.js, Node.js, Tailwind, DaisyUI, Bash, Python, Flask, Raspberry Pi, WS2812B, Home Assistant, Responsive Web Development",
         "github": "https://github.com/mv5903/jumbotron",
-        "blog": "jumbotron"
+        "blog": "jumbotron",
+        "previews": ["jumbo.jpg"]
     },
     {
         "id": "P3",
@@ -26,7 +27,8 @@ export const projects = [
         "content": "In-house Dashboard for Rutgers Formula Racing Club",
         "tech": "React.js, Node, HTML, CSS, JavaScript, Bootstrap, Shell, REST APIs",
         "github": "https://github.com/mv5903/rfr-dashboard",
-        "website": "https://react-tutorial-f7ffc.firebaseapp.com/"
+        "website": "https://react-tutorial-f7ffc.firebaseapp.com/",
+        "previews": ["rfr.png"]
     },
     {
         "id": "P4",
@@ -43,7 +45,8 @@ export const projects = [
         "content": "A web application that tracks earthquakes and their locations.",
         "tech": "React, Node, HTML, CSS, JavaScript, Bootstrap, Mapbox, REST APIs",
         "github": "https://github.com/mv5903/earthquake-tracker",
-        "website": "https://mattvandenberg.com/earthquakes"
+        "website": "https://mattvandenberg.com/earthquakes",
+        "previews": ["earthquakes.png"]
     },
     {
         "id": "P6",
@@ -52,7 +55,8 @@ export const projects = [
         "content": "A simple, free, ad-free scoreboard experience for any sport or game.",
         "tech": "SwiftUI, Swift, Xcode, iOS",
         "github": "https://github.com/mv5903/swift-projects/tree/main/Really%20Simple%20Series",
-        "website": "https://apps.apple.com/us/app/really-simple-scoreboard/id1593322410"
+        "website": "https://apps.apple.com/us/app/really-simple-scoreboard/id1593322410",
+        "previews": ["scoreboard.png"]
     },
     {
         "id": "P7",
@@ -60,7 +64,8 @@ export const projects = [
         "year": "2022",
         "content": "On Windows, easily change you active version of Java by automatically modifying environment variables to an installation already installed.",
         "tech": "C#",
-        "github": "https://github.com/mv5903/Java-Version-Changer"
+        "github": "https://github.com/mv5903/Java-Version-Changer",
+        "previews": ["javapreview.png", "javabefore.png", "javaafter.png"]
     },
     {
         "id": "P8",
@@ -76,7 +81,8 @@ export const projects = [
         "year": "2021",
         "content": "Retrieves current weather information for your current location, or you can move the map or type in a zip code to retrieve the weather for another location.",
         "tech": "HTML, CSS, JavaScript, PHP, MySQL, Mapbox, OpenWeatherMap API",
-        "website": "https://www.mattvandenberg.com/weather.php"
+        "website": "https://www.mattvandenberg.com/weather.php",
+        "previews": ["weather.png"]
     },
     {
         "id": "P10",
@@ -94,12 +100,12 @@ export const projects = [
         "tech": "Java with Swing",
         "website": "https://www.mattvandenberg.com/bcproject.html"
     },
-    {
-        "id": "P12",
-        "subheading": "Simple Browser Games",
-        "year": "2021",
-        "content": "Basic browser games including Snake, TicTacToe, and Connect Four.",
-        "tech": "HTML, CSS, JavaScript",
-        "website": "https://www.mattvandenberg.com/games.html"
-    }
+    // {
+    //     "id": "P12",
+    //     "subheading": "Simple Browser Games",
+    //     "year": "2021",
+    //     "content": "Basic browser games including Snake, TicTacToe, and Connect Four.",
+    //     "tech": "HTML, CSS, JavaScript",
+    //     "website": "https://www.mattvandenberg.com/games.html"
+    // }
   ]
