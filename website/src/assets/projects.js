@@ -7,7 +7,8 @@ export const projects = [
         "tech": "React.js, Next.js, Node.js, Tailwind, DaisyUI, CSS, JavaScript, TypeScript, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
         "github": "https://github.com/mv5903/partyfy",
         "website": "https://partyfy.mattvandenberg.com/",
-        "blog": "partyfy"
+        "blog": "partyfy",
+        "previews": ["friendscreen.jpg", "search.jpg", "songsfromplaylist.jpg", "theirsession.jpg", "queueconfirm.jpg", "playlists.jpg"]
     },
     {
         "id": "P2",

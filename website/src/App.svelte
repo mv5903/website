@@ -96,9 +96,9 @@
 
   :global(.fullScreenCard) {
     z-index: 1000;
-    top: 30vh;
     width: 66vw;
     position: fixed;
+    top: 20vh;
     margin: auto;
     left: 17vw;
   }
