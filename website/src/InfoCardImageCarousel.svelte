@@ -30,8 +30,8 @@
                     <img src={"/images/previews/" + preview} alt="" class="max-w-full rounded-lg max-h-[40vh]" />
                     <div class={`absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
                         {#if displayObject.previews.length > 1}
-                            <a href={`#carousel-${prev}`} class="btn btn-circle opacity-10 hover:opacity-100 shadow-md" on:click={() => onSlideChange()}>❮</a>
-                            <a href={`#carousel-${next}`} class="btn btn-circle opacity-10 hover:opacity-100 shadow-md" on:click={() => onSlideChange()}>❯</a>
+                            <a href={`#carousel-${prev}`} class="btn btn-circle opacity-50 hover:opacity-100 shadow-md" on:click={() => onSlideChange()}>❮</a>
+                            <a href={`#carousel-${next}`} class="btn btn-circle opacity-50 hover:opacity-100 shadow-md" on:click={() => onSlideChange()}>❯</a>
                         {/if}
                     </div>
                 </div>
