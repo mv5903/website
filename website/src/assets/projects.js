@@ -2,7 +2,7 @@ export const projects = [
     {
         "id": "P1",
         "subheading": "Partyfy",
-        "year": "Active Since 2023",
+        "year": "2024",
         "content": "Add to your friend's Spotify queue without accessing their session directly. Now Profitable. 100+ Users.",
         "tech": "React.js, Next.js, Node.js, Tailwind, DaisyUI, CSS, JavaScript, TypeScript, Auth0, Authorization Flows, Vercel, Github Deployments, PostgreSQL, Primsa ORM",
         "github": "https://github.com/mv5903/partyfy",
@@ -13,12 +13,21 @@ export const projects = [
     {
         "id": "P2",
         "subheading": "Jumbotron",
-        "year": "2023",
+        "year": "2024",
         "content": "Controlling a 64 row x 48 column matrix using a Raspberry Pi, WS2812B addressable RGB strips, and other materials.",
         "tech": "React.js, Node.js, Tailwind, DaisyUI, Bash, Python, Flask, Raspberry Pi, WS2812B, Home Assistant, Responsive Web Development",
         "github": "https://github.com/mv5903/jumbotron",
         "blog": "jumbotron",
         "previews": ["jumbo.jpg"]
+    },
+    {
+        "id": "P12",
+        "subheading": "Mathathon",
+        "year": "2024",
+        "content": "Drexel's DragonHacks 2024 3x Winner: A journey-like math game where you can learn and practice new math skills with AI.",
+        "tech": "React.js, Node.js, Tailwind, DaisyUI, CSS, JavaScript, TypeScript, OpenAI API",
+        "github": "https://github.com/mv5903/dragonhacks2024",
+        "previews": ["mathathon1.png", "mathathon2.png"]
     },
     {
         "id": "P3",

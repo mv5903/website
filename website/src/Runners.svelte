@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
   
-    const runnerCount = 8;
+    const runnerCount = 12;
     const intervalTime = 1000 / 120;
     let runners: any[] = [];
   
@@ -58,10 +58,10 @@
     - `-z-10` pushes it behind everything else (assuming you’re using Tailwind).
     - You can also use `inset-0` to fill the screen absolutely.
   -->
-  <div class="absolute inset-0 pointer-events-none z-1000000 overflow-hidden ">
+  <div class="absolute inset-0 pointer-events-none z-1 overflow-hidden ">
     {#each runners as runner, i}
       <div
-        class="absolute bg-green-800 rounded-full"
+        class="absolute bg-green-900 rounded-full"
         style="
           width: 0.4rem; 
           height: 0.4rem;
