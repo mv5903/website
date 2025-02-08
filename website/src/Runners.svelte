@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   // Number of runners and update interval
-  const runnerCount = 15;
+  const runnerCount = 0;
   const intervalTime = 1000 / 120;
   let runners: any[] = [];
 
@@ -19,8 +19,8 @@
       return {
         x: Math.random() * 100,           // position in vw
         y: Math.random() * 100,           // position in vh
-        vx: (Math.random() - 0.5) * 0.10,   // velocity in vw per tick
-        vy: (Math.random() - 0.5) * 0.10,   // velocity in vh per tick
+        vx: (Math.random() - 0.5) * 1,   // velocity in vw per tick
+        vy: (Math.random() - 0.5) * 1,   // velocity in vh per tick
       };
     });
 

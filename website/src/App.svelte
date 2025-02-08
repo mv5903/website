@@ -67,10 +67,8 @@
     }
   }
 
-
-  console.log("Min", minimizedInfoCards);
-  console.log("fullscreen", fullScreenInfoCard);
-  console.log("closed", closedInfoCards);
+  let showExtraProjects = false;
+  const limitToNumProjects = isMobile() ? 3 : 6;
 </script>
 
 <style>
@@ -125,7 +123,7 @@
   }
 </style>
 
-<main class="min-h-screen flex flex-col justify-center items-center bg-grey-800">
+<main class="min-h-screen flex flex-col justify-center items-center bg-grey-800 w-full">
   <div class="max-w-[1600px]">
     <!-- Menu Bar -->
     {#if isMobile()}
@@ -298,7 +296,7 @@
     </div>
     
     <!-- Projects Section -->
-    <section id="projects" class="px-4 py-8 text-center">
+    <section id="projects" class={`px-4 py-8 text-center`}>
       <div class="flex justify-center place-items-center gap-3">
         <h3 class="text-3xl font-bold text-center">Projects</h3>
         {#if closedInfoCards.some(id => id.startsWith("P"))}
@@ -307,17 +305,12 @@
           </button>
         {/if}
       </div>
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {#each projects as project}
+      <div class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative ${!showExtraProjects && "h-full"}`}>
+        {#each projects as project, num}
           {@const isClosed = closedInfoCards.includes(project.id)}
           {@const isMinimized = minimizedInfoCards.includes(project.id)}
           {@const isFullScreen = fullScreenInfoCard === project.id}
-          {#if isFullScreen}
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <div id="overlay" class="fixed inset-0 bg-black bg-opacity-80 z-50 blur-md" on:click={() => fullScreenInfoCard = "" }></div>
-          {/if}
-          <div class={`card ${isClosed ? 'closedCard' : ''} ${isMinimized ? 'minimizedCard' : ''} ${isFullScreen ? 'fullScreenCard' : ''}`}>
+          <div class={`card max-h-full ${isClosed ? 'closedCard' : ''} ${isMinimized ? 'minimizedCard' : ''} ${isFullScreen ? 'fullScreenCard' : ''}`}>
             <InfoCard 
               fullScreen={isFullScreen}
               minimized={isMinimized}

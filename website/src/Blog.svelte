@@ -318,12 +318,10 @@
         transition: transform 0.5s ease-in-out; /* Smooth hover scaling */
     }
 
-    /* Animation class */
     .graph-node.animate {
         animation: fadeInBorder 0.8s ease-in-out forwards;
     }
 
-    /* Keyframes for fade-in border animation */
     @keyframes fadeInBorder {
         0% {
             opacity: 0;
@@ -342,14 +340,12 @@
         }
     }
 
-    /* Arrow animation - start with 0 length */
     :global(.arrow) {
         stroke-dasharray: 0;
         animation: drawArrow 0.6s ease-in-out forwards;
         marker-end: none;
     }
 
-    /* Keyframes to animate the arrow drawing */
     @keyframes drawArrow {
         0% {
             stroke-dasharray: 0;
@@ -367,11 +363,17 @@
     }
 </style>
 
-<section id="blog" class="relative m-8 text-left min-h-[90vh] flex justify-center place-items-center ">
+<section id="blog" class="relative m-8 text-left min-h-[90vh] flex flex-col gap-20 justify-center place-items-center ">
+    {#if isMobile()}
+        <div class="text-center">
+            <h1 class="text-3xl font-bold mb-4">Blog</h1>
+            <p class="text-lg text-gray-400">Where I document my dumb ideas!</p>
+        </div>
+    {/if}
     <!-- Monitor -->
     <div class="relative m-4 h-[35vh] p-4 mb-12 border-2 border-white flex justify-center rounded-md place-items-center z-40 w-full sm:w-1/3">
         <div>
-            <div class="mockup-code">
+            <div class="mockup-code bg-zinc-900 overflow-hidden">
                 {#if numLines >= 1}
                     <pre data-prefix="$"><code>ssh blogserver</code></pre>
                 {/if}
@@ -385,7 +387,7 @@
                     <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
                 {/if}
                 {#if numLines >= 5}
-                    <a href="https://obsidian.mattvandenberg.com/"><pre data-prefix=">" class="text-success underline animate-bounce">Enter Blog Home</pre></a>
+                    <a href="https://obsidian.mattvandenberg.com/"><pre data-prefix=">" class="text-success underline animate-ping overflow-hidden">Enter Blog Home</pre></a>
                 {/if}
             </div>
         </div>
