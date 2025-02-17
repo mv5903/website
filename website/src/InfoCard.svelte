@@ -23,7 +23,7 @@
 </script>
 
 
-<div class={`relative ${!minimized && "h-full"} bg-zinc-900 hover:opacity-90 shadow-xl rounded-lg p-4 pt-8 pb-4 flex flex-col w-full place-items-center justify-between`} on:mouseenter={() => isHoveringCard = true} on:mouseleave={() => isHoveringCard = false} role="region">
+<div class={`relative ${!minimized && "h-full"} bg-zinc-900  shadow-xl rounded-lg p-4 pt-8 pb-4 flex flex-col w-full place-items-center justify-between`} on:mouseenter={() => isHoveringCard = true} on:mouseleave={() => isHoveringCard = false} role="region">
     <!-- Position the buttons -->
     <div class="absolute top-4 left-4 flex space-x-1" on:mouseenter={() => isHoveringControls = true} on:mouseleave={() => isHoveringControls = false} role="region">
             <!-- svelte-ignore a11y-click-events-have-key-events -->
