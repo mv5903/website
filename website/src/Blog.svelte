@@ -364,12 +364,12 @@
 </style>
 
 <section id="blog" class="relative m-8 text-left min-h-[90vh] flex flex-col gap-20 justify-center place-items-center ">
-    {#if isMobile()}
-        <div class="text-center">
-            <h1 class="text-3xl font-bold mb-4">Blog</h1>
-            <p class="text-lg text-gray-400">Where I document my dumb ideas!</p>
-        </div>
-    {/if}
+
+    <div class="text-center">
+        <h1 class="text-3xl font-bold mb-4">Blog</h1>
+        <p class="text-lg text-gray-400">Where I document my dumb ideas!</p>
+    </div>
+
     <!-- Monitor -->
     <div class="relative m-4 h-[35vh] p-4 mb-12 border-2 border-white flex justify-center rounded-md place-items-center z-40 w-full sm:w-1/3">
         <div>
@@ -378,7 +378,7 @@
                     <pre data-prefix="$"><code>ssh blogserver</code></pre>
                 {/if}
                 {#if numLines >= 2}
-                    <pre data-prefix="$"><code>cd /var/www/blog</code></pre>
+                    <pre data-prefix="$"><code>cd ~/blog</code></pre>
                 {/if}
                 {#if numLines >= 3}
                     <pre data-prefix="$"><code>./start.sh</code></pre>

@@ -14,6 +14,8 @@
 
   let showDownArrow = false;
   let showJumpToText = false;
+
+  let currentYear = new Date().getFullYear();
   
   onMount(() => {
     setTimeout(() => {
@@ -358,7 +360,8 @@
         </div>
       </nav> 
       <aside>
-        <p class="text-[#606368]">Copyright © 2023-2025 Matthew Vandenberg. All rights reserved.<br>Made with Svelte + DaisyUI, running with Apache on Ubuntu, somewhere 🤷‍♂️.</p>
+        <p class="text-[#606368]">{`Copyright © 2023-${currentYear} Matthew Vandenberg. All rights reserved.`}</p>
+        <p class="text-[#606368]">Made with Svelte + DaisyUI, running with Apache on Ubuntu, somewhere 🤷‍♂️.</p>
       </aside>
     </footer>
   </div>
