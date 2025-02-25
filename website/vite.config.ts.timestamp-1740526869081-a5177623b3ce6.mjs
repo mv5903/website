@@ -1,0 +1,15 @@
+// vite.config.ts
+import { defineConfig } from "file:///Users/matt/GitHub/website/website/node_modules/vite/dist/node/index.js";
+import { svelte } from "file:///Users/matt/GitHub/website/website/node_modules/@sveltejs/vite-plugin-svelte/src/index.js";
+var vite_config_default = defineConfig({
+  plugins: [svelte({
+    compilerOptions: {
+      css: false
+      // Disable unused CSS warnings
+    }
+  })]
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCIvVXNlcnMvbWF0dC9HaXRIdWIvd2Vic2l0ZS93ZWJzaXRlXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ZpbGVuYW1lID0gXCIvVXNlcnMvbWF0dC9HaXRIdWIvd2Vic2l0ZS93ZWJzaXRlL3ZpdGUuY29uZmlnLnRzXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ltcG9ydF9tZXRhX3VybCA9IFwiZmlsZTovLy9Vc2Vycy9tYXR0L0dpdEh1Yi93ZWJzaXRlL3dlYnNpdGUvdml0ZS5jb25maWcudHNcIjtpbXBvcnQgeyBkZWZpbmVDb25maWcgfSBmcm9tICd2aXRlJ1xuaW1wb3J0IHsgc3ZlbHRlIH0gZnJvbSAnQHN2ZWx0ZWpzL3ZpdGUtcGx1Z2luLXN2ZWx0ZSdcblxuLy8gaHR0cHM6Ly92aXRlanMuZGV2L2NvbmZpZy9cbmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7XG4gIHBsdWdpbnM6IFtzdmVsdGUoe1xuICAgIGNvbXBpbGVyT3B0aW9uczoge1xuICAgICAgY3NzOiBmYWxzZSwgLy8gRGlzYWJsZSB1bnVzZWQgQ1NTIHdhcm5pbmdzXG4gICAgfSxcbn0pXSxcbn0pXG4iXSwKICAibWFwcGluZ3MiOiAiO0FBQXdSLFNBQVMsb0JBQW9CO0FBQ3JULFNBQVMsY0FBYztBQUd2QixJQUFPLHNCQUFRLGFBQWE7QUFBQSxFQUMxQixTQUFTLENBQUMsT0FBTztBQUFBLElBQ2YsaUJBQWlCO0FBQUEsTUFDZixLQUFLO0FBQUE7QUFBQSxJQUNQO0FBQUEsRUFDSixDQUFDLENBQUM7QUFDRixDQUFDOyIsCiAgIm5hbWVzIjogW10KfQo=
