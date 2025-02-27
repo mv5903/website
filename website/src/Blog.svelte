@@ -21,6 +21,33 @@
     let arrowElements: SVGLineElement[] = [];
     let resizeObservers: ResizeObserver[] = [];
     let arrowPositions: any[] = [];
+    let connectorLabelEl: SVGGElement;
+
+    // New state for the blog list modal
+    let showBlogListModal = false;
+    let allBlogPosts: BlogMeta[] = [];
+    
+    // Function to toggle the blog list modal
+    function toggleBlogListModal() {
+        showBlogListModal = !showBlogListModal;
+        
+        // If opening the modal, prevent scrolling on the body
+        if (showBlogListModal) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+    }
+    
+    // Function to format date in a nicer way
+    function formatDate(dateString: string): string {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+    }
 
     /**
      * Triggers the blog's computer animation. 
@@ -211,6 +238,10 @@
             const response = await fetch("https://obsidian.mattvandenberg.com/api/posts.json");
             const data = await response.json();
             let temp = data;
+            // Store all blog posts for use in the modal
+            allBlogPosts = [...data].sort((a: BlogMeta, b: BlogMeta) => 
+                new Date(b.date).getTime() - new Date(a.date).getTime()
+            );
             // Order by date
             temp.sort((a: BlogMeta, b: BlogMeta) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
@@ -244,10 +275,12 @@
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Animate nodes
+                        // Animate nodes - ensure they stay visible with the permanent 'visible' class
                         resizeObservedElements.forEach((node, index) => {
                             setTimeout(() => {
                                 node.classList.add('animate');
+                                // Add permanent visibility class
+                                node.classList.add('visible');
                             }, index * 600);
                         });
 
@@ -256,15 +289,85 @@
                             arrowElements.forEach((arrow, index) => {
                                 if (arrow) {
                                     const length = arrow.getTotalLength();
-                                    arrow.style.strokeDasharray = length + "";
-                                    arrow.style.strokeDashoffset = length + ""; // Start fully hidden
-                    
-                                    setTimeout(() => {
-                                        arrow.classList.add('arrow'); // Trigger animation
-                                    }, index * 600);
+                                    
+                                    // Store the length as a CSS variable for use in animation
+                                    arrow.style.setProperty('--arrow-length', `${length}`);
+                                    
+                                    // Initial state: completely hidden with opacity 0
+                                    arrow.style.strokeDasharray = `${length}`;
+                                    arrow.style.strokeDashoffset = `${length}`;
+                                    arrow.style.opacity = "0";
+                                    
+                                    // Special handling for the first arrow when there are extra posts
+                                    if (blogLength > 8 && index === 0) {
+                                        // Treat the arrow like other arrows but also show the label
+                                        setTimeout(() => {
+                                            // Add pulse animation to source node first
+                                            const sourceNodeIndex = index;
+                                            if (resizeObservedElements[sourceNodeIndex]) {
+                                                resizeObservedElements[sourceNodeIndex].classList.add('pulse-before-arrow');
+                                            }
+                                            
+                                            // After node pulse, animate the arrow
+                                            setTimeout(() => {
+                                                // Make the arrow visible right before animation starts
+                                                arrow.style.opacity = "1";
+                                                arrow.classList.add('arrow-grow');
+                                                
+                                                // Also show the connector label
+                                                setTimeout(() => {
+                                                    if (connectorLabelEl) {
+                                                        connectorLabelEl.classList.add('visible');
+                                                    }
+                                                }, 300);
+                                                
+                                                // Make sure the arrow stays visible after animation
+                                                setTimeout(() => {
+                                                    arrow.style.stroke = "white";
+                                                }, 1500);
+                                                
+                                                // After arrow is mostly drawn, pulse the target node
+                                                setTimeout(() => {
+                                                    const targetNodeIndex = index + 1;
+                                                    if (targetNodeIndex < resizeObservedElements.length) {
+                                                        resizeObservedElements[targetNodeIndex].classList.add('pulse-after-arrow');
+                                                    }
+                                                }, 500);
+                                            }, 300);
+                                        }, index * 800);
+                                    } else {
+                                        // Wait a bit longer for nodes to become visible
+                                        setTimeout(() => {
+                                            // Add pulse animation to source node first
+                                            const sourceNodeIndex = index;
+                                            if (resizeObservedElements[sourceNodeIndex]) {
+                                                resizeObservedElements[sourceNodeIndex].classList.add('pulse-before-arrow');
+                                            }
+                                            
+                                            // After node pulse, animate the arrow
+                                            setTimeout(() => {
+                                                // Make the arrow visible right before animation starts
+                                                arrow.style.opacity = "1";
+                                                arrow.classList.add('arrow-grow');
+                                                
+                                                // Make sure the arrow stays visible after animation
+                                                setTimeout(() => {
+                                                    arrow.style.stroke = "white";
+                                                }, 1500);
+                                                
+                                                // After arrow is mostly drawn, pulse the target node
+                                                setTimeout(() => {
+                                                    const targetNodeIndex = index + 1;
+                                                    if (targetNodeIndex < resizeObservedElements.length) {
+                                                        resizeObservedElements[targetNodeIndex].classList.add('pulse-after-arrow');
+                                                    }
+                                                }, 500);
+                                            }, 300);
+                                        }, index * 800);
+                                    }
                                 }
                             });
-                        }, 300)
+                        }, 300);
                         observer.unobserve(entry.target); // Stop observing once the animation is triggered
                         triggerBlog();
                     }
@@ -285,6 +388,7 @@
 </script>
 
 <style>
+    /* Styles that can't be easily expressed with Tailwind */
     .grid-layout {
         display: grid;
         grid-template-areas:
@@ -315,56 +419,155 @@
         border-width: 2px;
         border-style: solid;
         border-color: transparent;
-        transition: transform 0.5s ease-in-out; /* Smooth hover scaling */
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
+                    border-color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
     .graph-node.animate {
-        animation: fadeInBorder 0.8s ease-in-out forwards;
+        animation: fadeInBorder 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        transform-origin: center;
+        opacity: 1;
+        border-color: white;
+    }
+
+    /* Animation keyframes need to stay as CSS */
+    @keyframes pulseNodeBeforeArrow {
+        0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+        50% { transform: scale(1.08); box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); }
+        100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+    @keyframes pulseNodeAfterArrow {
+        0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+        50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
+        100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
     }
 
     @keyframes fadeInBorder {
         0% {
             opacity: 0;
-            border-width: 2px;
             border-color: transparent;
+            transform: scale(0.9);
+        }
+        70% {
+            opacity: 1;
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: scale(1.05);
+        }
+        100% {
+            opacity: 1;
+            border-color: white;
+            transform: scale(1);
+        }
+    }
+
+    /* Arrow animations */
+    :global(.arrow-grow) {
+        animation: drawArrowFluid 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+
+    @keyframes drawArrowFluid {
+        0% {
+            stroke-dashoffset: var(--arrow-length);
+            stroke: rgba(255, 255, 255, 0.5);
+            stroke-width: 1.5;
+            filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+        }
+        60% {
+            stroke-dashoffset: 0;
+            stroke: rgba(255, 255, 255, 0.8);
+            stroke-width: 2;
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
+            marker-end: none;
+        }
+        70% {
+            stroke-dashoffset: 0;
+            stroke: white;
+            stroke-width: 2.2;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+            marker-end: url(#arrowhead);
+        }
+        100% {
+            stroke-dashoffset: 0;
+            stroke: white;
+            stroke-width: 2;
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+            marker-end: url(#arrowhead);
+        }
+    }
+
+    /* Simplified dotted line styling */
+    .dotted-connector {
+        stroke-dasharray: 5, 8;
+    }
+
+    /* Connector styling */
+    .connector-label {
+        font-size: 12px;
+        fill: white;
+        opacity: 0;
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.7));
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: all;
+    }
+
+    .connector-label.visible {
+        opacity: 0.9;
+    }
+
+    .connector-badge {
+        fill: rgba(50, 50, 50, 0.8);
+        stroke: white;
+        stroke-width: 1;
+        stroke-opacity: 0.3;
+    }
+
+    .connector-text {
+        fill: white;
+        font-weight: bold;
+        text-shadow: 0 0 3px black;
+    }
+
+    /* Badge pulse animation */
+    .connector-badge.animated {
+        animation: pulse-badge 3s infinite;
+    }
+
+    @keyframes pulse-badge {
+        0%, 100% {
+            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
         }
         50% {
-            opacity: 1;
-            border-width: 2px;
-            border-color: white;
-        }
-        100% {
-            opacity: 1;
-            border-width: 2px;
-            border-color: white;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
         }
     }
 
-    :global(.arrow) {
-        stroke-dasharray: 0;
-        animation: drawArrow 0.6s ease-in-out forwards;
-        marker-end: none;
+    .connector-badge.animated:hover {
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
     }
 
-    @keyframes drawArrow {
-        0% {
-            stroke-dasharray: 0;
-            stroke: white;
-        }
-        80% {
-            stroke-dasharray: var(--arrow-length); /* Full arrow length */
-            stroke: white;
-        }
-        100% {
-            stroke-dasharray: var(--arrow-length); /* Full arrow length */
-            marker-end: url(#arrowhead);
-            stroke: white;
-        }
+    /* Add this to fix sticky header scrolling issue */
+    .modal-box .sticky {
+        top: 0;
+        padding-top: 1rem;
+        margin-top: -1rem;
+        background-color: theme('colors.base-300');
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+    }
+    
+    /* Line clamping utility for excerpts */
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
     }
 </style>
 
-<section id="blog" class="relative m-8 text-left min-h-[90vh] flex flex-col gap-20 justify-center place-items-center ">
-
+<section id="blog" class="relative m-8 text-left min-h-[90vh] flex flex-col gap-20 justify-center place-items-center">
     {#if isMobile()}
         <div class="text-center mt-4">
             <h1 class="text-3xl font-bold mb-4">Blog</h1>
@@ -447,28 +650,52 @@
                     {#each blogMeta as node, i}
                         {#if i < blogMeta.length - 1}
                             {#if blogLength > 8 && i == 0}
+                                <!-- Regular arrow connector but with the skip indicator label -->
                                 <line
                                     x1={arrowPositions[i].x1}
                                     y1={arrowPositions[i].y1}
                                     x2={arrowPositions[i].x2}
                                     y2={arrowPositions[i].y2}
-                                    stroke="transparent"
+                                    stroke="white"
                                     stroke-width="2"
-                                    stroke-dasharray="35,10"
+                                    opacity="0"
                                     bind:this={arrowElements[i]}
-                                />         
-                                <text x={(arrowPositions[i].x1 + arrowPositions[i].x2)/2.2} y={arrowPositions[i].y1 + 40} stroke="white" stroke-width="1" stroke-opacity=".5">{`(+ ${blogLength - blogMeta.length} more)`}</text>
+                                />
+                                <!-- Enhanced connector label with count of skipped posts - now clickable -->
+                                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                                <!-- svelte-ignore a11y-no-static-element-interactions -->
+                                <g class="connector-label cursor-pointer" bind:this={connectorLabelEl} on:click={toggleBlogListModal}>
+                                    <rect 
+                                        class="connector-badge animated"
+                                        x={(arrowPositions[i].x1 + arrowPositions[i].x2)/2 - 55} 
+                                        y={arrowPositions[i].y1 + 15} 
+                                        width="110" 
+                                        height="30" 
+                                        rx="15" 
+                                        ry="15" 
+                                    />
+                                    <text 
+                                        class="connector-text"
+                                        x={(arrowPositions[i].x1 + arrowPositions[i].x2)/2} 
+                                        y={arrowPositions[i].y1 + 35} 
+                                        text-anchor="middle" 
+                                        font-size="14"
+                                    >
+                                        +{blogLength - blogMeta.length} more
+                                    </text>
+                                </g>
                             {:else}
+                                <!-- Regular arrow connector -->
                                 <line
                                     x1={arrowPositions[i].x1}
                                     y1={arrowPositions[i].y1}
                                     x2={arrowPositions[i].x2}
                                     y2={arrowPositions[i].y2}
-                                    stroke="transparent"
+                                    stroke="white"
                                     stroke-width="2"
+                                    opacity="0"
                                     bind:this={arrowElements[i]}
-                                >
-                                </line>
+                                />
                             {/if}
                         {/if}
                     {/each}
@@ -476,9 +703,54 @@
                         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
                             <polygon points="0 0, 10 3.5, 0 7" fill="white" />
                         </marker>
+                        <!-- Add a filter for glow effect -->
+                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="2" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
                     </defs>
                 </svg>
             {/if}
+        </div>
+    {/if}
+
+    <!-- Blog List Modal -->
+    {#if showBlogListModal}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div class="modal modal-open">
+            <!-- Increase width from max-w-5xl to max-w-7xl and adjust padding -->
+            <div class="modal-box bg-base-300 w-[95%] max-w-7xl">
+                <div class="sticky top-0 pt-2 pb-4 bg-base-300 z-10">
+                    <h3 class="text-2xl font-bold">All Blog Posts ({allBlogPosts.length})</h3>
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={toggleBlogListModal}>✕</button>
+                </div>
+                
+                <!-- Improved grid layout with more columns for larger screens -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {#each allBlogPosts as post}
+                        <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all">
+                            <div class="card-body p-4">
+                                <h2 class="card-title text-base">{post.title || post.slug}</h2>
+                                <p class="text-xs text-gray-400">{formatDate(post.date)}</p>
+                                <p class="text-sm text-gray-300 overflow-hidden line-clamp-3">
+                                    {post.excerpt}
+                                </p>
+                                <div class="card-actions justify-end mt-2">
+                                    <a href={post.url} target="_blank" class="btn btn-primary btn-sm">Read</a>
+                                </div>
+                            </div>
+                        </div>
+                    {/each}
+                </div>
+                
+                <!-- Add some space at bottom to fix scrolling issues -->
+                <div class="h-6"></div>
+            </div>
+            
+            <!-- Modal backdrop that closes modal when clicked -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <label class="modal-backdrop" for="modal-control" on:click={toggleBlogListModal}></label>
         </div>
     {/if}
 </section>
