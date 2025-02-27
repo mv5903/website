@@ -24,6 +24,11 @@
         setTimeout(() => {
             showJumpToText = true;
         }, 2000);
+
+        return () => {
+            // Clean up event listeners when component is destroyed
+            document.removeEventListener("keydown", handleKeyDown);
+        };
     });
 
     const scrollDownToSection = async (id: string) => {
@@ -63,10 +68,14 @@
 
         // If the card is fullscreen, add listener to close on escape key
         if (fullScreenInfoCard === id) {
-            window.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") resetFullScreen();
-            });
+            window.addEventListener("keydown", handleKeyDown);
+        } else {
+            window.removeEventListener("keydown", handleKeyDown);
         }
+    }
+
+    function handleKeyDown(e: KeyboardEvent) {
+        if (e.key === "Escape") resetFullScreen();
     }
 
     function onMinimizePressed(displayObject: any) {
@@ -87,6 +96,16 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <main class="min-h-screen flex flex-col justify-center items-center bg-grey-800 w-full">
+    <!-- Add the fullscreen overlay as an actual DOM element -->
+    {#if fullScreenInfoCard}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div 
+            class="fullscreen-overlay" 
+            on:click={resetFullScreen}
+        ></div>
+    {/if}
+
     <div class="max-w-[1600px]">
         <!-- Menu Bar -->
         {#if isMobile()}
@@ -420,7 +439,7 @@
     }
 
     :global(.fullScreenCard) {
-        z-index: 1000;
+        z-index: 1001; /* Increased z-index to be above the overlay */
         width: 66vw;
         position: fixed;
         top: 20vh;
@@ -429,17 +448,18 @@
         max-height: 60vh;
     }
 
-    /* Blur behind a fullscreen card */
-    :global(.fullScreenCard::before) {
-        content: "";
+    /* New style for the actual overlay element */
+    .fullscreen-overlay {
         position: fixed;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
         width: 100vw;
         height: 100vh;
         backdrop-filter: blur(12px);
         background: rgba(0, 0, 0, 0.4);
-        z-index: -1;
+        z-index: 1000; /* Below the card but above other content */
     }
 
     @keyframes ping {
