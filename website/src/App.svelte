@@ -245,7 +245,7 @@
                     </div>
                 </div>
             {/if}
-            <Runners />
+            
             <!-- Intro -->
             <div class="h-[100px]">
                 <div class="avatar ms-24">
@@ -301,7 +301,7 @@
                         {@const isMinimized = minimizedInfoCards.includes(job.id)}
                         {@const isFullScreen = fullScreenInfoCard === job.id}
                         <div
-                            class={`card ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""}`}
+                            class={`card ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                         >
                             <InfoCard
                                 fullScreen={isFullScreen}
@@ -316,8 +316,15 @@
                     {/each}
                 </div>
                 {#if workExperience.length > 2 || isMobile()}
-                    <button class="btn btn-outline btn-primary mt-4" on:click={toggleWorkExpanded}>
-                        {workExpanded ? 'Show Less' : 'Show More'}
+                    <button class="btn btn-outline mt-4 show-more-btn" on:click={toggleWorkExpanded}>
+                        <span>{workExpanded ? 'Show Less' : 'Show More'}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d={workExpanded ? 
+                                "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" : 
+                                "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"} 
+                                clip-rule="evenodd"
+                            />
+                        </svg>
                     </button>
                 {/if}
             </section>
@@ -335,13 +342,13 @@
                         </button>
                     {/if}
                 </div>
-                <div class={`mt-6 space-y-6 section-container ${educationExpanded ? 'expanded' : 'collapsed'}`}>
+                <div class={`mt-6 space-y-6 ${educationExpanded ? 'expanded' : 'collapsed'}`}>
                     {#each schools as school}
                         {@const isClosed = closedInfoCards.includes(school.id)}
                         {@const isMinimized = minimizedInfoCards.includes(school.id)}
                         {@const isFullScreen = fullScreenInfoCard === school.id}
                         <div
-                            class={`card ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""}`}
+                            class={`card ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""}  transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                         >
                             <InfoCard
                                 fullScreen={isFullScreen}
@@ -355,11 +362,6 @@
                         </div>
                     {/each}
                 </div>
-                {#if schools.length > 2 || isMobile()}
-                    <button class="btn btn-outline btn-primary mt-4" on:click={toggleEducationExpanded}>
-                        {educationExpanded ? 'Show Less' : 'Show More'}
-                    </button>
-                {/if}
             </section>
         </div>
 
@@ -384,7 +386,7 @@
                     {@const isMinimized = minimizedInfoCards.includes(project.id)}
                     {@const isFullScreen = fullScreenInfoCard === project.id}
                     <div
-                        class={`card max-h-full ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""}`}
+                        class={`card max-h-full ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""}  transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                     >
                         <InfoCard
                             fullScreen={isFullScreen}
@@ -399,13 +401,21 @@
                 {/each}
             </div>
             {#if projects.length > (isMobile() ? 3 : 6)}
-                <button class="btn btn-outline btn-primary mt-4" on:click={toggleProjectsExpanded}>
-                    {projectsExpanded ? 'Show Less' : 'Show More'}
+                <button class="btn btn-outline mt-4 show-more-btn" on:click={toggleProjectsExpanded}>
+                    <span>{projectsExpanded ? 'Show Less' : 'Show More'}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d={projectsExpanded ? 
+                            "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" : 
+                            "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"} 
+                            clip-rule="evenodd"
+                        />
+                    </svg>
                 </button>
             {/if}
         </section>
 
         <!-- Blogs Section -->
+        <h3 class="text-3xl font-bold text-center">Blog</h3>
         <Blog />
 
         <!-- Footer -->
@@ -519,6 +529,8 @@
         max-height: 70vh;
         overflow: hidden;
         position: relative;
+        transition: all 0.5s ease;
+        border-radius: 0.5rem;
     }
     
     .section-container.collapsed::after {
@@ -527,13 +539,16 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 80px;
-        background: linear-gradient(to bottom, rgba(41, 37, 36, 0), rgba(41, 37, 36, 0.8));
+        height: 100px;
+        background: linear-gradient(to bottom, rgba(28, 25, 23, 0), rgba(28, 25, 23, 0.95));
         pointer-events: none;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
     }
     
     .section-container.expanded {
         max-height: none;
+        transition: all 0.8s ease-in-out;
     }
     
     /* Projects grid specific styling */
@@ -544,5 +559,23 @@
     /* Ensure smooth transitions */
     .section-container {
         transition: max-height 0.5s ease-in-out;
+        padding-bottom: 1rem;
+    }
+    
+    /* Button styling */
+    .show-more-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 1rem auto;
+        position: relative;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    .show-more-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 </style>
