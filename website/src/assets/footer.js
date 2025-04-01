@@ -30,7 +30,7 @@ export const footer = {
         },
         {
             name: 'Instagram',
-            href: 'https://instagram.com/kwikmatt',
+            href: 'https://instagram.com/msvan59',
             svg: 'instagram.svg'
         },
         {

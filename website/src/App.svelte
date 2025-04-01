@@ -244,7 +244,7 @@
             <!-- Intro -->
             <div class="h-[100px]">
                 <div class="avatar ms-24">
-                    <div class="w-12 rounded-full animate-ping">
+                    <div class="w-12 rounded-full animate-ping hover:animate-spin">
                         <img src="https://mattvandenberg.com/matthew.JPG" alt="Matthew" />
                     </div>
                 </div>
