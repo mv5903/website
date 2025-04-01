@@ -719,8 +719,8 @@
         <div class="modal modal-open">
             <!-- Increase width from max-w-5xl to max-w-7xl and adjust padding -->
             <div class="modal-box bg-base-300 w-[95%] max-w-7xl">
-                <div class="sticky top-0 pt-2 pb-4 bg-base-300 z-10">
-                    <h3 class="text-2xl font-bold">All Blog Posts ({allBlogPosts.length})</h3>
+                <div class="sticky top-0 pt-2 pb-4 bg-base-300 z-10 mb-4">
+                    <h3 class="text-2xl font-bold text-center">All Blog Posts ({allBlogPosts.length})</h3>
                     <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={toggleBlogListModal}>✕</button>
                 </div>
                 
@@ -728,7 +728,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {#each allBlogPosts as post}
                         <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all">
-                            <div class="card-body p-4">
+                            <div class="card-body p-4 justify-start">
                                 <h2 class="card-title text-base">{post.title || post.slug}</h2>
                                 <p class="text-xs text-gray-400">{formatDate(post.date)}</p>
                                 <p class="text-sm text-gray-300 overflow-hidden line-clamp-3">

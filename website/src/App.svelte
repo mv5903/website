@@ -94,16 +94,11 @@
 
     // Track expanded state for each section
     let workExpanded = false;
-    let educationExpanded = false;
     let projectsExpanded = false;
 
     // Toggle expanded state functions
     function toggleWorkExpanded() {
         workExpanded = !workExpanded;
-    }
-
-    function toggleEducationExpanded() {
-        educationExpanded = !educationExpanded;
     }
 
     function toggleProjectsExpanded() {
@@ -211,7 +206,7 @@
                             <div
                                 class="tooltip tooltip-bottom"
                                 data-tip="What does this do?"
-                                on:click={() => (window.location.href = "https://mattvandenberg.com/mystery.html")}
+                                on:click={() => (window.open("https://mattvandenberg.com/mystery.html", "_blank"))}
                             >
                                 <!-- svelte-ignore a11y-missing-attribute -->
                                 <a class="btn btn-ghost text-xl">Matthew</a>
@@ -342,7 +337,7 @@
                         </button>
                     {/if}
                 </div>
-                <div class={`mt-6 space-y-6 ${educationExpanded ? 'expanded' : 'collapsed'}`}>
+                <div class={`mt-6 space-y-6`}>
                     {#each schools as school}
                         {@const isClosed = closedInfoCards.includes(school.id)}
                         {@const isMinimized = minimizedInfoCards.includes(school.id)}
@@ -486,7 +481,7 @@
     }
 
     :global(.fullScreenCard) {
-        z-index: 1001; /* Increased z-index to be above the overlay */
+        z-index: 10001; /* Increased z-index to be above the overlay */
         width: 66vw;
         position: fixed;
         top: 20vh;
@@ -573,14 +568,13 @@
         gap: 0.5rem;
         margin: 1rem auto;
         position: relative;
-        z-index: 10;
         transition: all 0.3s ease;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         overflow: hidden;
     }
     
     .show-more-btn:hover {
-        transform: translateY(-2px);
+        transform: translateY(-1px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
     
@@ -628,7 +622,7 @@
     }
     
     .show-more-btn:active .btn-icon {
-        transform: scale(1.5);
+        transform: scale(1.2);
     }
     
     /* Subtle pulse animation for the button when section is collapsed */
@@ -657,7 +651,6 @@
     
     .section-container.collapsed {
         transform-origin: top;
-        opacity: 0.97;
     }
     
     .section-container.expanded {
