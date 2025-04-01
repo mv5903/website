@@ -324,6 +324,10 @@
                 {/if}
             </section>
 
+            {#if isMobile()}
+                <div class="divider"></div>
+            {/if}
+
             <!-- Education Section -->
             <section id="education" class="px-4 py-8 w-full sm:w-1/2 text-center">
                 <div class="flex justify-center place-items-center gap-3">
