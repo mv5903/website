@@ -91,6 +91,24 @@
     }
 
     let showExtraProjects = false;
+
+    // Track expanded state for each section
+    let workExpanded = false;
+    let educationExpanded = false;
+    let projectsExpanded = false;
+
+    // Toggle expanded state functions
+    function toggleWorkExpanded() {
+        workExpanded = !workExpanded;
+    }
+
+    function toggleEducationExpanded() {
+        educationExpanded = !educationExpanded;
+    }
+
+    function toggleProjectsExpanded() {
+        projectsExpanded = !projectsExpanded;
+    }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -277,7 +295,7 @@
                         </button>
                     {/if}
                 </div>
-                <div class="mt-6 space-y-6">
+                <div class={`mt-6 space-y-6 section-container ${workExpanded ? 'expanded' : 'collapsed'}`}>
                     {#each workExperience as job}
                         {@const isClosed = closedInfoCards.includes(job.id)}
                         {@const isMinimized = minimizedInfoCards.includes(job.id)}
@@ -297,6 +315,11 @@
                         </div>
                     {/each}
                 </div>
+                {#if workExperience.length > 2 || isMobile()}
+                    <button class="btn btn-outline btn-primary mt-4" on:click={toggleWorkExpanded}>
+                        {workExpanded ? 'Show Less' : 'Show More'}
+                    </button>
+                {/if}
             </section>
 
             <!-- Education Section -->
@@ -312,7 +335,7 @@
                         </button>
                     {/if}
                 </div>
-                <div class="mt-6 space-y-6">
+                <div class={`mt-6 space-y-6 section-container ${educationExpanded ? 'expanded' : 'collapsed'}`}>
                     {#each schools as school}
                         {@const isClosed = closedInfoCards.includes(school.id)}
                         {@const isMinimized = minimizedInfoCards.includes(school.id)}
@@ -332,6 +355,11 @@
                         </div>
                     {/each}
                 </div>
+                {#if schools.length > 2 || isMobile()}
+                    <button class="btn btn-outline btn-primary mt-4" on:click={toggleEducationExpanded}>
+                        {educationExpanded ? 'Show Less' : 'Show More'}
+                    </button>
+                {/if}
             </section>
         </div>
 
@@ -349,7 +377,7 @@
                 {/if}
             </div>
             <div
-                class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative ${!showExtraProjects && "h-full"}`}
+                class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 section-container projects-container ${projectsExpanded ? 'expanded' : 'collapsed'}`}
             >
                 {#each projects as project, num}
                     {@const isClosed = closedInfoCards.includes(project.id)}
@@ -370,6 +398,11 @@
                     </div>
                 {/each}
             </div>
+            {#if projects.length > (isMobile() ? 3 : 6)}
+                <button class="btn btn-outline btn-primary mt-4" on:click={toggleProjectsExpanded}>
+                    {projectsExpanded ? 'Show Less' : 'Show More'}
+                </button>
+            {/if}
         </section>
 
         <!-- Blogs Section -->
@@ -479,5 +512,37 @@
 
     :global(.animate-ping) {
         animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    /* Section height control styles */
+    .section-container.collapsed {
+        max-height: 70vh;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .section-container.collapsed::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(to bottom, rgba(41, 37, 36, 0), rgba(41, 37, 36, 0.8));
+        pointer-events: none;
+    }
+    
+    .section-container.expanded {
+        max-height: none;
+    }
+    
+    /* Projects grid specific styling */
+    .projects-container.collapsed {
+        max-height: 85vh;
+    }
+    
+    /* Ensure smooth transitions */
+    .section-container {
+        transition: max-height 0.5s ease-in-out;
     }
 </style>
