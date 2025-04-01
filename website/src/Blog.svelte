@@ -567,10 +567,9 @@
     }
 </style>
 
-<section id="blog" class="relative m-8 text-left min-h-[90vh] flex flex-col gap-20 justify-center place-items-center">
+<section id="blog" class={`relative m-8 text-left flex flex-col min-h-[90vh] gap-20 justify-center place-items-center`}>
     {#if isMobile()}
         <div class="text-center mt-4">
-            <h1 class="text-3xl font-bold mb-4">Blog</h1>
             <p class="text-lg text-gray-400">Where I document my dumb ideas!</p>
         </div>
     {/if}

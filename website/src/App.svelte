@@ -113,7 +113,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<main class="min-h-screen flex flex-col justify-center items-center bg-grey-800 w-full">
+<main class="min-h-screen flex flex-col justify-center items-center bg-grey-800 w-full overflow-x-hidden">
     <!-- Add the fullscreen overlay as an actual DOM element -->
     {#if fullScreenInfoCard}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -124,7 +124,7 @@
         ></div>
     {/if}
 
-    <div class="max-w-[1600px]">
+    <div class="max-w-screen-2xl m-3">
         <!-- Menu Bar -->
         {#if isMobile()}
             <div class="drawer z-100">
@@ -316,9 +316,9 @@
                     {/each}
                 </div>
                 {#if workExperience.length > 2 || isMobile()}
-                    <button class="btn btn-outline mt-4 show-more-btn" on:click={toggleWorkExpanded}>
+                    <button class="btn btn-outline mt-4 show-more-btn {!workExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleWorkExpanded}>
                         <span>{workExpanded ? 'Show Less' : 'Show More'}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn-icon" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d={workExpanded ? 
                                 "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" : 
                                 "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"} 
@@ -365,6 +365,8 @@
             </section>
         </div>
 
+        <div class="divider"></div>
+
         <!-- Projects Section -->
         <section id="projects" class={`px-4 py-8 text-center`}>
             <div class="flex justify-center place-items-center gap-3">
@@ -401,9 +403,9 @@
                 {/each}
             </div>
             {#if projects.length > (isMobile() ? 3 : 6)}
-                <button class="btn btn-outline mt-4 show-more-btn" on:click={toggleProjectsExpanded}>
+                <button class="btn btn-outline mt-4 show-more-btn {!projectsExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleProjectsExpanded}>
                     <span>{projectsExpanded ? 'Show Less' : 'Show More'}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn-icon" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d={projectsExpanded ? 
                             "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" : 
                             "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"} 
@@ -413,6 +415,8 @@
                 </button>
             {/if}
         </section>
+
+        <div class="divider"></div>
 
         <!-- Blogs Section -->
         <h3 class="text-3xl font-bold text-center">Blog</h3>
@@ -539,8 +543,8 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 100px;
-        background: linear-gradient(to bottom, rgba(28, 25, 23, 0), rgba(28, 25, 23, 0.95));
+        height: 30px;
+        background: linear-gradient(to bottom, rgba(28, 25, 23, 0), rgba(24, 21, 21, 0.95));
         pointer-events: none;
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
@@ -572,10 +576,92 @@
         z-index: 10;
         transition: all 0.3s ease;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
     }
     
     .show-more-btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Add shine animation when button is clicked */
+    .show-more-btn::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(45deg);
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .show-more-btn:active::after {
+        opacity: 1;
+        animation: shine 0.5s ease-out;
+    }
+    
+    @keyframes shine {
+        0% {
+            transform: translateX(-100%) rotate(45deg);
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.7;
+        }
+        100% {
+            transform: translateX(100%) rotate(45deg);
+            opacity: 0;
+        }
+    }
+    
+    /* Button icon animation */
+    .btn-icon {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .show-more-btn:active .btn-icon {
+        transform: scale(1.5);
+    }
+    
+    /* Subtle pulse animation for the button when section is collapsed */
+    .show-more-btn-pulse {
+        animation: pulse-subtle 2s infinite;
+    }
+    
+    @keyframes pulse-subtle {
+        0% {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        50% {
+            box-shadow: 0 2px 15px rgba(92, 92, 92, 0.4);
+        }
+        100% {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+    }
+    
+    /* Animation for expanding/collapsing sections */
+    .section-container {
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                    opacity 0.3s ease,
+                    transform 0.3s ease;
+    }
+    
+    .section-container.collapsed {
+        transform-origin: top;
+        opacity: 0.97;
+    }
+    
+    .section-container.expanded {
+        transform-origin: top;
+        opacity: 1;
     }
 </style>
