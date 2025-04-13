@@ -10,7 +10,6 @@
     import { onMount } from "svelte";
     import Blog from "./Blog.svelte";
     import InfoCard from "./InfoCard.svelte";
-    import Runners from "./Runners.svelte";
 
     let showDownArrow = false;
     let showJumpToText = false;
@@ -311,7 +310,7 @@
                     {/each}
                 </div>
                 {#if workExperience.length > 2 || isMobile()}
-                    <button class="btn btn-outline mt-4 show-more-btn {!workExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleWorkExpanded}>
+                    <button class="btn text-white btn-outline mt-4 show-more-btn {!workExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleWorkExpanded}>
                         <span>{workExpanded ? 'Show Less' : 'Show More'}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn-icon" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d={workExpanded ? 
@@ -402,7 +401,7 @@
                 {/each}
             </div>
             {#if projects.length > (isMobile() ? 3 : 6)}
-                <button class="btn btn-outline mt-4 show-more-btn {!projectsExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleProjectsExpanded}>
+                <button class="btn text-white btn-outline mt-4 show-more-btn {!projectsExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleProjectsExpanded}>
                     <span>{projectsExpanded ? 'Show Less' : 'Show More'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn-icon" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d={projectsExpanded ? 
@@ -427,7 +426,7 @@
         <footer class="footer footer-center p-10 text-base-content rounded">
             <nav class="grid grid-flow-col gap-6">
                 {#each footer.links as link}
-                    <a class="link link-hover text-gray800" href={link.href} target="_blank">{link.name}</a>
+                    <a class="text-gray-400 link link-hover text-gray800" href={link.href} target="_blank">{link.name}</a>
                 {/each}
             </nav>
             <nav>

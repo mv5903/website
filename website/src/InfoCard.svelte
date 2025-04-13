@@ -1,7 +1,7 @@
 <script lang="ts">
-    import InfoCardImageCarousel from "./InfoCardImageCarousel.svelte";
     import isMobile from "is-mobile";
     import { tick } from "svelte";
+    import InfoCardImageCarousel from "./InfoCardImageCarousel.svelte";
 
     export let type: 'job' | 'education' | 'project';
     export let displayObject: any;
@@ -142,3 +142,9 @@
         {/if}
     {/if}
 </div>
+
+<style>
+    :global(.badge) {
+        border-color: transparent;
+    }
+</style>

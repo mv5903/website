@@ -716,18 +716,16 @@
     <!-- Blog List Modal -->
     {#if showBlogListModal}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div class="modal modal-open">
-            <!-- Increase width from max-w-5xl to max-w-7xl and adjust padding -->
-            <div class="modal-box bg-base-300 w-[95%] max-w-7xl">
-                <div class="sticky top-0 pt-2 pb-4 bg-base-300 z-10 mb-4">
-                    <h3 class="text-2xl font-bold text-center">All Blog Posts ({allBlogPosts.length})</h3>
-                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={toggleBlogListModal}>✕</button>
+        <div class="modal modal-open bg-stone-900 mb-4">
+            <div class="absolute mx-4 rounded-lg shadow-lg bg-stone-900 max-w-7xl">
+                <div class="sticky top-0 bg-stone-900 z-10">
+                    <h2 class="text-2xl font-bold text-white text-center mt-3">{`All Blog Posts (${allBlogPosts.length})`}</h2>
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-0" on:click={toggleBlogListModal}>✕</button>
                 </div>
                 
-                <!-- Improved grid layout with more columns for larger screens -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-stone-900 rounded-md m-2 p-4">
                     {#each allBlogPosts as post}
-                        <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all">
+                        <div class="card bg-stone-800 shadow-xl hover:shadow-2xl transition-all">
                             <div class="card-body p-4 justify-start">
                                 <h2 class="card-title text-base">{post.title || post.slug}</h2>
                                 <p class="text-xs text-gray-400">{formatDate(post.date)}</p>
@@ -735,15 +733,12 @@
                                     {post.excerpt}
                                 </p>
                                 <div class="card-actions justify-end mt-2">
-                                    <a href={post.url} target="_blank" class="btn btn-primary btn-sm">Read</a>
+                                    <a href={post.url} target="_blank" class="btn btn-sm">Read</a>
                                 </div>
                             </div>
                         </div>
                     {/each}
                 </div>
-                
-                <!-- Add some space at bottom to fix scrolling issues -->
-                <div class="h-6"></div>
             </div>
             
             <!-- Modal backdrop that closes modal when clicked -->
