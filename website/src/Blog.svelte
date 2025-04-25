@@ -235,7 +235,7 @@
             }
 
             // Fetch the blog posts
-            const response = await fetch("https://obsidian.mattvandenberg.com/api/posts.json");
+            const response = await fetch("https://mattvandenberg.com/blog/api/posts.json");
             const data = await response.json();
             let temp = data;
             // Store all blog posts for use in the modal
@@ -591,7 +591,7 @@
                     <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
                 {/if}
                 {#if numLines >= 5}
-                    <a href="https://obsidian.mattvandenberg.com/"><pre data-prefix=">" class="text-success underline animate-ping overflow-hidden">Enter Blog Home</pre></a>
+                    <a href="https://mattvandenberg.com/blog/"><pre data-prefix=">" class="text-success underline animate-ping overflow-hidden">Enter Blog Home</pre></a>
                 {/if}
             </div>
         </div>
