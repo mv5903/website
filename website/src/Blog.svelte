@@ -275,7 +275,7 @@
             }
 
             // Fetch the blog posts
-            const response = await fetch("https://mattvandenberg.com/blog/api/posts.json");
+            const response = await fetch("https://mattvandenberg.com/blog/posts/index.xml");
             const text = await response.text();
             const data = parseRssFeed(text);
             console.log(data);
