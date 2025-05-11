@@ -4,11 +4,10 @@
 
     type BlogMeta = {
         title: string;
-        slug: string;
-        date: string;
-        updated: string;
-        excerpt: string;
-        url: string;
+        link: string;
+        pubDate: string;
+        guid: string;
+        description: string;
     }
     
     let numLines = 1;
@@ -223,6 +222,47 @@
         return "right";
     }
 
+    /**
+     * Parses an RSS feed and returns all items as an array of objects
+     * @param rssContent The RSS feed content as a string
+     * @returns Array of RSS items
+     */
+    function parseRssFeed(rssContent: string): BlogMeta[] {
+        const items: BlogMeta[] = [];
+        
+        // Extract all <item> blocks from the RSS content
+        const itemRegex = /<item>[\s\S]*?<title>([\s\S]*?)<\/title>[\s\S]*?<link>([\s\S]*?)<\/link>[\s\S]*?<pubDate>([\s\S]*?)<\/pubDate>[\s\S]*?<guid>([\s\S]*?)<\/guid>[\s\S]*?<description>([\s\S]*?)<\/description>[\s\S]*?<\/item>/g;
+        
+        // Find all matches
+        let match;
+        while ((match = itemRegex.exec(rssContent)) !== null) {
+            // Create an item object with the extracted values
+            const item: BlogMeta = {
+            title: decodeXmlEntities(match[1]),
+            link: decodeXmlEntities(match[2]),
+            pubDate: decodeXmlEntities(match[3]),
+            guid: decodeXmlEntities(match[4]),
+            description: decodeXmlEntities(match[5])
+            };
+            
+            items.push(item);
+        }
+        
+        return items;
+    }
+
+    /**
+     * Decodes XML entities in a string
+     * @param str String with XML entities
+     * @returns Decoded string
+     */
+    function decodeXmlEntities(str: string): string {
+        // Create a temporary element to use the browser's built-in decoder
+        const txt = document.createElement("textarea");
+        txt.innerHTML = str;
+        return txt.value;
+    }
+
     onMount(() => {
         (async function() {
             if (isMobile()) {
@@ -236,14 +276,16 @@
 
             // Fetch the blog posts
             const response = await fetch("https://mattvandenberg.com/blog/api/posts.json");
-            const data = await response.json();
+            const text = await response.text();
+            const data = parseRssFeed(text);
+            console.log(data);
             let temp = data;
             // Store all blog posts for use in the modal
             allBlogPosts = [...data].sort((a: BlogMeta, b: BlogMeta) => 
-                new Date(b.date).getTime() - new Date(a.date).getTime()
+                new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
             );
             // Order by date
-            temp.sort((a: BlogMeta, b: BlogMeta) => new Date(a.date).getTime() - new Date(b.date).getTime());
+            temp.sort((a: BlogMeta, b: BlogMeta) => new Date(a.pubDate).getTime() - new Date(b.pubDate).getTime());
 
             // If the length is greater than 8, take the very first one, and the last 7
             if (temp.length > 8) {
@@ -630,15 +672,15 @@
                 bind:this={resizeObservedElements[i]}
             >
                 <div class="flex flex-col gap-1 justify-center place-items-center">
-                    <h4 class="text-sm font-bold">{node.slug}</h4>
-                    <p class="text-sm text-gray-400">{new Date(node.date).toLocaleDateString()}</p>
+                    <h4 class="text-sm font-bold">{node.title}</h4>
+                    <p class="text-sm text-gray-400">{new Date(node.pubDate).toLocaleDateString()}</p>
                     <p
                         bind:this={excerptEls[i]}
                         class="excerpt text-xs"
                     >
-                    {node.excerpt}
+                    {node.description}
                     </p>
-                    <a class="btn btn-sm shadow-md" href={node.url}>Read</a>
+                    <a class="btn btn-sm shadow-md" href={node.guid}>Read</a>
                 </div>
             </div>
             {/each}
@@ -727,13 +769,13 @@
                     {#each allBlogPosts as post}
                         <div class="card bg-stone-800 shadow-xl hover:shadow-2xl transition-all">
                             <div class="card-body p-4 justify-start">
-                                <h2 class="card-title text-base">{post.title || post.slug}</h2>
-                                <p class="text-xs text-gray-400">{formatDate(post.date)}</p>
+                                <h2 class="card-title text-base">{post.title}</h2>
+                                <p class="text-xs text-gray-400">{formatDate(post.pubDate)}</p>
                                 <p class="text-sm text-gray-300 overflow-hidden line-clamp-3">
-                                    {post.excerpt}
+                                    {post.description}
                                 </p>
                                 <div class="card-actions justify-end mt-2">
-                                    <a href={post.url} target="_blank" class="btn btn-sm">Read</a>
+                                    <a href={post.guid} target="_blank" class="btn btn-sm">Read</a>
                                 </div>
                             </div>
                         </div>
