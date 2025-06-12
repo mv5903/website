@@ -12,6 +12,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.2",
     "@tsconfig/svelte": "^5.0.0",
+    "@types/three": "^0.177.0",
     "autoprefixer": "^10.4.16",
     "daisyui": "^3.9.4",
     "postcss": "^8.4.31",
@@ -26,6 +27,7 @@
   "dependencies": {
     "@sveltejs/adapter-auto": "^2.1.1",
     "is-mobile": "^4.0.0",
-    "marked": "^11.2.0"
+    "marked": "^11.2.0",
+    "three": "^0.177.0"
   }
 }

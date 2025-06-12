@@ -23,20 +23,7 @@
     let connectorLabelEl: SVGGElement;
 
     // New state for the blog list modal
-    let showBlogListModal = false;
     let allBlogPosts: BlogMeta[] = [];
-    
-    // Function to toggle the blog list modal
-    function toggleBlogListModal() {
-        showBlogListModal = !showBlogListModal;
-        
-        // If opening the modal, prevent scrolling on the body
-        if (showBlogListModal) {
-            document.body.classList.add('overflow-hidden');
-        } else {
-            document.body.classList.remove('overflow-hidden');
-        }
-    }
     
     // Function to format date in a nicer way
     function formatDate(dateString: string): string {
@@ -633,7 +620,7 @@
                     <pre data-prefix=">" class="text-warning"><code>Enter Password:</code></pre>
                 {/if}
                 {#if numLines >= 5}
-                    <a href="https://mattvandenberg.com/blog/"><pre data-prefix=">" class="text-success underline animate-ping overflow-hidden">Enter Blog Home</pre></a>
+                    <a href="https://mattvandenberg.com/blog/posts/"><pre data-prefix=">" class="text-success underline animate-ping overflow-hidden">Enter Blog Home</pre></a>
                 {/if}
             </div>
         </div>
@@ -705,7 +692,7 @@
                                 <!-- Enhanced connector label with count of skipped posts - now clickable -->
                                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                                 <!-- svelte-ignore a11y-no-static-element-interactions -->
-                                <g class="connector-label cursor-pointer" bind:this={connectorLabelEl} on:click={toggleBlogListModal}>
+                                <g class="connector-label cursor-pointer" bind:this={connectorLabelEl} on:click={() => window.location.href = "https://mattvandenberg.com/blog/posts/"}>
                                     <rect 
                                         class="connector-badge animated"
                                         x={(arrowPositions[i].x1 + arrowPositions[i].x2)/2 - 55} 
@@ -752,41 +739,6 @@
                     </defs>
                 </svg>
             {/if}
-        </div>
-    {/if}
-
-    <!-- Blog List Modal -->
-    {#if showBlogListModal}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div class="modal modal-open bg-stone-900 mb-4">
-            <div class="absolute mx-4 rounded-lg shadow-lg bg-stone-900 max-w-7xl">
-                <div class="sticky top-0 bg-stone-900 z-10">
-                    <h2 class="text-2xl font-bold text-white text-center mt-3">{`All Blog Posts (${allBlogPosts.length})`}</h2>
-                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-0" on:click={toggleBlogListModal}>✕</button>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-stone-900 rounded-md m-2 p-4">
-                    {#each allBlogPosts as post}
-                        <div class="card bg-stone-800 shadow-xl hover:shadow-2xl transition-all">
-                            <div class="card-body p-4 justify-start">
-                                <h2 class="card-title text-base">{post.title}</h2>
-                                <p class="text-xs text-gray-400">{formatDate(post.pubDate)}</p>
-                                <p class="text-sm text-gray-300 overflow-hidden line-clamp-3">
-                                    {post.description}
-                                </p>
-                                <div class="card-actions justify-end mt-2">
-                                    <a href={post.guid} target="_blank" class="btn btn-sm">Read</a>
-                                </div>
-                            </div>
-                        </div>
-                    {/each}
-                </div>
-            </div>
-            
-            <!-- Modal backdrop that closes modal when clicked -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <label class="modal-backdrop" for="modal-control" on:click={toggleBlogListModal}></label>
         </div>
     {/if}
 </section>

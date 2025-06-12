@@ -10,6 +10,7 @@
     import { onMount } from "svelte";
     import Blog from "./Blog.svelte";
     import InfoCard from "./InfoCard.svelte";
+    import ThreeDBackground from "./ThreeDBackground.svelte";
 
     let showDownArrow = false;
     let showJumpToText = false;
@@ -289,14 +290,14 @@
                 </div>
                 <h1 class="text-6xl">Hi!</h1>
             </div>
-            <div>
+            <div class="flex flex-col items-center gap-3">
                 <h1 class="text-4xl font-boldtext-gray-100">I'm</h1>
-                <h1 class="text-4xl font-boldtext-gray-100">Matthew</h1>
+                <h1 class="text-4xl font-boldtext-gray-100">Matthew </h1>
                 <h1 class="text-4xl font-boldtext-gray-100">Vandenberg!</h1>
             </div>
             <div class="m-6">
-                <h2 class="text-xltext-gray-200">An Incoming Software Engineer at ServiceNow</h2>
-                <h2 class="text-xltext-gray-200">Finishing My Last Semester at Rutgers University</h2>
+                <h2 class="text-xltext-gray-200">Software Engineer at ServiceNow</h2>
+                <h2 class="text-xltext-gray-200">Technology & Automation Afficionado</h2>
             </div>
 
             <!-- Scroll Down Indicator -->
@@ -495,6 +496,8 @@
             </aside>
         </footer>
     </div>
+
+    <ThreeDBackground />
 </main>
 
 <style>
