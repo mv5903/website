@@ -18,7 +18,7 @@ export const projects = [
         "tech": "React.js, Node.js, Tailwind, DaisyUI, Bash, Python, Flask, Raspberry Pi, WS2812B, Home Assistant, Responsive Web Development",
         "github": "https://github.com/mv5903/jumbotron",
         "blog": "jumbotron",
-        "previews": ["jumbo.jpg"]
+        "previews": ["jumbo.png"]
     },
     {
         "id": "P12",

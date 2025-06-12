@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import * as THREE from 'three';
+  
 
   interface ShapeUserData {
     rotationSpeed: {
@@ -51,10 +52,11 @@
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x0A0A0A, 1); 
     canvasContainer.appendChild(renderer.domElement);
     
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+    const ambientLight = new THREE.AmbientLight(0x0A0A0A, 0.3);
     scene.add(ambientLight);
     
     pointLight1 = new THREE.PointLight(0x00ff88, 1, 100);
@@ -82,10 +84,10 @@
         color: new THREE.Color().setHSL(Math.random() * 0.3 + 0.5, 0.7, 0.5),
         emissive: new THREE.Color().setHSL(Math.random() * 0.3 + 0.5, 0.7, 0.2),
         
-        emissiveIntensity: 0.5,
+        emissiveIntensity: 0.8,
         shininess: 200,
         transparent: true,
-        opacity: 0.15,
+        opacity: 0.5,
         wireframe: Math.random() > 0.7,
       });
       
@@ -175,6 +177,18 @@
         if (shape.position.y < -boundary) shape.position.y = boundary;
         if (shape.position.z > boundary) shape.position.z = -boundary;
         if (shape.position.z < -boundary) shape.position.z = boundary;
+
+        // Dynamic Color shifting
+        const hue = (time * 0.1 + index * 0.1) % 1;
+        const material = shape.material as THREE.MeshPhongMaterial;
+        material.color.setHSL(hue, 0.7, 0.5);
+        material.emissive.setHSL(hue, 0.7, 0.2);
+
+        // Shape Pulsing
+        const pulse = Math.sin(time * 2 + shape.userData.phase) * 0.2 + 1;
+        const currentScale = shape.userData.originalScale * pulse;
+        shape.scale.set(currentScale, currentScale, currentScale);
+
       });
       
       // Camera follow mouse slightly
