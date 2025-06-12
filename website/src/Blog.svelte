@@ -596,12 +596,12 @@
     }
 </style>
 
-<section id="blog" class={`relative m-8 text-left flex flex-col min-h-[90vh] gap-20 justify-center place-items-center`}>
+<section id="blog" class={`relative m-8 text-left flex flex-col ${!isMobile() && "min-h-[90vh]"} gap-20 justify-center place-items-center`}>
     {#if isMobile()}
-        <div class="text-center mt-4">
+        <div class="text-center">
             <p class="text-lg text-gray-400">Where I document my dumb ideas!</p>
         </div>
-    {/if}
+    {/if}   
 
     <!-- Monitor -->
     <div class="relative m-4 h-[35vh] p-4 mb-12 border-2 border-white flex justify-center rounded-md place-items-center z-40 w-full sm:w-1/3">

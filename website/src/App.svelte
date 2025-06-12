@@ -13,7 +13,6 @@
     import ThreeDBackground from "./ThreeDBackground.svelte";
 
     let showDownArrow = false;
-    let showJumpToText = false;
 
     let currentYear = new Date().getFullYear();
 
@@ -21,9 +20,6 @@
         setTimeout(() => {
             showDownArrow = true;
         }, 1000);
-        setTimeout(() => {
-            showJumpToText = true;
-        }, 2000);
 
         return () => {
             // Clean up event listeners when component is destroyed
@@ -122,11 +118,11 @@
     <div class="max-w-screen-2xl m-3">
         <!-- Menu Bar -->
         {#if isMobile()}
-            <div class="drawer z-100">
+            <div class="drawer drawer-end z-100">
                 <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-                <div class="absolute left-4 top-4 drawer-content place-items-center flex gap-4">
+                <div class="absolute right-8 top-4 drawer-content place-items-center flex gap-4">
                     <!-- Page content here -->
-                    <label for="my-drawer" class="btn btn-stone-900 bg-stone-900 drawer-button">
+                    <label for="my-drawer" class="btn btn-stone-900 bg-transparent drawer-button">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-5 w-5"
@@ -142,29 +138,11 @@
                             />
                         </svg>
                     </label>
-                    {#if showJumpToText}
-                        <label for="" class="outline-0 animate-pulse flex place=items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                class="w-6 h-6"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-                                />
-                            </svg>
-                            <span class="ms-2">Jump To</span>
-                        </label>
-                    {/if}
+
                 </div>
                 <div class="drawer-side z-10">
                     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-                    <ul class="menu p-4 w-80 min-h-full bg-stone-900 text-base-content">
+                    <ul class="menu p-4 w-80 min-h-full bg-zinc-900 opacity-75 text-base-content">
                         <!-- Sidebar content here -->
                         <ul class="menu w-[100%] rounded-box">
                             {#each sections as section}
