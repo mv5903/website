@@ -443,7 +443,7 @@
         <div class="divider"></div>
 
         <footer class="footer footer-center p-10 text-base-content rounded">
-            <nav class="grid grid-flow-col gap-6">
+            <nav class="grid grid-flow-col gap-10">
                 {#each footer.links as link}
                     <a class="text-gray-400 link link-hover text-gray800" href={link.href} target="_blank">{link.name}</a>
                 {/each}
@@ -453,7 +453,7 @@
                     {#each footer.socials as social}
                         <a
                             href={social.href}
-                            class="transition duration-300 ease-in-out transform hover:scale-110 bg-zinc-800 hover:bg-gray-600 rounded-md p-2"
+                            class="transition duration-300 ease-in-out transform hover:scale-110 rounded-md p-2"
                             title={social.name}
                             target="_blank"
                         >

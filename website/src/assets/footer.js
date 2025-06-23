@@ -13,7 +13,7 @@ export const footer = {
             href: 'https://mattvandenberg.com/resume.pdf'
         },
         {
-            name: 'Privacy Policy (for Mobile App Stores)',
+            name: 'Privacy Policy',
             href: 'https://www.mattvandenberg.com/privacypolicy/reallysimple.html'
         }
     ],
