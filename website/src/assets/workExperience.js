@@ -3,7 +3,7 @@ export const workExperience = [
         id: "W1",
         subheading: 'ServiceNow',
         location: "Software Engineer - Santa Clara, CA (HQ)",
-        date: 'Starting July 2025',
+        date: 'July 2025 - Present',
         content: 'Platform Security Core Team: Access Controls',
         tech: 'JavaScript, Java, Gradle, Selenium, JUnit, Jenkins, IntelliJ, Git',
         website: 'https://www.servicenow.com/',
