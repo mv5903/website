@@ -10,7 +10,7 @@ export const footer = {
         },
         {
             name: 'Resume',
-            href: 'https://mattvandenberg.com/resume.pdf'
+            href: 'https://mattvandenberg.com/resume', 
         },
         {
             name: 'Privacy Policy',
