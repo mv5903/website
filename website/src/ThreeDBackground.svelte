@@ -12,6 +12,12 @@
     floatAmplitude: number;
     phase: number;
     originalScale: number;
+    isSpinning: boolean;
+    spinProgress: number;
+    spinStartRotation: {
+      x: number;
+      y: number;
+    };
   }
 
   interface ExtendedMesh extends THREE.Mesh {
@@ -115,7 +121,10 @@
         floatSpeed: Math.random() * 0.5 + 0.5,
         floatAmplitude: Math.random() * 2 + 1,
         phase: Math.random() * Math.PI * 2,
-        originalScale: scale
+        originalScale: scale,
+        isSpinning: false,
+        spinProgress: 0,
+        spinStartRotation: { x: 0, y: 0 }
       };
       
       shapes.push(mesh);
@@ -133,6 +142,28 @@
       mouseY = event.clientY - window.innerHeight / 2;
     };
     
+    const handleClick = (event: MouseEvent): void => {
+      if (!camera || !scene) return;
+      
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(shapes);
+      
+      if (intersects.length > 0) {
+        const clickedShape = intersects[0].object as ExtendedMesh;
+        if (!clickedShape.userData.isSpinning) {
+          clickedShape.userData.isSpinning = true;
+          clickedShape.userData.spinProgress = 0;
+          clickedShape.userData.spinStartRotation = {
+            x: clickedShape.rotation.x,
+            y: clickedShape.rotation.y
+          };
+        }
+      }
+    };
+    
     // Resize handler
     const handleResize = (): void => {
       if (!camera || !renderer) return;
@@ -143,6 +174,7 @@
     };
     
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('click', handleClick);
     window.addEventListener('resize', handleResize);
     
     // Animation loop
@@ -157,9 +189,27 @@
       
       // Animate shapes
       shapes.forEach((shape, index) => {
-        // Rotation
-        shape.rotation.x += shape.userData.rotationSpeed.x;
-        shape.rotation.y += shape.userData.rotationSpeed.y;
+        // Handle 360-degree spin animation
+        if (shape.userData.isSpinning) {
+          shape.userData.spinProgress += 0.05; // Adjust speed as needed
+          
+          if (shape.userData.spinProgress >= 1) {
+            // Spin complete
+            shape.userData.isSpinning = false;
+            shape.userData.spinProgress = 0;
+            shape.rotation.x = shape.userData.spinStartRotation.x + Math.PI * 2;
+            shape.rotation.y = shape.userData.spinStartRotation.y + Math.PI * 2;
+          } else {
+            // Interpolate rotation during spin
+            const spinAmount = shape.userData.spinProgress * Math.PI * 2;
+            shape.rotation.x = shape.userData.spinStartRotation.x + spinAmount;
+            shape.rotation.y = shape.userData.spinStartRotation.y + spinAmount;
+          }
+        } else {
+          // Normal rotation
+          shape.rotation.x += shape.userData.rotationSpeed.x;
+          shape.rotation.y += shape.userData.rotationSpeed.y;
+        }
         
         // Floating motion
         const floatY = Math.sin(time * shape.userData.floatSpeed + shape.userData.phase) * shape.userData.floatAmplitude;
@@ -237,6 +287,7 @@
     // Cleanup function
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('click', handleClick);
       window.removeEventListener('resize', handleResize);
     };
   });

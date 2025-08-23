@@ -1,17 +1,17 @@
 export const footer = {
     links: [
-        {
-            name: 'Call',
-            href: 'tel:908-202-9074',
-        },
+        // {
+        //     name: 'Call',
+        //     href: 'tel:908-202-9074',
+        // },
         {
             name: 'Email',
             href: 'mailto:mv5903@gmail.com'
         },
-        {
-            name: 'Resume',
-            href: 'https://mattvandenberg.com/resume.html', 
-        },
+        // {
+        //     name: 'Resume',
+        //     href: 'https://mattvandenberg.com/resume.html', 
+        // },
         {
             name: 'Privacy Policy',
             href: 'https://www.mattvandenberg.com/privacypolicy/reallysimple.html'

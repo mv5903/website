@@ -183,7 +183,7 @@
                                         />
                                     </svg>
                                     <span class="text-white text-2xl">Homelab</span>
-                                    <span class="badge badge-secondary ml-1 animate-pulse">NEW!</span>
+                                    <!-- <span class="badge badge-secondary ml-1 animate-pulse">NEW!</span> -->
                                 </a>
                             </li>
                         </ul>
