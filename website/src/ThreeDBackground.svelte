@@ -87,13 +87,13 @@
       const geometry = geometries[Math.floor(Math.random() * geometries.length)];
       
       const material = new THREE.MeshPhongMaterial({
-        color: new THREE.Color().setHSL(Math.random() * 0.3 + 0.5, 0.7, 0.5),
-        emissive: new THREE.Color().setHSL(Math.random() * 0.3 + 0.5, 0.7, 0.2),
+        color: new THREE.Color().setHSL(Math.random() * 0.3 + 0.5, 0.7, 0.1),
+        emissive: new THREE.Color().setHSL(Math.random() * 0.3 + 0.5, 0.7, 0.1),
         
-        emissiveIntensity: 0.8,
+        emissiveIntensity: 0.1,
         shininess: 200,
         transparent: true,
-        opacity: 0.5,
+        opacity: 0.05,
         wireframe: Math.random() > 0.7,
       });
       
@@ -115,10 +115,10 @@
       // Store additional properties for animation
       mesh.userData = {
         rotationSpeed: {
-          x: (Math.random() - 0.5) * 0.01,
-          y: (Math.random() - 0.5) * 0.01
+          x: (Math.random() - 0.5) * 0.001,
+          y: (Math.random() - 0.5) * 0.001
         },
-        floatSpeed: Math.random() * 0.5 + 0.5,
+        floatSpeed: Math.random() * 0.2 + 0.5,
         floatAmplitude: Math.random() * 2 + 1,
         phase: Math.random() * Math.PI * 2,
         originalScale: scale,
