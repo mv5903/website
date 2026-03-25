@@ -455,14 +455,14 @@
                 {/if}
             </div>
             <div
-                class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 section-container projects-container ${projectsExpanded ? 'expanded' : 'collapsed'}`}
+                class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row-dense gap-4 section-container projects-container ${projectsExpanded ? 'expanded' : 'collapsed'}`}
             >
                 {#each filteredProjects as project, num}
                     {@const isClosed = closedInfoCards.includes(project.id)}
                     {@const isMinimized = minimizedInfoCards.includes(project.id)}
                     {@const isFullScreen = fullScreenInfoCard === project.id}
                     <div
-                        class={`card max-h-full ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""}  transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                        class={`card max-h-full ${project.previews && project.previews.length >= 2 ? 'md:col-span-2' : ''} ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                     >
                         <InfoCard
                             fullScreen={isFullScreen}
