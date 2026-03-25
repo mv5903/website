@@ -4,6 +4,7 @@
     import { schools } from "./assets/schools";
     import { sections } from "./assets/sections";
     import { workExperience } from "./assets/workExperience";
+    import { getTechColor } from "./assets/techColors";
 
     import { isMobile } from "is-mobile";
 
@@ -397,27 +398,27 @@
                     </div>
                 {/if}
             </div>
-            <div class={`mt-6 section-container projects-container ${projectsExpanded ? 'expanded' : 'collapsed'}`}>
-                <!-- Featured projects -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {#each featuredProjects as project}
-                        {@const isFullScreen = fullScreenInfoCard === project.id}
-                        <div
-                            class={`card max-h-full ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
-                        >
-                            <InfoCard
-                                fullScreen={isFullScreen}
-                                onFullscreenPressed={() => onFullscreenPressed(project)}
-                                type="project"
-                                displayObject={project}
-                            />
-                        </div>
-                    {/each}
-                </div>
+            <!-- Featured projects (always visible) -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                {#each featuredProjects as project}
+                    {@const isFullScreen = fullScreenInfoCard === project.id}
+                    <div
+                        class={`card max-h-full ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                    >
+                        <InfoCard
+                            fullScreen={isFullScreen}
+                            onFullscreenPressed={() => onFullscreenPressed(project)}
+                            type="project"
+                            displayObject={project}
+                        />
+                    </div>
+                {/each}
+            </div>
 
-                <!-- Remaining projects as compact list -->
-                {#if remainingProjects.length > 0}
-                    <div class="mt-6 space-y-2 max-w-2xl mx-auto">
+            <!-- Remaining projects (behind Show More) -->
+            {#if remainingProjects.length > 0}
+                <div class={`mt-6 section-container projects-container ${projectsExpanded ? 'expanded' : 'collapsed'}`}>
+                    <div class="space-y-2 max-w-2xl mx-auto">
                         {#each remainingProjects as project}
                             <div class="flex items-start gap-3 py-3 px-4 rounded-lg bg-zinc-900 hover:bg-zinc-800 transition-colors">
                                 <div class="flex-1 min-w-0">
@@ -440,19 +441,24 @@
                                         <span class="text-gray-500 text-sm">&middot; {project.year}</span>
                                     </div>
                                     <p class="text-sm text-gray-400 mt-0.5">{project.content}</p>
+                                    {#if project.tech}
+                                        <div class="flex flex-wrap gap-1 mt-1.5">
+                                            {#each project.tech.split(",").map((t) => t.trim()) as tech}
+                                                <span class="badge badge-xs border-0 {getTechColor(tech)}">{tech}</span>
+                                            {/each}
+                                        </div>
+                                    {/if}
                                 </div>
                             </div>
                         {/each}
                     </div>
-                {/if}
-            </div>
-            {#if projects.length > (isMobile() ? 3 : 6)}
+                </div>
                 <button class="btn text-white btn-outline mt-4 show-more-btn {!projectsExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleProjectsExpanded}>
                     <span>{projectsExpanded ? 'Show Less' : 'Show More'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn-icon" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d={projectsExpanded ? 
-                            "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" : 
-                            "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"} 
+                        <path fill-rule="evenodd" d={projectsExpanded ?
+                            "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" :
+                            "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"}
                             clip-rule="evenodd"
                         />
                     </svg>
