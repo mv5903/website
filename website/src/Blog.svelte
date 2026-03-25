@@ -102,7 +102,7 @@
                             <span class="text-sm text-gray-500 shrink-0 sm:w-40">{formatDate(post.pubDate)}</span>
                             <div class="flex-1 min-w-0">
                                 <h5 class="text-white group-hover:text-gray-200 transition-colors font-medium truncate">{post.title}</h5>
-                                <p class="text-sm text-gray-500 truncate mt-0.5">{post.description}</p>
+                                <p class="text-sm text-gray-500 mt-0.5 post-description">{post.description}</p>
                             </div>
                             <span class="text-sm text-gray-600 group-hover:text-white transition-colors hidden sm:block">&rarr;</span>
                         </div>
@@ -136,6 +136,22 @@
         bottom: 0;
         width: 2px;
         background: linear-gradient(to bottom, rgba(113, 113, 122, 0.5), rgba(113, 113, 122, 0.1));
+    }
+
+    .post-description {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 1.5em;
+        transition: max-height 0.3s ease, white-space 0s;
+    }
+
+    :global(.group:hover) .post-description {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        max-height: 200px;
+        transition: max-height 0.3s ease, white-space 0s;
     }
 
     .timeline-dot {
