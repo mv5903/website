@@ -21,46 +21,46 @@
     })
 
     const techColors: Record<string, string> = {
-        // JS ecosystem - yellow/amber
-        'JavaScript': 'border-yellow-600/60 text-yellow-400',
-        'TypeScript': 'border-blue-500/60 text-blue-400',
-        'Node.js': 'border-green-600/60 text-green-400',
-        'Node': 'border-green-600/60 text-green-400',
-        'React.js': 'border-cyan-500/60 text-cyan-400',
-        'React': 'border-cyan-500/60 text-cyan-400',
-        'Next.js': 'border-gray-400/60 text-gray-300',
-        'Svelte': 'border-orange-500/60 text-orange-400',
+        // JS ecosystem
+        'JavaScript': 'bg-yellow-700/40 text-yellow-100',
+        'TypeScript': 'bg-blue-700/40 text-blue-100',
+        'Node.js': 'bg-green-700/40 text-green-100',
+        'Node': 'bg-green-700/40 text-green-100',
+        'React.js': 'bg-cyan-700/40 text-cyan-100',
+        'React': 'bg-cyan-700/40 text-cyan-100',
+        'Next.js': 'bg-zinc-600/50 text-gray-100',
+        'Svelte': 'bg-orange-700/40 text-orange-100',
         // Styling
-        'Tailwind': 'border-sky-500/60 text-sky-400',
-        'DaisyUI': 'border-emerald-500/60 text-emerald-400',
-        'CSS': 'border-blue-400/60 text-blue-300',
-        'Bootstrap': 'border-purple-500/60 text-purple-400',
-        'HTML': 'border-orange-500/60 text-orange-300',
+        'Tailwind': 'bg-sky-700/40 text-sky-100',
+        'DaisyUI': 'bg-emerald-700/40 text-emerald-100',
+        'CSS': 'bg-blue-600/40 text-blue-100',
+        'Bootstrap': 'bg-purple-700/40 text-purple-100',
+        'HTML': 'bg-orange-600/40 text-orange-100',
         // Languages
-        'Python': 'border-yellow-500/60 text-yellow-300',
-        'Java': 'border-red-500/60 text-red-400',
-        'Java with Swing': 'border-red-500/60 text-red-400',
-        'C#': 'border-violet-500/60 text-violet-400',
-        'Swift': 'border-orange-500/60 text-orange-400',
-        'SwiftUI': 'border-orange-500/60 text-orange-400',
-        'PHP': 'border-indigo-400/60 text-indigo-300',
-        'Bash': 'border-gray-400/60 text-gray-300',
-        'Shell': 'border-gray-400/60 text-gray-300',
+        'Python': 'bg-yellow-600/40 text-yellow-100',
+        'Java': 'bg-red-700/40 text-red-100',
+        'Java with Swing': 'bg-red-700/40 text-red-100',
+        'C#': 'bg-violet-700/40 text-violet-100',
+        'Swift': 'bg-orange-600/40 text-orange-100',
+        'SwiftUI': 'bg-orange-600/40 text-orange-100',
+        'PHP': 'bg-indigo-700/40 text-indigo-100',
+        'Bash': 'bg-zinc-600/50 text-gray-100',
+        'Shell': 'bg-zinc-600/50 text-gray-100',
         // Data / infra
-        'PostgreSQL': 'border-blue-500/60 text-blue-300',
-        'MySQL': 'border-blue-400/60 text-blue-300',
-        'Flask': 'border-gray-400/60 text-gray-300',
-        'Gradle': 'border-teal-500/60 text-teal-400',
+        'PostgreSQL': 'bg-blue-700/40 text-blue-100',
+        'MySQL': 'bg-blue-600/40 text-blue-100',
+        'Flask': 'bg-zinc-600/50 text-gray-100',
+        'Gradle': 'bg-teal-700/40 text-teal-100',
         // Cloud / deploy
-        'Vercel': 'border-gray-400/60 text-gray-300',
-        'Auth0': 'border-orange-400/60 text-orange-300',
-        'Raspberry Pi': 'border-pink-500/60 text-pink-400',
-        'iOS': 'border-blue-400/60 text-blue-300',
-        'Xcode': 'border-blue-500/60 text-blue-400',
+        'Vercel': 'bg-zinc-600/50 text-gray-100',
+        'Auth0': 'bg-orange-700/40 text-orange-100',
+        'Raspberry Pi': 'bg-pink-700/40 text-pink-100',
+        'iOS': 'bg-blue-600/40 text-blue-100',
+        'Xcode': 'bg-blue-700/40 text-blue-100',
     };
 
     function getTechColor(tech: string): string {
-        return techColors[tech] || 'border-zinc-500/60 text-gray-400';
+        return techColors[tech] || 'bg-zinc-600/50 text-gray-200';
     }
 
     async function onImagePressed(preview: string) {
@@ -133,7 +133,7 @@
         {#if displayObject.tech}
             <div class="flex flex-wrap gap-1.5 mt-2">
                 {#each displayObject.tech.split(",").map(t => t.trim()) as tech}
-                    <span class="badge badge-sm badge-outline {getTechColor(tech)}">{tech}</span>
+                    <span class="badge badge-sm border-0 {getTechColor(tech)}">{tech}</span>
                 {/each}
             </div>
         {/if}
@@ -144,12 +144,20 @@
                 <InfoCardImageCarousel fullScreen={fullScreen} displayObject={displayObject} onImagePressed={onImagePressed} />
             {/if}
             {#if displayObject.github || displayObject.website}
-                <div class="flex justify-between gap-3 w-full">
+                <div class="flex justify-center gap-2 mt-4">
                     {#if displayObject.website}
-                        <a href={displayObject.website} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4 flex-grow shadow-lg`}>View Project</a>
+                        <a href={displayObject.website} target="_blank" class="btn btn-sm btn-circle bg-zinc-800 hover:bg-zinc-700 border-zinc-700 hover:border-zinc-600 text-gray-300 hover:text-white tooltip" data-tip="View Project">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
                     {/if}
                     {#if displayObject.github}
-                        <a href={displayObject.github} target="_blank" class={`btn bg-[#191e24] hover:bg-[#15191e] hover:border-[#15191e] border-[#191e24] text-white hover:text-white mt-4 flex-grow shadow-lg`}>Source Code</a>
+                        <a href={displayObject.github} target="_blank" class="btn btn-sm btn-circle bg-zinc-800 hover:bg-zinc-700 border-zinc-700 hover:border-zinc-600 text-gray-300 hover:text-white tooltip" data-tip="Source Code">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                        </a>
                     {/if}
                 </div>
             {/if}
@@ -193,7 +201,7 @@
             {#if displayObject.tech}
                 <div class="flex flex-wrap gap-1.5 mt-2 justify-center">
                     {#each displayObject.tech.split(",").map(t => t.trim()) as tech}
-                        <span class="badge badge-sm badge-outline {getTechColor(tech)}">{tech}</span>
+                        <span class="badge badge-sm border-0 {getTechColor(tech)}">{tech}</span>
                     {/each}
                 </div>
             {/if}
