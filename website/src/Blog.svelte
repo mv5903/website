@@ -87,17 +87,25 @@
             </div>
         </a>
 
-        <!-- Remaining Posts -->
+        <!-- Remaining Posts with Timeline -->
         {#if blogPosts.length > 1}
-            <div class="flex flex-col divide-y divide-zinc-800">
-                {#each blogPosts.slice(1) as post}
-                    <a href={post.guid} class="group py-4 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 hover:bg-zinc-900/50 px-3 -mx-3 rounded-lg transition-colors">
-                        <span class="text-sm text-gray-500 shrink-0 sm:w-40">{formatDate(post.pubDate)}</span>
-                        <div class="flex-1 min-w-0">
-                            <h5 class="text-white group-hover:text-gray-200 transition-colors font-medium truncate">{post.title}</h5>
-                            <p class="text-sm text-gray-500 truncate mt-0.5">{post.description}</p>
+            <div class="relative pl-8">
+                <!-- Timeline line -->
+                <div class="timeline-line"></div>
+
+                {#each blogPosts.slice(1) as post, i}
+                    <a href={post.guid} class="group relative flex items-start py-4 hover:bg-zinc-900/50 px-3 rounded-lg transition-colors">
+                        <!-- Timeline dot -->
+                        <div class="timeline-dot group-hover:scale-125 group-hover:border-white group-hover:bg-zinc-700 {i === 0 ? 'border-white' : ''}"></div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 flex-1 min-w-0">
+                            <span class="text-sm text-gray-500 shrink-0 sm:w-40">{formatDate(post.pubDate)}</span>
+                            <div class="flex-1 min-w-0">
+                                <h5 class="text-white group-hover:text-gray-200 transition-colors font-medium truncate">{post.title}</h5>
+                                <p class="text-sm text-gray-500 truncate mt-0.5">{post.description}</p>
+                            </div>
+                            <span class="text-sm text-gray-600 group-hover:text-white transition-colors hidden sm:block">&rarr;</span>
                         </div>
-                        <span class="text-sm text-gray-600 group-hover:text-white transition-colors hidden sm:block">&rarr;</span>
                     </a>
                 {/each}
             </div>
@@ -119,5 +127,27 @@
         line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+
+    .timeline-line {
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(113, 113, 122, 0.5), rgba(113, 113, 122, 0.1));
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: -25px;
+        top: 22px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid rgb(113, 113, 122);
+        background: rgb(24, 24, 27);
+        transition: all 0.2s ease;
+        z-index: 1;
     }
 </style>
