@@ -140,7 +140,7 @@
 
     .timeline-dot {
         position: absolute;
-        left: -25px;
+        left: -21px;
         top: 22px;
         width: 10px;
         height: 10px;
