@@ -542,20 +542,17 @@
         overflow: hidden;
         position: relative;
         transition: all 0.5s ease;
-        border-radius: 0.5rem;
     }
-    
+
     .section-container.collapsed::after {
         content: '';
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 30px;
-        background: linear-gradient(to bottom, rgba(28, 25, 23, 0), rgba(24, 21, 21, 0.95));
+        height: 60px;
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
         pointer-events: none;
-        border-bottom-left-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
     }
     
     .section-container.expanded {
