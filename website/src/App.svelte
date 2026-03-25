@@ -88,6 +88,27 @@
 
     let showExtraProjects = false;
 
+    // Project tech filtering
+    let selectedTechs: string[] = [];
+    const allTechs = [...new Set(
+        projects.flatMap(p => p.tech ? p.tech.split(",").map((t: string) => t.trim()) : [])
+    )].sort();
+
+    function toggleTech(tech: string) {
+        if (selectedTechs.includes(tech)) {
+            selectedTechs = selectedTechs.filter(t => t !== tech);
+        } else {
+            selectedTechs = [...selectedTechs, tech];
+        }
+    }
+
+    $: filteredProjects = selectedTechs.length === 0
+        ? projects
+        : projects.filter(p => {
+            const techList = p.tech ? p.tech.split(",").map((t: string) => t.trim()) : [];
+            return selectedTechs.some(t => techList.includes(t));
+        });
+
     // Track expanded state for each section
     let workExpanded = false;
     let projectsExpanded = false;
@@ -263,19 +284,19 @@
             <div class="h-[100px]">
                 <div class="avatar ms-24">
                     <div class="w-12 rounded-full animate-ping hover:animate-spin">
-                        <img src="https://mattvandenberg.com/matthew.JPG" alt="Matthew" />
+                        <img src="https://mattvandenberg.com/matthew.jpg" alt="Matthew" />
                     </div>
                 </div>
                 <h1 class="text-6xl">Hi!</h1>
             </div>
             <div class="flex flex-col items-center gap-3">
-                <h1 class="text-4xl font-boldtext-gray-100">I'm</h1>
-                <h1 class="text-4xl font-boldtext-gray-100">Matthew </h1>
-                <h1 class="text-4xl font-boldtext-gray-100">Vandenberg!</h1>
+                <h1 class="text-4xl font-bold text-gray-100">I'm</h1>
+                <h1 class="text-4xl font-bold text-gray-100">Matthew </h1>
+                <h1 class="text-4xl font-bold text-gray-100">Vandenberg!</h1>
             </div>
             <div class="m-6">
-                <h2 class="text-xltext-gray-200">Software Engineer at ServiceNow</h2>
-                <h2 class="text-xltext-gray-200">Technology & Automation Afficionado</h2>
+                <h2 class="text-xl text-gray-200">Software Engineer at ServiceNow</h2>
+                <h2 class="text-xl text-gray-200">Technology & Automation Afficionado</h2>
             </div>
 
             <!-- Scroll Down Indicator -->
@@ -397,10 +418,26 @@
                     </button>
                 {/if}
             </div>
+            <!-- Tech filter badges -->
+            <div class="flex flex-wrap gap-2 justify-center mt-4 max-w-2xl mx-auto">
+                {#each allTechs as tech}
+                    <button
+                        class={`badge badge-md cursor-pointer transition-all duration-200 ${selectedTechs.includes(tech) ? 'badge-primary' : 'badge-outline text-gray-400 border-zinc-600 hover:border-zinc-400'}`}
+                        on:click={() => toggleTech(tech)}
+                    >
+                        {tech}
+                    </button>
+                {/each}
+                {#if selectedTechs.length > 0}
+                    <button class="badge badge-md badge-ghost text-gray-500 hover:text-white" on:click={() => selectedTechs = []}>
+                        Clear
+                    </button>
+                {/if}
+            </div>
             <div
                 class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 section-container projects-container ${projectsExpanded ? 'expanded' : 'collapsed'}`}
             >
-                {#each projects as project, num}
+                {#each filteredProjects as project, num}
                     {@const isClosed = closedInfoCards.includes(project.id)}
                     {@const isMinimized = minimizedInfoCards.includes(project.id)}
                     {@const isFullScreen = fullScreenInfoCard === project.id}

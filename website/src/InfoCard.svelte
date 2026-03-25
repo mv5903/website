@@ -88,7 +88,11 @@
             <p class="text-gray-300">{displayObject.content}</p>
         {/if}
         {#if displayObject.tech}
-            <p class="text-gray-400 mt-2">{displayObject.tech}</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+                {#each displayObject.tech.split(",").map(t => t.trim()) as tech}
+                    <span class="badge badge-sm badge-outline text-gray-400 border-zinc-600">{tech}</span>
+                {/each}
+            </div>
         {/if}
     </div>
     <div class="w-full">
@@ -144,7 +148,11 @@
                 <p class="text-gray-300">{bullet}</p>
             {/each}
             {#if displayObject.tech}
-                <p class="text-gray-400 mt-2">{displayObject.tech}</p>
+                <div class="flex flex-wrap gap-1.5 mt-2 justify-center">
+                    {#each displayObject.tech.split(",").map(t => t.trim()) as tech}
+                        <span class="badge badge-sm badge-outline text-gray-400 border-zinc-600">{tech}</span>
+                    {/each}
+                </div>
             {/if}
         {/if}
     {/if}
