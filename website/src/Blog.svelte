@@ -100,12 +100,9 @@
 
                         <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 flex-1 min-w-0">
                             <span class="text-sm text-gray-500 shrink-0 sm:w-40">{formatDate(post.pubDate)}</span>
-                            <div class="flex-1 min-w-0 relative">
+                            <div class="flex-1 min-w-0">
                                 <h5 class="text-white group-hover:text-gray-200 transition-colors font-medium truncate">{post.title}</h5>
-                                <p class="text-sm text-gray-500 mt-0.5 truncate">{post.description}</p>
-                                <div class="post-description-popover">
-                                    <p class="text-sm text-gray-400">{post.description}</p>
-                                </div>
+                                <p class="text-sm text-gray-500 mt-0.5 post-description">{post.description}</p>
                             </div>
                             <span class="text-sm text-gray-600 group-hover:text-white transition-colors hidden sm:block">&rarr;</span>
                         </div>
@@ -141,27 +138,14 @@
         background: linear-gradient(to bottom, rgba(113, 113, 122, 0.5), rgba(113, 113, 122, 0.1));
     }
 
-    .post-description-popover {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgb(39, 39, 42);
-        border: 1px solid rgb(63, 63, 70);
-        border-radius: 0.5rem;
-        padding: 0.75rem;
-        z-index: 10;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-4px);
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    .post-description {
+        max-height: 1.4em;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
     }
 
-    :global(.group:hover) .post-description-popover {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(4px);
+    :global(.group:hover) .post-description {
+        max-height: 10em;
     }
 
     .timeline-dot {
