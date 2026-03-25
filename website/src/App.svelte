@@ -33,21 +33,7 @@
         window.location.href = window.location.origin + "#" + id;
     };
 
-    let closedInfoCards: string[] = [];
     let fullScreenInfoCard: string = "";
-    let minimizedInfoCards: string[] = [];
-
-    function onClosePressed(displayObject: any) {
-        if (isMobile()) return;
-        const id = displayObject.id;
-
-        // Toggle the id in the closedInfoCards array
-        if (closedInfoCards.includes(id)) {
-            closedInfoCards = closedInfoCards.filter((item) => item !== id);
-        } else {
-            closedInfoCards = [...closedInfoCards, id];
-        }
-    }
 
     function resetFullScreen() {
         fullScreenInfoCard = "";
@@ -72,18 +58,6 @@
 
     function handleKeyDown(e: KeyboardEvent) {
         if (e.key === "Escape") resetFullScreen();
-    }
-
-    function onMinimizePressed(displayObject: any) {
-        if (isMobile()) return;
-        const id = displayObject.id;
-
-        // Toggle the id in the minimizedInfoCards array
-        if (minimizedInfoCards.includes(id)) {
-            minimizedInfoCards = minimizedInfoCards.filter((item) => item !== id);
-        } else {
-            minimizedInfoCards = [...minimizedInfoCards, id];
-        }
     }
 
     let showExtraProjects = false;
@@ -324,29 +298,16 @@
             <section id="work" class="px-4 py-8 w-full sm:w-1/2 text-center">
                 <div class="flex justify-center place-items-center gap-3">
                     <h3 class="text-3xl font-bold text-center">Work Experience</h3>
-                    {#if closedInfoCards.some((id) => id.startsWith("W"))}
-                        <button
-                            class="btn btn-sm animate-ping"
-                            on:click={() => (closedInfoCards = closedInfoCards.filter((id) => !id.startsWith("W")))}
-                        >
-                            <span>Reset</span>
-                        </button>
-                    {/if}
                 </div>
                 <div class={`mt-6 space-y-6 section-container ${workExpanded ? 'expanded' : 'collapsed'}`}>
                     {#each workExperience as job}
-                        {@const isClosed = closedInfoCards.includes(job.id)}
-                        {@const isMinimized = minimizedInfoCards.includes(job.id)}
                         {@const isFullScreen = fullScreenInfoCard === job.id}
                         <div
-                            class={`card ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                            class={`card ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                         >
                             <InfoCard
                                 fullScreen={isFullScreen}
-                                minimized={isMinimized}
-                                onClosePressed={() => onClosePressed(job)}
                                 onFullscreenPressed={() => onFullscreenPressed(job)}
-                                onMinimizePressed={() => onMinimizePressed(job)}
                                 type="job"
                                 displayObject={job}
                             />
@@ -375,29 +336,16 @@
             <section id="education" class="px-4 py-8 w-full sm:w-1/2 text-center">
                 <div class="flex justify-center place-items-center gap-3">
                     <h3 class="text-3xl font-bold text-center">Education</h3>
-                    {#if closedInfoCards.some((id) => id.startsWith("S"))}
-                        <button
-                            class="btn btn-sm animate-ping"
-                            on:click={() => (closedInfoCards = closedInfoCards.filter((id) => !id.startsWith("S")))}
-                        >
-                            <span>Reset</span>
-                        </button>
-                    {/if}
                 </div>
                 <div class={`mt-6 space-y-6`}>
                     {#each schools as school}
-                        {@const isClosed = closedInfoCards.includes(school.id)}
-                        {@const isMinimized = minimizedInfoCards.includes(school.id)}
                         {@const isFullScreen = fullScreenInfoCard === school.id}
                         <div
-                            class={`card ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""}  transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                            class={`card ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                         >
                             <InfoCard
                                 fullScreen={isFullScreen}
-                                minimized={isMinimized}
-                                onClosePressed={() => onClosePressed(school)}
                                 onFullscreenPressed={() => onFullscreenPressed(school)}
-                                onMinimizePressed={() => onMinimizePressed(school)}
                                 type="education"
                                 displayObject={school}
                             />
@@ -413,14 +361,6 @@
         <section id="projects" class={`px-4 py-8 text-center`}>
             <div class="flex justify-center place-items-center gap-3">
                 <h3 class="text-3xl font-bold text-center">Projects</h3>
-                {#if closedInfoCards.some((id) => id.startsWith("P"))}
-                    <button
-                        class="btn btn-sm animate-ping"
-                        on:click={() => (closedInfoCards = closedInfoCards.filter((id) => !id.startsWith("P")))}
-                    >
-                        <span>Reset</span>
-                    </button>
-                {/if}
             </div>
             <!-- Tech filter dropdown -->
             <div class="relative inline-block mt-3">
@@ -461,18 +401,13 @@
                 <!-- Featured projects -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {#each featuredProjects as project}
-                        {@const isClosed = closedInfoCards.includes(project.id)}
-                        {@const isMinimized = minimizedInfoCards.includes(project.id)}
                         {@const isFullScreen = fullScreenInfoCard === project.id}
                         <div
-                            class={`card max-h-full ${isClosed ? "closedCard" : ""} ${isMinimized ? "minimizedCard" : ""} ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                            class={`card max-h-full ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                         >
                             <InfoCard
                                 fullScreen={isFullScreen}
-                                minimized={isMinimized}
-                                onClosePressed={() => onClosePressed(project)}
                                 onFullscreenPressed={() => onFullscreenPressed(project)}
-                                onMinimizePressed={() => onMinimizePressed(project)}
                                 type="project"
                                 displayObject={project}
                             />
@@ -482,7 +417,7 @@
 
                 <!-- Remaining projects as compact list -->
                 {#if remainingProjects.length > 0}
-                    <div class="mt-6 space-y-2">
+                    <div class="mt-6 space-y-2 max-w-2xl mx-auto">
                         {#each remainingProjects as project}
                             <div class="flex items-start gap-3 py-3 px-4 rounded-lg bg-zinc-900 hover:bg-zinc-800 transition-colors">
                                 <div class="flex-1 min-w-0">
@@ -592,10 +527,6 @@
     .animate-bounce {
         animation: bounce 2s infinite;
     }
-    :global(.closedCard) {
-        display: none;
-    }
-
     :global(.fullScreenCard) {
         z-index: 10001; /* Increased z-index to be above the overlay */
         width: 66vw;
