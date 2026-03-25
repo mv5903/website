@@ -90,6 +90,7 @@
 
     // Project tech filtering
     let selectedTechs: string[] = [];
+    let filterOpen = false;
     const allTechs = [...new Set(
         projects.flatMap(p => p.tech ? p.tech.split(",").map((t: string) => t.trim()) : [])
     )].sort();
@@ -418,20 +419,39 @@
                     </button>
                 {/if}
             </div>
-            <!-- Tech filter badges -->
-            <div class="flex flex-wrap gap-2 justify-center mt-4 max-w-2xl mx-auto">
-                {#each allTechs as tech}
-                    <button
-                        class={`badge badge-md cursor-pointer transition-all duration-200 ${selectedTechs.includes(tech) ? 'badge-primary' : 'badge-outline text-gray-400 border-zinc-600 hover:border-zinc-400'}`}
-                        on:click={() => toggleTech(tech)}
-                    >
-                        {tech}
-                    </button>
-                {/each}
-                {#if selectedTechs.length > 0}
-                    <button class="badge badge-md badge-ghost text-gray-500 hover:text-white" on:click={() => selectedTechs = []}>
-                        Clear
-                    </button>
+            <!-- Tech filter dropdown -->
+            <div class="relative inline-block mt-3">
+                <button
+                    class="btn btn-sm btn-outline text-gray-400 border-zinc-600 hover:border-zinc-400 gap-2"
+                    on:click={() => filterOpen = !filterOpen}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    Filter{selectedTechs.length > 0 ? ` (${selectedTechs.length})` : ''}
+                </button>
+                {#if filterOpen}
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-static-element-interactions -->
+                    <div class="fixed inset-0 z-40" on:click={() => filterOpen = false}></div>
+                    <div class="absolute z-50 mt-2 left-1/2 -translate-x-1/2 w-72 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl p-3">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm text-gray-300 font-medium">Technologies</span>
+                            {#if selectedTechs.length > 0}
+                                <button class="text-xs text-gray-500 hover:text-white transition-colors" on:click={() => selectedTechs = []}>Clear all</button>
+                            {/if}
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto">
+                            {#each allTechs as tech}
+                                <button
+                                    class={`badge badge-sm cursor-pointer transition-all duration-200 ${selectedTechs.includes(tech) ? 'badge-primary' : 'badge-outline text-gray-400 border-zinc-600 hover:border-zinc-400'}`}
+                                    on:click={() => toggleTech(tech)}
+                                >
+                                    {tech}
+                                </button>
+                            {/each}
+                        </div>
+                    </div>
                 {/if}
             </div>
             <div

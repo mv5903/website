@@ -20,6 +20,49 @@
         mobileView = isMobile();
     })
 
+    const techColors: Record<string, string> = {
+        // JS ecosystem - yellow/amber
+        'JavaScript': 'border-yellow-600/60 text-yellow-400',
+        'TypeScript': 'border-blue-500/60 text-blue-400',
+        'Node.js': 'border-green-600/60 text-green-400',
+        'Node': 'border-green-600/60 text-green-400',
+        'React.js': 'border-cyan-500/60 text-cyan-400',
+        'React': 'border-cyan-500/60 text-cyan-400',
+        'Next.js': 'border-gray-400/60 text-gray-300',
+        'Svelte': 'border-orange-500/60 text-orange-400',
+        // Styling
+        'Tailwind': 'border-sky-500/60 text-sky-400',
+        'DaisyUI': 'border-emerald-500/60 text-emerald-400',
+        'CSS': 'border-blue-400/60 text-blue-300',
+        'Bootstrap': 'border-purple-500/60 text-purple-400',
+        'HTML': 'border-orange-500/60 text-orange-300',
+        // Languages
+        'Python': 'border-yellow-500/60 text-yellow-300',
+        'Java': 'border-red-500/60 text-red-400',
+        'Java with Swing': 'border-red-500/60 text-red-400',
+        'C#': 'border-violet-500/60 text-violet-400',
+        'Swift': 'border-orange-500/60 text-orange-400',
+        'SwiftUI': 'border-orange-500/60 text-orange-400',
+        'PHP': 'border-indigo-400/60 text-indigo-300',
+        'Bash': 'border-gray-400/60 text-gray-300',
+        'Shell': 'border-gray-400/60 text-gray-300',
+        // Data / infra
+        'PostgreSQL': 'border-blue-500/60 text-blue-300',
+        'MySQL': 'border-blue-400/60 text-blue-300',
+        'Flask': 'border-gray-400/60 text-gray-300',
+        'Gradle': 'border-teal-500/60 text-teal-400',
+        // Cloud / deploy
+        'Vercel': 'border-gray-400/60 text-gray-300',
+        'Auth0': 'border-orange-400/60 text-orange-300',
+        'Raspberry Pi': 'border-pink-500/60 text-pink-400',
+        'iOS': 'border-blue-400/60 text-blue-300',
+        'Xcode': 'border-blue-500/60 text-blue-400',
+    };
+
+    function getTechColor(tech: string): string {
+        return techColors[tech] || 'border-zinc-500/60 text-gray-400';
+    }
+
     async function onImagePressed(preview: string) {
         onFullscreenPressed();
         await tick(); // Wait for the DOM to update
@@ -90,7 +133,7 @@
         {#if displayObject.tech}
             <div class="flex flex-wrap gap-1.5 mt-2">
                 {#each displayObject.tech.split(",").map(t => t.trim()) as tech}
-                    <span class="badge badge-sm badge-outline text-gray-400 border-zinc-600">{tech}</span>
+                    <span class="badge badge-sm badge-outline {getTechColor(tech)}">{tech}</span>
                 {/each}
             </div>
         {/if}
@@ -150,7 +193,7 @@
             {#if displayObject.tech}
                 <div class="flex flex-wrap gap-1.5 mt-2 justify-center">
                     {#each displayObject.tech.split(",").map(t => t.trim()) as tech}
-                        <span class="badge badge-sm badge-outline text-gray-400 border-zinc-600">{tech}</span>
+                        <span class="badge badge-sm badge-outline {getTechColor(tech)}">{tech}</span>
                     {/each}
                 </div>
             {/if}
