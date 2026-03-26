@@ -112,7 +112,7 @@
         ></div>
     {/if}
 
-    <div class="max-w-screen-2xl m-3">
+    <div class="max-w-screen-2xl mx-auto my-3 w-full px-3">
         <!-- Menu Bar -->
         {#if isMobile()}
             <div class="drawer drawer-end z-100">
@@ -258,21 +258,21 @@
             
             <!-- Intro -->
             <div class="h-[100px]">
-                <div class="avatar ms-24">
+                <div class="avatar ms-12 sm:ms-24">
                     <div class="w-12 rounded-full animate-ping hover:animate-spin">
                         <img src="https://mattvandenberg.com/matthew.jpg" alt="Matthew" />
                     </div>
                 </div>
-                <h1 class="text-6xl">Hi!</h1>
+                <h1 class="text-4xl sm:text-6xl">Hi!</h1>
             </div>
             <div class="flex flex-col items-center gap-3">
-                <h1 class="text-4xl font-bold text-gray-100">I'm</h1>
-                <h1 class="text-4xl font-bold text-gray-100">Matthew </h1>
-                <h1 class="text-4xl font-bold text-gray-100">Vandenberg!</h1>
+                <h1 class="text-2xl sm:text-4xl font-bold text-gray-100">I'm</h1>
+                <h1 class="text-2xl sm:text-4xl font-bold text-gray-100">Matthew </h1>
+                <h1 class="text-2xl sm:text-4xl font-bold text-gray-100">Vandenberg!</h1>
             </div>
             <div class="m-6">
-                <h2 class="text-xl text-gray-200">Software Engineer at ServiceNow</h2>
-                <h2 class="text-xl text-gray-200">Technology & Automation Afficionado</h2>
+                <h2 class="text-lg sm:text-xl text-gray-200">Software Engineer at ServiceNow</h2>
+                <h2 class="text-lg sm:text-xl text-gray-200">Technology & Automation Afficionado</h2>
             </div>
 
             <!-- Scroll Down Indicator -->
@@ -551,7 +551,7 @@
         left: 0;
         right: 0;
         height: 60px;
-        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+        background: linear-gradient(to bottom, transparent, #111);
         pointer-events: none;
     }
     
