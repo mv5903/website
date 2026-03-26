@@ -301,7 +301,7 @@
                     {#each workExperience as job}
                         {@const isFullScreen = fullScreenInfoCard === job.id}
                         <div
-                            class={`card ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                            class={`card ${isFullScreen ? "fullScreenCard" : ""} transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                         >
                             <InfoCard
                                 fullScreen={isFullScreen}
@@ -339,7 +339,7 @@
                     {#each schools as school}
                         {@const isFullScreen = fullScreenInfoCard === school.id}
                         <div
-                            class={`card ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                            class={`card ${isFullScreen ? "fullScreenCard" : ""} transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                         >
                             <InfoCard
                                 fullScreen={isFullScreen}
@@ -396,12 +396,12 @@
                 {/if}
             </div>
             <div
-                class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 section-container projects-container ${projectsExpanded ? 'expanded' : 'collapsed'}`}
+                class={`mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 section-container projects-container ${(projectsExpanded || selectedTechs.length > 0) ? 'expanded' : 'collapsed'}`}
             >
-                {#each filteredProjects as project}
+                {#each filteredProjects as project (project.id)}
                     {@const isFullScreen = fullScreenInfoCard === project.id}
                     <div
-                        class={`card max-h-full ${isFullScreen ? "fullScreenCard" : ""} transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
+                        class={`card max-h-full ${isFullScreen ? "fullScreenCard" : ""} transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1`}
                     >
                         <InfoCard
                             fullScreen={isFullScreen}
@@ -412,7 +412,7 @@
                     </div>
                 {/each}
             </div>
-            {#if projects.length > (isMobile() ? 3 : 6)}
+            {#if selectedTechs.length === 0 && projects.length > (isMobile() ? 3 : 6)}
                 <button class="btn text-white btn-outline mt-4 show-more-btn {!projectsExpanded ? 'show-more-btn-pulse' : ''}" on:click={toggleProjectsExpanded}>
                     <span>{projectsExpanded ? 'Show Less' : 'Show More'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn-icon" viewBox="0 0 20 20" fill="currentColor">
@@ -538,10 +538,9 @@
 
     /* Section height control styles */
     .section-container.collapsed {
-        max-height: 70vh;
+        max-height: 700px;
         overflow: hidden;
         position: relative;
-        transition: all 0.5s ease;
     }
 
     .section-container.collapsed::after {
@@ -554,15 +553,15 @@
         background: linear-gradient(to bottom, transparent, #111);
         pointer-events: none;
     }
-    
+
     .section-container.expanded {
         max-height: none;
-        transition: all 0.8s ease-in-out;
+        transition: max-height 0.8s ease-in-out;
     }
-    
+
     /* Projects grid specific styling */
     .projects-container.collapsed {
-        max-height: 85vh;
+        max-height: 850px;
     }
     
     /* Ensure smooth transitions */
@@ -652,19 +651,4 @@
         }
     }
     
-    /* Animation for expanding/collapsing sections */
-    .section-container {
-        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                    opacity 0.3s ease,
-                    transform 0.3s ease;
-    }
-    
-    .section-container.collapsed {
-        transform-origin: top;
-    }
-    
-    .section-container.expanded {
-        transform-origin: top;
-        opacity: 1;
-    }
 </style>
