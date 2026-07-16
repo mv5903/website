@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Matthew Vandenberg</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%234ade80%22/></svg>">
+  <meta name="description" content="Software engineer at ServiceNow, homelabber, and maker. Scroll to fly through my world." />
+  <style>
+    :root {
+      --bg: #111111; --ink: #f4f4f5; --soft: #a1a1aa; --acc: #4ade80;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    #gl { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+    #spacer { position: relative; width: 100%; pointer-events: none; }
+
+    /* brand */
+    #brand {
+      position: fixed; top: max(18px, env(safe-area-inset-top)); left: 22px; z-index: 5;
+      font-size: 15px; font-weight: 600; letter-spacing: .02em; color: var(--ink);
+      text-decoration: none; opacity: .9;
+    }
+    #brand i { font-style: normal; color: var(--acc); }
+
+    /* per-section copy */
+    #overlay { position: fixed; inset: 0; z-index: 4; pointer-events: none; }
+    .copy {
+      position: absolute; left: clamp(22px, 6vw, 90px);
+      bottom: calc(clamp(26px, 9vh, 110px) + env(safe-area-inset-bottom));
+      max-width: min(560px, 84vw);
+      opacity: 0; visibility: hidden; will-change: opacity, transform;
+    }
+    .copy .eyebrow {
+      margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--acc, #4ade80);
+    }
+    .copy h2 {
+      margin: 0 0 12px; font-size: clamp(30px, 5vw, 54px); line-height: 1.06;
+      font-weight: 800; letter-spacing: -0.02em;
+      text-shadow: 0 2px 24px rgba(17,17,17,.9), 0 0 60px rgba(17,17,17,.7);
+    }
+    .copy .body {
+      margin: 0; font-size: clamp(15px, 1.6vw, 18px); line-height: 1.55; color: var(--soft);
+      text-shadow: 0 1px 16px rgba(17,17,17,.95);
+    }
+    .copy .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .copy .tags span {
+      font-size: 12.5px; font-weight: 600; padding: 5px 12px; border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--acc) 55%, transparent);
+      color: color-mix(in srgb, var(--acc) 85%, white);
+      background: color-mix(in srgb, var(--acc) 10%, transparent);
+      backdrop-filter: blur(4px);
+    }
+    .copy .cta { display: flex; gap: 12px; margin-top: 22px; pointer-events: auto; }
+    .copy .cta a {
+      font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 12px;
+      padding: 12px 22px; transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .copy .cta a:hover { transform: translateY(-2px); }
+    .copy .cta .solid { background: var(--acc); color: #052e16; box-shadow: 0 4px 30px rgba(74,222,128,.35); }
+    .copy .cta .ghost { border: 1px solid #3f3f46; color: var(--ink); background: rgba(17,17,17,.5); }
+
+    /* route rail */
+    #rail {
+      position: fixed; right: max(16px, env(safe-area-inset-right)); top: 50%;
+      transform: translateY(-50%); z-index: 5; display: flex; flex-direction: column; gap: 14px;
+    }
+    #rail button {
+      all: unset; cursor: pointer; display: flex; align-items: center; gap: 10px;
+      flex-direction: row-reverse;
+    }
+    #rail i {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #3f3f46; transition: background .3s, transform .3s, box-shadow .3s; display: block;
+    }
+    #rail button.on i { background: var(--acc); transform: scale(1.35); box-shadow: 0 0 14px rgba(74,222,128,.8); }
+    #rail em {
+      font-style: normal; font-size: 12px; color: var(--soft); opacity: 0;
+      transition: opacity .25s; white-space: nowrap;
+    }
+    #rail button:hover em, #rail button.on em { opacity: 1; }
+    @media (hover: none), (max-width: 860px) { #rail em { display: none; } }
+
+    /* hover tooltip for scene hotspots */
+    #tip {
+      position: fixed; top: 0; left: 0; z-index: 7; pointer-events: none;
+      max-width: 300px; padding: 12px 16px; border-radius: 12px;
+      background: rgba(17, 17, 17, .88); border: 1px solid #3f3f46;
+      backdrop-filter: blur(8px); opacity: 0; transition: opacity .18s;
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+    }
+    #tip b { display: block; font-size: 14px; margin-bottom: 4px; letter-spacing: .01em; }
+    #tip p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--soft); }
+    #tip .go { display: block; margin-top: 8px; font-size: 11.5px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--acc); }
+
+    /* scroll hint */
+    #hint {
+      position: fixed; left: 50%; transform: translateX(-50%);
+      bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 5;
+      font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--soft);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      transition: opacity .5s; animation: hintbob 2.2s ease-in-out infinite;
+    }
+    #hint.gone { opacity: 0; pointer-events: none; }
+    #hint svg { width: 18px; height: 18px; stroke: var(--acc); }
+    @keyframes hintbob { 0%,100% { transform: translate(-50%,0);} 50% { transform: translate(-50%,7px);} }
+
+    /* static / reduced-motion / no-WebGL fallback */
+    body.static #spacer, body.static #rail, body.static #hint { display: none; }
+    body.static { overflow-y: auto; }
+    #overlay.stack { position: static; pointer-events: auto; padding: 12vh 6vw; }
+    #overlay.stack .copy {
+      position: static; opacity: 1 !important; visibility: visible !important;
+      transform: none !important; margin-bottom: 12vh; max-width: 640px;
+    }
+    @media (prefers-reduced-motion: reduce) { #hint { animation: none; } }
+  </style>
+</head>
+<body>
+  <canvas id="gl"></canvas>
+  <div id="spacer"></div>
+
+  <a id="brand" href="#top">matthew<i>vandenberg</i></a>
+  <div id="overlay"></div>
+  <div id="tip" role="tooltip"></div>
+  <nav id="rail" aria-label="Sections"></nav>
+  <div id="hint" aria-hidden="true">
+    <span>scroll to fly in</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M19 9l-7 7-7-7"/></svg>
+  </div>
+
+  <script type="importmap">
+    { "imports": { "three": "./lib/three.module.min.js" } }
+  </script>
+  <script type="module" src="world.js"></script>
+</body>
+</html>
